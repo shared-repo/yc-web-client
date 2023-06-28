@@ -5,6 +5,7 @@
     <title>입력요소와 폼</title>
 </head>
 <body>
+    <form action="#" method="post">
     <table border="1" width="600" align="center">
         <caption style="font-size: 20pt;margin-bottom: 20px;">회원가입정보</caption>
         <tr style="height: 40px;">
@@ -71,7 +72,24 @@
                 <input type="checkbox" name="interest" value="IT">IT
             </td>
         </tr>
+        <tr style="height: 40px;">
+            <th style="width: 150px">프로필사진</th>
+            <td>
+                <input type="file" name="picture" multiple accept="image/*">
+            </td>
+        </tr>
+        <tr style="height: 40px;">
+            <th style="width: 150px">가입인사</th>
+            <td>
+                <textarea name="greetings" rows="5" cols="55" style="resize: none;"></textarea> <!-- textarea는 반드시 종료태그 필요 -->
+            </td>
+        </tr>
+        <tr style="height: 40px;">
+            <th colspan="2"><input type="submit" value="가입"></th> <!-- submit : 서버로 form(입력 데이터) 전송 -->
+            <!-- <td></td> -->
+        </tr>
     </table>
+    </form>
     
 </body>
 </html>

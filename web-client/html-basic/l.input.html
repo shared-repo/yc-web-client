@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>입력요소와 폼</title>
+</head>
+<body>
+    <table border="1" width="600" align="center">
+        <caption style="font-size: 20pt;margin-bottom: 20px;">회원가입정보</caption>
+        <tr style="height: 40px;">
+            <th style="width: 150px">아이디</th>
+            <td>
+                <input type="text" style="width:90%"
+                       name="user_id" id="user_id" > <!-- name : 서버로 보내는 데이터 이름 -->
+                                                     <!-- id : 브라우저에서 사용하는 요소 이름 -->
+            </td>
+        </tr>
+        <tr style="height: 40px;">
+            <th style="width: 150px">패스워드</th>
+            <td>
+                <input type="password" name="pwd" style="width:90%">
+            </td>
+        </tr>
+        <tr style="height: 40px;">
+            <th style="width: 150px">이메일</th>
+            <td>
+                <input type="text" name="email_id" style="width:40%">
+                @
+                <select name="email_domain">
+                    <option value="n">naver.com</option>
+                    <option value="g">gmail.com</option>
+                    <option value="h">hanmail.net</option>
+                </select>
+            </td>
+        </tr>
+        <tr style="height: 40px;">
+            <th style="width: 150px">전화번호</th>
+            <td>
+                <select name="phone_1">
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="019">019</option>
+                </select>
+                -
+                <input type="text" name="phone_2" style="width:30%">
+                -
+                <input type="text" name="phone_3" style="width:30%">
+            </td>
+        </tr>
+        <tr style="height: 40px;">
+            <th style="width: 150px">생년월일</th>
+            <td>
+                <input type="date" name="birth_date">
+            </td>
+        </tr>
+        <tr style="height: 40px;">
+            <th style="width: 150px">성별</th>
+            <td>
+                <!-- radio : 이름이 같은 것 중에서 1개 선택 (단일선택) -->
+                <input type="radio" name="gender" value="male">남
+                <input type="radio" name="gender" value="female">여
+            </td>
+        </tr>
+        <tr style="height: 40px;">
+            <th style="width: 150px">관심주제</th>
+            <td>
+                <!-- checkbox : 이름이 같은 것 중에서 여러 개 선택 (다중선택) -->
+                <input type="checkbox" name="interest" value="음악">음악
+                <input type="checkbox" name="interest" value="영화">영화
+                <input type="checkbox" name="interest" value="스포츠">스포츠
+                <input type="checkbox" name="interest" value="IT">IT
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>

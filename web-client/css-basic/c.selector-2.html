@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>연결 선택자</title>
+    <style>
+        div {
+            color: blue;
+            font-size: 10pt;
+        }
+        #top-div > div {
+            color: rgb(255, 0, 0);
+        }
+        #top-div div {
+            font-size: 20pt;
+        }
+        
+        #mid1-div + div {
+            font-weight: bold;
+        }
+        #mid1-div ~ div {
+            text-decoration: underline;
+        }
+
+    </style>
+    <style></style>
+</head>
+<body>
+    <div id="top-div">
+        TOP CONTENT
+        <div id="mid1-div">
+            MID1 CONTENT
+            <div id="bottom-div">
+                BOTTOM CONTENT
+            </div>
+        </div>
+        <div id="mid2-div">MID2 CONTENT</div>
+        <div id="mid3-div">MID3 CONTENT</div>
+    </div>
+    <div>
+        EXTERNAL CONTENT
+    </div>
+</body>
+</html>

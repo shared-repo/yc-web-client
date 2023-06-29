@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>가상 선택자</title>
+    <style>
+        a:link {
+            color: red;
+        }
+        a:visited {
+            color: green;
+        }
+        a:active {
+            color: orange;
+        }
+        div {
+            width:100%;
+            height: 150px;
+            background-color: green;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        div:hover {
+            background-color: blue;
+        }
+        p::first-letter {
+            color: #ff0000;
+            font-size: xx-large;
+        }
+        p::first-line {
+            color: #0000ff;
+            font-variant: small-caps;
+        }
+        h1::before {
+            content: url(images/smiley.gif);
+        }
+        h1::after {
+            content: url(images/smiley.gif);
+        }
+
+        
+
+    </style>
+</head>
+<body>
+    <a href="https://developers.naver.com">네이버 개발자 사이트</a>
+    <br>
+    <a href="https://developers.kakao.com">카카오 개발자 사이트</a>
+    <br>
+    <a href="https://developers.google.com">구글 개발자 사이트</a>
+    <hr>
+    <div></div>
+    <hr>
+    <p>You can combine the ::firstletter and ::first-line pseudoelements to add a special effect
+        to the first letter and the first
+        line of a text!</p>
+    <hr>
+    <h1>This is a heading</h1>
+    <p>The ::after pseudo-element
+    inserts content after the
+    content of an element.</p>
+    <h1>This is a heading</h1>
+</body>
+</html>

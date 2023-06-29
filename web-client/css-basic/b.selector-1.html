@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>기본 선택자</title>
+    <style>
+        * {
+            text-align: center;
+        }
+        p { 
+            color: red; 
+            /* font-size: 20pt;  */
+        }
+        div {
+            color: blue;
+            /* font-size: 20pt; */
+        }
+        p, div, #demo_id {
+            font-size: 25pt;
+        }
+        #demo_id {
+            color: purple;
+        }
+        .demo_class {
+            color: orangered;
+        }
+    </style>
+</head>
+<body>
+    <p>스타일이 적용된 요소</p>
+    <div>스타일이 적용된 요소</div>
+    <h2 id="demo_id">스타일이 적용된 요소</h2> <!-- id는 문서 내에서 유일한 고유값 -->
+    <h3 class="demo_class">스타일이 적용된 요소</h3><!-- class는 여러 곳에서 사용 가능 -->
+</body>
+</html>

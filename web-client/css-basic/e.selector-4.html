@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>속성 선택자</title>
+    <style>
+        a { 
+            text-decoration: none;
+        }
+        a[target] {
+            font-size: 20pt;
+        }
+        a[target="_blank"] {
+            background-color: palegreen;
+        }
+        p[class*="ef"] {
+            color: red;
+        }
+        p[class^="abc"] {
+            color: purple;
+        }
+        p[class$="jkl"] {
+            color: hotpink;
+        }
+        p[class~="ef"] {
+            font-size:20pt;
+        }
+        p[class|=abc] {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    [<a href="http://www.naver.com">target 속성이 없는 요소</a>]
+    [<a href="http://www.naver.com" target="_self">target 속성이 _self인 요소</a>]
+    [<a href="http://www.naver.com" target="_blank">target 속성이 _blank 요소</a>]
+    <hr>
+    <p class="def ghi">스타일이 적용된 요소</p>
+    <p class="abcd ghi">스타일이 적용된 요소</p>
+    <p class="ghi jkl">스타일이 적용된 요소</p>
+    <p class="bcd ef ghi">스타일이 적용된 요소</p>
+    <p class="abc- ghi">스타일이 적용된 요소</p>
+</body>
+</html>

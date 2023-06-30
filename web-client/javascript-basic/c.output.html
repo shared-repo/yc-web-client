@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>출력 함수</title>
+</head>
+<body>
+    <button onclick="window.print()">프린트</button>
+    <script>
+        document.write("화면에 내용을 출력하는 명령(함수)");
+    </script>
+    <script>
+        window.alert("메시지 표시 + 사용자 확인을 위한 팝업"); // window.alert -> alert
+        window.confirm("메시지 표시 + 사용자 선택을 위한 팝업"); // window.confirm -> confirm
+        const msg = window.prompt("사용자의 입력을 받는 팝업"); // window.prompt -> prompt
+        alert(msg);
+    </script>
+    <script>
+        console.log("개발자 도구에 메시지를 표시하는 명령(함수)");
+    </script>
+</body>
+</html>

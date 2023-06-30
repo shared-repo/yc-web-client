@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>if statement</title>
+    <script>
+        // 숫자 입력 -> 0보다 크면 메시지 출력
+        const number = window.prompt("숫자를 입력하세요");
+
+        if (number > 0) {
+            alert("0보다 큰 숫자를 입력했습니다 1");
+        }
+
+        if (number > 0) {
+            alert("0보다 큰 숫자를 입력했습니다 2");
+        } else {
+            alert("0보다 작은 숫자를 입력했습니다 2");
+        }
+
+        if (number > 0) {
+            alert("0보다 큰 숫자를 입력했습니다 3");
+        } else if (number < 0) {
+            alert("0보다 작은 숫자를 입력했습니다 3");
+        } else { // 위의 모든 조건에 해당하지 않는 나머지 모든 경우
+            alert("0을 입력했습니다 3");
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

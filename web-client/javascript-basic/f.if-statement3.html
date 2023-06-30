@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>if statement</title>
+    <script>
+        // 계산기 만들기
+        // 1. 숫자 입력, 연산자(+, -, *, /) 입력, 숫자 입력 -> 각 값을 변수에 저장
+        //    테스트 (입력한 값 출력, 두 값을 더하기 한 값 출력)
+        let operand1 = window.prompt("숫자를 입력하세요"); // prompt로 입력받은 데이터는 모두 문자열
+        const op = window.prompt("연산자를 입력하세요 [+, -, *, /, %]");
+        let operand2 = window.prompt("숫자를 입력하세요");
+
+        operand1 = parseInt(operand1); // parseInt(문자열) : 문자열 -> 정수 변환
+        operand2 = parseInt(operand2);
+
+        // console.log(operand1);
+        // console.log(operand2);
+        // console.log(op);
+        // console.log(operand1 + operand2);
+
+        // 2. 입력한 연산자에 따라 연산 수행하고 결과를 변수에 저장 ( if ~ else if ~ else if ~ ... ~ else )
+        let result;
+        switch (op) {
+        case '+': 
+            result = operand1 + operand2;
+            break; // switch-case문 즉시 종료
+        case '-': 
+            result = operand1 - operand2;
+            break;
+        case '*': 
+            result = operand1 * operand2;
+            break;
+        case '/': 
+            result = operand1 / operand2;
+            break;
+        case '%': 
+            result = operand1 % operand2;
+            break;
+        default: 
+            result = "지원하지 않는 연산자입니다.";
+        }
+
+        // 3. 연산 결과 출력 ( alert )
+        alert(result);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -17,6 +17,17 @@
         document.write("</table>");
 
         // 2-1. 1단 ~ 9단 구구단 출력 ( table 형식으로 출력 )
+        document.write("<table border='1' width='900'>");
+        for (let r = 1; r < 10; r++) {
+            document.write("<tr>");
+            for (let c = 1; c < 10; c++) {
+                document.write("<th>");
+                    document.write(c + "X" + r + "=" + (c*r));
+                document.write("</th>");
+            }
+            document.write("</tr>");
+        }
+        document.write("</table>")
     </script>
 </head>
 <body>

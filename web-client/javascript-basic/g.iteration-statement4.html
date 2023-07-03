@@ -5,7 +5,16 @@
     <title>iteration statement</title>
     <script>
         // 1-1. 사용자 입력(1 ~ 9) -> 변수에 저장 -> 숫자로 변경
+        let dan = window.prompt("출력할 구구단의 단을 입력하세요");
+        dan = parseInt(dan)
         // 1-2. 사용자 입력한 숫자에 해당하는 구구단 출력 ( table 형식으로 출력 ) : while, for
+        document.write("<table border='1' width='100'>");
+        for(let row = 1; row < 10; row++) {
+            document.write("<tr>");
+            document.write("<th>" + dan + "X" + row + "=" + (dan*row)  + "</th>");
+            document.write("</tr>");
+        }
+        document.write("</table>");
 
         // 2-1. 1단 ~ 9단 구구단 출력 ( table 형식으로 출력 )
     </script>

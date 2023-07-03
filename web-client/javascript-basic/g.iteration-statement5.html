@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>iteration statement</title>
+    <script>
+        // 1-1. 사용자 입력(1 ~ 9) -> 변수에 저장 -> 숫자로 변경
+        let dan = window.prompt("출력할 구구단의 단을 입력하세요");
+        dan = parseInt(dan)
+        // 1-2. 사용자 입력한 숫자에 해당하는 구구단 출력 ( table 형식으로 출력 ) : while, for
+        let row = 1;
+        document.write("<table border='1' width='100'>");
+        while (row < 10) {
+            document.write("<tr>");
+            document.write("<th>" + dan + "X" + row + "=" + (dan*row)  + "</th>");
+            document.write("</tr>");
+            row++;
+        }
+        document.write("</table>");
+
+        // 2-1. 1단 ~ 9단 구구단 출력 ( table 형식으로 출력 )
+        let c = 1, r = 1;
+        document.write("<table border='1' width='900'>");
+        while (r < 10) {
+            document.write("<tr>");
+            c = 1;
+            while (c < 10) {
+                document.write("<th>");
+                    document.write(c + "X" + r + "=" + (c*r));
+                document.write("</th>");
+                c++;
+            }
+            // 여기서 c는 10 (위에서 초기화 필요)
+            document.write("</tr>");
+            r++;
+        }
+        document.write("</table>")
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

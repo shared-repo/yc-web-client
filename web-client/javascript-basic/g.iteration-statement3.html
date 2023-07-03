@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>iteration statement</title>
+    <script>
+        // 성적 등급 계산
+        // 1. 점수 3개 입력 (window.prompt) ->  변수에 저장 -> 정수형으로 변경
+        let score1 = 0;
+        do {
+            score1 = window.prompt("첫 번째 점수(0 ~100)를 입력하세요");
+            score1 = parseInt(score1);
+        } while (score1 < 0 || score1 > 100); // 입력 오류
+
+        let score2 = window.prompt("두 번째 점수(0 ~100)를 입력하세요");
+        score2 = parseInt(score2);
+
+        let score3 = window.prompt("세 번째 점수(0 ~100)를 입력하세요");
+        score3 = parseInt(score3);
+
+        // 2. 총점과 평균 계산 -> 변수에 저장
+        const total = score1 + score2 + score3;
+        const avg = total / 3;
+
+        // 3. 평균 점수 기준 등급 계산 (if ~ ese if ~ else 사용) -> 변수에 저장
+        //    90 ~ 100 : A
+        //    80 ~ 89 : B
+        //    70 ~ 79 : C
+        //    60 ~ 69 : D
+        //    0 ~ 59 : F
+        let grade;
+        if ( 90 <= avg && avg <= 100) { // && : 둘 다 true -> true, 아니면 false
+            grade = 'A';
+        } else if (avg >= 80 && avg < 90) {
+            grade = 'B'
+        } else if (avg >= 70 && avg < 80) {
+            grade = 'C'
+        } else if (avg >= 60 && avg < 70) {
+            grade = 'D'
+        } else if (avg >= 0 && avg < 60) {
+            grade = 'F';
+        } else {
+            grade = "잘못된 점수가 입력되었습니다."
+        }
+        // 4. 출력
+        // alert("[총점 : " + total + "][평균 : " + avg + "][등급 : " + grade + "]");
+        document.write("<h2>[총점 : " + total + "][평균 : " + avg + "][등급 : " + grade + "]</h2>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

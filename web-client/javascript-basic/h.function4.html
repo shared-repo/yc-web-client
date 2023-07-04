@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>function</title>
+    <script>
+        function addValues(v1, v2) { 
+            const result = v1 + v2;
+            return result;
+        }
+
+        const myAddValues = addValues; // 함수를 변수에 저장할 수 있습니다. (저장한 후에는 변수를 함수처럼 사용)
+
+        const addResult = addValues(10, 20);
+        alert(addResult);
+        const addResult2 = myAddValues(10, 20);
+        alert(addResult2); 
+
+        // 익명 함수 (이름 없는 함수, 변수에 저장해서 사용)
+        const multiplyValues = function (v1, v2) { 
+            const result = v1 * v2;
+            return result;
+        }
+        alert(multiplyValues(10, 20));
+
+        // 화살표 함수 (변수에 저장해서 사용)
+        const multiplyValues2 = (v1, v2) => v1 * v2;
+        alert(multiplyValues2(10, 20));
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

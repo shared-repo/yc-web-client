@@ -6,15 +6,15 @@
     <script>
         // 함수 정의 ( 만들기 )
         function addValues(v1, v2) { 
+            // result 변수는 addValues 함수 내부에서만 사용 가능
             const result = v1 + v2;
             return result; // 함수를 호출한 곳으로 값 반환
         }
 
-        // const addResult = addValues(10, 20);
-        // alert(addResult);
-        addValues(10, 20);
-        alert(result);
-
+        // addValues(10, 20);
+        // alert(result); // 오류 : 다른 (함수)지역에서 선언된 변수는 직접 사용할 수 없음
+        const addResult = addValues(10, 20);
+        alert(addResult); 
     </script>
 </head>
 <body>

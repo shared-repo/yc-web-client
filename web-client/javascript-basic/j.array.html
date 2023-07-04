@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>event</title>
+    <script>
+        let ar = [1, 2, 3, 4, 5]; // == new Array(1, 2, 3, 4, 5)
+        alert(ar[3]); // 3번째 요소의 값 읽기
+        ar[4] = 10; // 4번째 요소의 값 변경
+        alert(ar);
+
+        // for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < ar.length; i++) { // length : 배열 요소의 갯수 반환
+            document.write("<span style='font-size=15'> [ " + ar[i] + " ] </span>");
+        }
+    </script>
+</head>
+<body>
+    
+    
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+</head>
+<body>
+    <button id="btn">1 ~ 100 사이의 난수를 뽑아주세요</button>
+    <hr>
+    <div id="msg"></div>
+    <input type="text" id="msg2">
+    
+    <script>
+        // button을 클릭하면 div에 난수 표시
+        // 1. button 객체와 div 객체 찾기 -> 변수에 저장
+        // const button = document.querySelector("button"); // 태그 이름으로 요소 찾기
+        // const div = document.querySelector("div");
+        const button = document.querySelector("#btn"); // 태그의 id 속성으로 요소 찾기
+        const div = document.querySelector("#msg");
+        const input = document.querySelector("#msg2");
+
+        // 2. button 객체의 click 이벤트에 이벤트 처리기 함수 연결
+        button.onclick = function(event) {
+            // 3. 함수의 내용으로 난수를 뽑아서 div 객체에 표시
+            // alert("곧 난수를 보여드립니다.");
+            let randomNo = Math.random(); // 0 ~ 1 사이의 난수 발생
+            randomNo = randomNo * 99; // 0 ~ 99
+            randomNo = randomNo + 1; // 1 ~ 100
+            randomNo = Math.floor(randomNo); // 내림 (소수점 이하 제거)
+
+            div.innerHTML = "당신의 행운 숫자는 " + randomNo + " 입니다.";
+            input.value = "당행운 숫자 : " + randomNo; // input의 표시 내용은 value 속성으로 접근
+        }
+
+        
+    </script>
+</body>
+</html>

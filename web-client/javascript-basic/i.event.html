@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>event</title>
+    <script>
+        
+        function clickHandler() {
+            alert("눌러주셔서 감사합니다 !!!");
+        }
+        function mouseOverHandler() {
+            console.log("마우스가 div 안으로 들어왔습니다.");
+        }
+        function mouseOutHandler() {
+            console.log("마우스가 div 밖으로 나갔습니다.");
+        }
+    </script>
+</head>
+<body>
+    <button onclick="clickHandler()">눌러주세요</button>
+    <hr>
+    <div style="width:200px;height:200px;border:solid 1px" 
+         onmouseover="mouseOverHandler()" onmouseout="mouseOutHandler()"></div>
+    
+</body>
+</html>

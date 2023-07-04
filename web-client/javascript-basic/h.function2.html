@@ -5,7 +5,7 @@
     <title>function</title>
     <script>
         // 함수 정의 ( 만들기 )
-        function drawBox(ch, width, height) { // ch : parameter(전달인자)
+        function drawBox(ch="*", width=20, height=5) { // 전달인자와 기본 값 설정
             document.write("<table>");
             for (let r = 0; r < height; r++) {
                 document.write("<tr>");
@@ -24,7 +24,7 @@
 
         drawBox("#", 30, 5); // 함수 호출 : 함수 실행
         drawBox("$", 40, 10);
-        drawBox();// 필요한 전달인자를 제공하지 않으면 정상적으로 동작하지 않습니다.
+        drawBox();// 필요한 전달인자를 제공하지 않으면 기본 값 사용 (기본 값이 없으면 정상적으로 동작하지 않습니다.)
 
     </script>
 </head>

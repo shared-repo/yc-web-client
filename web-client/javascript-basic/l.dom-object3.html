@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <style>
+        #btnSelectNo { width: 100%; height: 35px; }
+        input { width: 30px; height: 30px; text-align: center;  }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td colspan="6">
+                <button id="btnSelectNo">당첨 예상 번호 뽑기</button>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="text" id="no1" readonly></td>
+            <td><input type="text" id="no2" readonly></td>
+            <td><input type="text" id="no3" readonly></td>
+            <td><input type="text" id="no4" readonly></td>
+            <td><input type="text" id="no5" readonly></td>
+            <td><input type="text" id="no6" readonly></td>
+        </tr>
+    </table>
+
+    <script>
+        // 1. button, input 요소 찾기 + 변수에 저장
+        const btnSelectNo = document.querySelector("#btnSelectNo");
+        const no1 = document.querySelector("#no1");
+        const no2 = document.querySelector("#no2");
+        const no3 = document.querySelector("#no3");
+        const no4 = document.querySelector("#no4");
+        const no5 = document.querySelector("#no5");
+        const no6 = document.querySelector("#no6");
+
+        // 2. button click event handler 연결
+        btnSelectNo.onclick = function(event) {
+
+            // 3. 번호 뽑기 + input 요소에 표시
+            let no = 0;
+            no = Math.random() * 45; // 0 ~ 45(미포함) 부동소수점
+            no = Math.floor(no) + 1; // 1 ~ 46(미포함) 정수
+            no1.value = no;
+
+            no = Math.random() * 45; // 0 ~ 45(미포함) 부동소수점
+            no = Math.floor(no) + 1; // 1 ~ 46(미포함) 정수
+            no2.value = no;
+
+            no = Math.random() * 45; // 0 ~ 45(미포함) 부동소수점
+            no = Math.floor(no) + 1; // 1 ~ 46(미포함) 정수
+            no3.value = no;
+
+            no = Math.random() * 45; // 0 ~ 45(미포함) 부동소수점
+            no = Math.floor(no) + 1; // 1 ~ 46(미포함) 정수
+            no4.value = no;
+
+            no = Math.random() * 45; // 0 ~ 45(미포함) 부동소수점
+            no = Math.floor(no) + 1; // 1 ~ 46(미포함) 정수
+            no5.value = no;
+
+            no = Math.random() * 45; // 0 ~ 45(미포함) 부동소수점
+            no = Math.floor(no) + 1; // 1 ~ 46(미포함) 정수
+            no6.value = no;
+        }
+    </script>
+</body>
+</html>

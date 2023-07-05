@@ -16,25 +16,20 @@
             </td>
         </tr>
         <tr>
-            <td><input type="text" id="no1" readonly></td>
-            <td><input type="text" id="no2" readonly></td>
-            <td><input type="text" id="no3" readonly></td>
-            <td><input type="text" id="no4" readonly></td>
-            <td><input type="text" id="no5" readonly></td>
-            <td><input type="text" id="no6" readonly></td>
+            <td><input type="text" class="no" readonly></td>
+            <td><input type="text" class="no" readonly></td>
+            <td><input type="text" class="no" readonly></td>
+            <td><input type="text" class="no" readonly></td>
+            <td><input type="text" class="no" readonly></td>
+            <td><input type="text" class="no" readonly></td>
         </tr>
     </table>
 
     <script>
         // 1. button, input 요소 찾기 + 변수에 저장
         const btnSelectNo = document.querySelector("#btnSelectNo");
-        // const nos = [0, 0, 0, 0, 0, 0]; // 미리 배열의 값을 저장해서 배열 만들기
-        const nos = []; // 빈 배열 만들기
-        for (let i = 0; i < 6; i++) {
-            const no1 = document.querySelector('#no' + (i+1));
-            // nos[i] = no1; // 기존 배열의 값을 변경
-            nos.push(no1); // array.push(e); 배열의 끝에 e를 추가
-        }
+        //const nos = document.querySelectorAll("input"); // 해당하는 요소 모두 찾기
+        const nos = document.querySelectorAll(".no"); // class="no"인 요소 모두 찾기
         
         // 2. button click event handler 연결
         btnSelectNo.onclick = function(event) {

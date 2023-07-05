@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <style>
+        #btnSelectNo { width: 100%; height: 35px; }
+        .ball_645 {
+            display: inline-block;
+            border-radius: 100%;
+            text-align: center;
+            vertical-align: middle;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .lrg {
+            width: 60px;
+            height: 60px;
+            line-height: 56px;
+            font-size: 28px;
+        }
+        .ball1 {
+            background: #fbc400;
+            text-shadow: 0px 0px 3px rgba(73, 57, 0, .8);
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td colspan="6">
+                <button id="btnSelectNo">당첨 예상 번호 뽑기</button>
+            </td>
+        </tr>
+        <tr>
+            <td><span class="ball_645 lrg ball1">1</span></td>
+            <td><span class="ball_645 lrg ball1">2</span></td>
+            <td><span class="ball_645 lrg ball1">3</span></td>
+            <td><span class="ball_645 lrg ball1">4</span></td>
+            <td><span class="ball_645 lrg ball1">5</span></td>
+            <td><span class="ball_645 lrg ball1">6</span></td>
+        </tr>
+    </table>
+
+    <script>
+        // 1. button, input 요소 찾기 + 변수에 저장
+        const btnSelectNo = document.querySelector("#btnSelectNo");
+        //const nos = document.querySelectorAll("input"); // 해당하는 요소 모두 찾기
+        const nos = document.querySelectorAll(".no"); // class="no"인 요소 모두 찾기
+        
+        // 2. button click event handler 연결
+        btnSelectNo.onclick = function(event) {
+
+            // 3. 번호 뽑기 + input 요소에 표시
+            for (let i = 0; i < 6; i++) {
+                let no  = Math.random() * 45; // 0 ~ 45(미포함) 부동소수점
+                no = Math.floor(no) + 1; // 1 ~ 46(미포함) 정수
+                nos[i].value = no;
+            }
+
+        }
+    </script>
+</body>
+</html>

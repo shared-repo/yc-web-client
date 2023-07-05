@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <style>
+        img { width: 100px; height: 100px; }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td colspan="3">아래 가위/바위/보를 선택하면 게임이 시작됩니다.</td>
+        </tr>
+        <tr>
+            <td><img id="scissors" src="images/scissors.png"></td>
+            <td><img id="rock" src="images/rock.png"></td>
+            <td><img id="paper" src="images/paper.png"></td>
+        </tr>
+    </table>
+    <div id="result"></div>
+
+    <script>
+        const scissors = document.querySelector("#scissors");
+        const rock = document.querySelector("#rock");
+        const paper = document.querySelector("#paper");
+        const div = document.querySelector("#result");
+
+        scissors.onclick = function(event) {
+            // alert('scissors selected');
+            // 1. Random 숫자 뽑기 (0, 1, 2) : 0은 scissors, 1은 rock, 2는 paper로 가정
+            let com = Math.random() * 3;
+            com = Math.floor(com); // 정수 만들기
+            // 2. 사용자 선택과 비교해서 승, 무, 패 결정 -> 변수에 저장
+            let result;
+            if (com == 0) { result = "DRAW"; }
+            else if (com == 1) { result = "LOSE"; }
+            else { result = "WIN"; }
+            // 3. div요소를 찾아서 결과 표시 (<div id="result"></div>에 표시)            
+            div.innerHTML = "YOU " + result
+        }
+        rock.onclick = function(event) {
+            // alert('rock selected');
+            // 1. Random 숫자 뽑기 (0, 1, 2) : 0은 scissors, 1은 rock, 2는 paper로 가정
+            let com = Math.random() * 3;
+            com = Math.floor(com); // 정수 만들기
+            // 2. 사용자 선택과 비교해서 승, 무, 패 결정 -> 변수에 저장
+            let result;
+            if (com == 0) { result = "WIN"; }
+            else if (com == 1) { result = "DRAW"; }
+            else { result = "LOSE"; }
+            // 3. div요소를 찾아서 결과 표시 (<div id="result"></div>에 표시)            
+            div.innerHTML = "YOU " + result
+        }
+        paper.onclick = function(event) {
+            // alert('paper selected');
+            // 1. Random 숫자 뽑기 (0, 1, 2) : 0은 scissors, 1은 rock, 2는 paper로 가정
+            let com = Math.random() * 3;
+            com = Math.floor(com); // 정수 만들기
+            // 2. 사용자 선택과 비교해서 승, 무, 패 결정 -> 변수에 저장
+            let result;
+            if (com == 0) { result = "LOSE"; }
+            else if (com == 1) { result = "WIN"; }
+            else { result = "DRAW"; }
+            // 3. div요소를 찾아서 결과 표시 (<div id="result"></div>에 표시)            
+            div.innerHTML = "YOU " + result
+        }
+
+        function checkResult(user) {
+            // 1. Random 숫자 뽑기 (0, 1, 2) : 0은 scissors, 1은 rock, 2는 paper로 가정
+            let com = Math.random() * 3;
+            com = Math.floor(com); // 정수 만들기
+
+            // 2. 사용자 선택과 비교해서 승, 무, 패 결정 -> 변수에 저장
+            let result;
+            if (user == 0) {
+                if (com == 0) { result = "DRAW"; }
+                else if (com == 1) { result = "LOSE"; }
+                else { result = "WIN"; }
+            } else if (user == 1) {
+                if (com == 0) { result = "WIN"; }
+                else if (com == 1) { result = "DRAW"; }
+                else { result = "LOSE"; }
+            } else {
+                if (com == 0) { result = "LOSE"; }
+                else if (com == 1) { result = "WIN"; }
+                else { result = "DRAW"; }
+            }
+
+            // 3. div요소를 찾아서 결과 표시 (<div id="result"></div>에 표시)            
+            div.innerHTML = "YOU " + result
+        }
+    </script>
+</body>
+</html>

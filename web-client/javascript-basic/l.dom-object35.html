@@ -13,7 +13,6 @@
             color: #fff;
             font-weight: 500;
         }
-
         .lrg {
             width: 60px;
             height: 60px;
@@ -46,8 +45,7 @@
     <script>
         // 1. button, input 요소 찾기 + 변수에 저장
         const btnSelectNo = document.querySelector("#btnSelectNo");
-        //const nos = document.querySelectorAll("input"); // 해당하는 요소 모두 찾기
-        const nos = document.querySelectorAll(".no"); // class="no"인 요소 모두 찾기
+        const nos = document.querySelectorAll(".ball_645"); // class="ball_645"인 요소 모두 찾기
         
         // 2. button click event handler 연결
         btnSelectNo.onclick = function(event) {
@@ -56,7 +54,7 @@
             for (let i = 0; i < 6; i++) {
                 let no  = Math.random() * 45; // 0 ~ 45(미포함) 부동소수점
                 no = Math.floor(no) + 1; // 1 ~ 46(미포함) 정수
-                nos[i].value = no;
+                nos[i].innerHTML = no; // input은 value로 나머지는 innerHTML로 값 표시
             }
 
         }

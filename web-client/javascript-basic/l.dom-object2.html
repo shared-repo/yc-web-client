@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><input type="text" id="won"></td>
+            <td>
+                <button id="exchange1">변환(W to $)</button>
+                <br>
+                <button id="exchange2">변환($ to W)</button> <!--  &lt;는 < 표시와 같습니다. -->
+            </td>
+            <td><input type="text" id="dollor"></td>
+        </tr>
+    </table>
+
+    <script>
+        // 1. 사용할 html 요소 찾기 + 변수에 저장
+        const won = document.querySelector("#won"); // <input
+        const dollor = document.querySelector("#dollor");
+        const btn1 = document.querySelector("#exchange1");
+        const btn2 = document.querySelector("#exchange2");
+
+        // 2. button에 click 이벤트 처리기 연결
+        btn1.onclick = function(event) {
+            // 3. won input에 입력된 값 읽기 + 숫자로 변환 + 환율 적용 + dollor input에 출력
+            let w = won.value; // <input value
+            // w = parseInt(w); // 정수로 변환
+            w = parseFloat(w); // 부동소수점으로 변환
+            w = w * 0.000768;
+            dollor.value = w;
+        }
+        btn2.onclick = function(event) {
+            // 3. dollor input에 입력된 값 읽기 + 숫자로 변환 + 환율 적용 + won input에 출력
+            let d = dollor.value; // <input value
+            d = parseInt(d);
+            d = d * 1301;
+            won.value = d;
+        }
+        
+    </script>
+</body>
+</html>

@@ -5,12 +5,15 @@
     <title>Image Slider</title>
     <style>
         table { margin: 0 auto; }
-        img { width: 100px; height: 100px; border: solid 1px; }
+        td { text-align: center; }
+        #list-row img { width: 100px; height: 100px; border: solid 1px; }
+        #display-row img { width: 400px; height: 400px; border: solid 2px red; }
+        #display-row button { width: 100px; height: 50px; }
     </style>
 </head>
 <body>
     <table>
-        <tr>
+        <tr id="list-row">
             <td><img id="img0"></td>
             <td><img id="img1"></td>
             <td><img id="img2"></td>
@@ -22,8 +25,39 @@
             <td><img id="img8"></td>
             <td><img id="img9"></td>
         </tr>
+        <tr id="display-row">
+            <td><button id="btnPrev">이전</button></td>
+            <td colspan="8"><img id="current_img"></td>
+            <td><button id="btnNext">다음</button></td>
+        </tr>
     </table>
     <script>
+        const img_names = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        //const imgs = document.querySelectorAll('img[id^=img]'); // <img id="img?" 모두 선택
+        const imgs = document.querySelectorAll('#list-row img'); // 
+        for (let i = 0; i < imgs.length; i++) {
+            imgs[i].src = 'images/' + img_names[i] + ".jpg";
+            imgs[i].onclick = function(event) {
+                const img = event.target; // 현재 선택된 이미지
+                current_img.src = img.src; // 현재 선택된 이미지 src를 current_img의 src에 지정
+            }
+        }
+
+        const current_img = document.querySelector('#current_img'); // #display-row img
+
+        //////////////////////////////////////////////
+
+        let current_idx = 0; // 현재 표시되는 이미지 번호
+
+        const btnPrev = document.querySelector("#btnPrev");
+        btnPrev.onclick = function(event) {
+            let prev_idx = current_idx - 1
+            if (prev_idx < 0) { // 범위를 벗어나는 경우
+                prev_idx = imgs.length - 1; // 마지막 위치로 변경
+            }
+            current_img.src = "images/" + img_names[prev_idx] + ".jpg";
+            current_idx = prev_idx;
+        }
         
     </script>
 </body>

@@ -37,17 +37,21 @@
         const imgs = document.querySelectorAll('#list-row img'); // 
         for (let i = 0; i < imgs.length; i++) {
             imgs[i].src = 'images/' + img_names[i] + ".jpg";
+            imgs[i].id = i; // id를 이미지의 순서번호로 설정 (0부터 시작하는 번호)
             imgs[i].onclick = function(event) {
                 const img = event.target; // 현재 선택된 이미지
+                img.style.border = "solid 2px blue"; // 현재 선택된 이미지 강조 표시
+                imgs[current_idx].style.border = "solid 1px black"; // 이전 이미지 강조 표시 해제
                 current_img.src = img.src; // 현재 선택된 이미지 src를 current_img의 src에 지정
+                current_idx = parseInt(img.id);
             }
         }
-
-        const current_img = document.querySelector('#current_img'); // #display-row img
 
         //////////////////////////////////////////////
 
         let current_idx = 0; // 현재 표시되는 이미지 번호
+        const current_img = document.querySelector('#current_img'); // #display-row img
+        current_img.src = 'images/' + img_names[current_idx] + ".jpg"; // 처음에 표시하는 이미지
 
         const btnPrev = document.querySelector("#btnPrev");
         btnPrev.onclick = function(event) {
@@ -55,8 +59,24 @@
             if (prev_idx < 0) { // 범위를 벗어나는 경우
                 prev_idx = imgs.length - 1; // 마지막 위치로 변경
             }
+            
+            imgs[prev_idx].style.border = "solid 2px blue"; // 현재 선택된 이미지 강조 표시
+            imgs[current_idx].style.border = "solid 1px black"; // 이전 이미지 강조 표시 해제
             current_img.src = "images/" + img_names[prev_idx] + ".jpg";
             current_idx = prev_idx;
+            
+        }
+
+        const btnNext = document.querySelector("#btnNext");
+        btnNext.onclick = function(event) {
+            let next_idx = current_idx + 1
+            if (next_idx > imgs.length - 1) { // 범위를 벗어나는 경우
+                next_idx = 0; // 처음 위치로 변경
+            }
+            imgs[next_idx].style.border = "solid 2px blue"; // 현재 선택된 이미지 강조 표시
+            imgs[current_idx].style.border = "solid 1px black"; // 이전 이미지 강조 표시 해제
+            current_img.src = "images/" + img_names[next_idx] + ".jpg";
+            current_idx = next_idx;
         }
         
     </script>

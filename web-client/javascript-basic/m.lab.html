@@ -63,8 +63,7 @@
             imgs[prev_idx].style.border = "solid 2px blue"; // 현재 선택된 이미지 강조 표시
             imgs[current_idx].style.border = "solid 1px black"; // 이전 이미지 강조 표시 해제
             current_img.src = "images/" + img_names[prev_idx] + ".jpg";
-            current_idx = prev_idx;
-            
+            current_idx = prev_idx;            
         }
 
         const btnNext = document.querySelector("#btnNext");

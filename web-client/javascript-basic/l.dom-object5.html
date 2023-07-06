@@ -4,11 +4,53 @@
     <meta charset="UTF-8">
     <title>DOM</title>
     <style>
+        td { width: 100px; height: 100px; text-align: center; border: solid 2px; }
     </style>
 </head>
 <body>
+    <table>
+        <tr>
+            <td id="red" style="background-color: red;"></td>
+            <td id="orange" style="background-color: orangered;"></td>
+            <td id="yellow" style="background-color: yellow;"></td>
+            <td id="green" style="background-color: green;"></td>
+            <td id="blue" style="background-color: blue;"></td>
+            <td id="navy" style="background-color: navy;"></td>
+            <td id="purple" style="background-color: purple;"></td>
+            <td id="random">RANDOM</td>
+        </tr>
+    </table>
     
     <script>
+        // td 요소 찾기 + 변수에 저장 + 이벤트 처리기 연결
+        const red = document.querySelector("#red");
+        red.onclick = function(event) {
+            alert('red selected');
+        }
+        const orange = document.querySelector("#orange");
+        orange.onclick = function(event) {
+            alert('orangered selected');
+        }
+        const yellow = document.querySelector("#yellow");
+        yellow.onclick = function(event) {
+            alert('yellow selected');
+        }
+        const green = document.querySelector("#green");
+        green.onclick = function(event) {
+            alert('green selected');
+        }
+        const blue = document.querySelector("#blue");
+        blue.onclick = function(event) {
+            alert('blue selected');
+        }
+        const navy = document.querySelector("#navy");
+        navy.onclick = function(event) {
+            alert('navy selected');
+        }
+        const purple = document.querySelector("#purple");
+        purple.onclick = function(event) {
+            alert('purple selected');
+        }
         
     </script>
 </body>

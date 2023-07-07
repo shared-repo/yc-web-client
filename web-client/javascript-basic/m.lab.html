@@ -49,33 +49,36 @@
 
         //////////////////////////////////////////////
 
+        function changeImage(new_idx) {
+            imgs[new_idx].style.border = "solid 2px blue"; // 새로 선택된 이미지 강조 표시
+            imgs[current_idx].style.border = "solid 1px black"; // 이전 이미지 강조 표시 해제
+            current_img.src = "images/" + img_names[new_idx] + ".jpg"; // 새로 선택된 이미지 표시
+            current_idx = new_idx;
+        }
+
         let current_idx = 0; // 현재 표시되는 이미지 번호
         const current_img = document.querySelector('#current_img'); // #display-row img
         current_img.src = 'images/' + img_names[current_idx] + ".jpg"; // 처음에 표시하는 이미지
+        imgs[current_idx].style.border = "solid 2px blue";
 
         const btnPrev = document.querySelector("#btnPrev");
         btnPrev.onclick = function(event) {
-            let prev_idx = current_idx - 1
+            let prev_idx = current_idx - 1;
             if (prev_idx < 0) { // 범위를 벗어나는 경우
                 prev_idx = imgs.length - 1; // 마지막 위치로 변경
             }
             
-            imgs[prev_idx].style.border = "solid 2px blue"; // 현재 선택된 이미지 강조 표시
-            imgs[current_idx].style.border = "solid 1px black"; // 이전 이미지 강조 표시 해제
-            current_img.src = "images/" + img_names[prev_idx] + ".jpg";
-            current_idx = prev_idx;            
+            changeImage(prev_idx);           
         }
 
         const btnNext = document.querySelector("#btnNext");
         btnNext.onclick = function(event) {
-            let next_idx = current_idx + 1
+            let next_idx = current_idx + 1;
             if (next_idx > imgs.length - 1) { // 범위를 벗어나는 경우
                 next_idx = 0; // 처음 위치로 변경
             }
-            imgs[next_idx].style.border = "solid 2px blue"; // 현재 선택된 이미지 강조 표시
-            imgs[current_idx].style.border = "solid 1px black"; // 이전 이미지 강조 표시 해제
-            current_img.src = "images/" + img_names[next_idx] + ".jpg";
-            current_idx = next_idx;
+
+            changeImage(next_idx);
         }
         
     </script>

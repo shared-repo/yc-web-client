@@ -17,7 +17,9 @@ public class Calculator {
 		int operand2 = scanner.nextInt();
 		
 		// 4. 연산 ( 선택문 )
-		int result = 0;
+		// int result = 0;
+		double result = 0;
+		boolean valid = true;
 		//if (op == "+") { // 자바는 문자열의 내용을 비교할 때 equals 메서드 사용해야 합니다.
 		if (op.equals("+")) {
 			result = operand1 + operand2;
@@ -26,17 +28,20 @@ public class Calculator {
 		} else if (op.equals("*")) {
 			result = operand1 * operand2;
 		} else if (op.equals("/")) {
-			result = operand1 / operand2;
+			// result = operand1 / operand2; // 정수 / 정수 -> 결과도 정수 (소수점 이하 데이터 손실)
+			result = (double)operand1 / operand2; // 부동소수점 / 정수 -> 결과는 부동소수점
 		} else if (op.equals("%")) {
 			result = operand1 - operand2;
 		} else {
 			// do nothing
 			System.out.println("지원하지 않는 연산자입니다.");
+			valid = false;
 		}
 		
 		// 5. 출력
-		System.out.printf("%d %s %d = %d\n", operand1, op, operand2, result);
-		
+		if (valid) {
+			System.out.printf("%d %s %d = %f\n", operand1, op, operand2, result);
+		}		
 		
 	}
 

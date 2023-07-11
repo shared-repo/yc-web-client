@@ -34,8 +34,19 @@ public class ScissorsRockPaperGame {
 					result = "You Lose !!!";
 				}
 				
+				// 선택 숫자 -> 가위,바위,보 문자열로 변경
+				String sUser = "";
+				if (user == 0) sUser = "가위";
+				else if (user == 1) sUser = "바위";
+				else sUser = "보";
+				// 삼항연산자 : 조건식 ? true일 때 값 : false일 때 값
+				//sUser = (user == 0) ? "가위" : ( (user == 1) ? "바위" : "보" );
+				
+				String sCom = (com == 0) ? "가위" : ( (com == 1) ? "바위" : "보" );
+				
 				// 4. 결과 출력 ( 사용자선택, 컴퓨터선택, 결과 )
 				System.out.printf("[사용자 : %d][컴퓨터 : %d][결과 : %s]\n", user, com, result);
+				System.out.printf("[사용자 : %s][컴퓨터 : %s][결과 : %s]\n", sUser, sCom, result);
 				
 				break;
 			case "2": 

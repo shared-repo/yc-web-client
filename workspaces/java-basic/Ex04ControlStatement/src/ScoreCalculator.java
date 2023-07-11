@@ -18,11 +18,11 @@ public class ScoreCalculator {
 			
 			switch (selection) {
 			case "1": 
-				System.out.println("점수 1 : ");
+				System.out.print("점수 1 : ");
 				int score1 = scanner.nextInt();
-				System.out.println("점수 2 : ");
+				System.out.print("점수 2 : ");
 				int score2 = scanner.nextInt();
-				System.out.println("점수 3 : ");
+				System.out.print("점수 3 : ");
 				int score3 = scanner.nextInt();
 				
 				int sum = score1 + score2 + score3; // 총점

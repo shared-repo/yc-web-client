@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Lotto {
 
@@ -39,6 +40,34 @@ public class Lotto {
 		System.out.printf("[%.2f]\n", avg); // %.2f : 소수점 이하 2자리 출력
 
 		// 5. 사용자가 원할 때까지 반복 ( 메뉴 시스템으로 구현 )
+		java.util.Scanner scanner = new java.util.Scanner(System.in);
+		main_loop : while (true) {
+			System.out.println("**************************************");
+			System.out.println("* 1. 당첨 예상 번호 뽑기                 *");
+			System.out.println("* 2. 종료                             *");
+			System.out.println("**************************************");
+			System.out.print("작업을 선택하세요 : ");
+			String selection = scanner.nextLine();
+			
+			System.out.println();
+			switch (selection) {
+			case "1":
+				break;
+			case "2":
+				System.out.println("행운을 빕니다. 부자되세요");
+				System.out.println("프로그램을 종료합니다.");
+				break main_loop;
+			default:
+				System.out.println("지원하지 않는 작업입니다.");
+			}
+			System.out.println();
+		}
 	}
 
 }
+
+
+
+
+
+

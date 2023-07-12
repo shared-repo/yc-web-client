@@ -11,6 +11,15 @@ public class Lotto {
 		// 1. 6개의 숫자 뽑기 ( 조건 : 1 ~ 45, Random, 중복X ) + 배열에 저장
 		for (int i = 0; i < numbers.length; i++) {
 			numbers[i] = (int)(Math.random() * 45) + 1;
+			
+			// 중복 검사 반복문 ( 현재 뽑힌 i번째 번호와 0 ~ i-1번째 번호 비교 )
+			for (int j = 0; j < i; j++) {
+				if (numbers[i] == numbers[j]) {
+					i--; // i 반복문에서 i++로 넘어가는 것을 상쇄하기 위해 --처리
+					// i = -1; // i 반복문에서 i를 0으로 만들어서 처음부터 다시 뽑기
+					break;
+				}				
+			}
 		}
 		
 		// 2. 뽑힌 숫자의 평균 계산

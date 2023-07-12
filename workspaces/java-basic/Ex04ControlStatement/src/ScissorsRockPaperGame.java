@@ -6,8 +6,10 @@ public class ScissorsRockPaperGame {
 		java.util.Scanner scanner = new java.util.Scanner(System.in);
 		
 		// 가위 바위 보 게임
+		
 		// 5. 사용자가 원할 때까지 반복 ( 메뉴 )
 		main_loop: while (true) {
+			// 메뉴 표시 + 선택
 			System.out.println("******************************");
 			System.out.println("* 1. 게임 시작                 *");
 			System.out.println("* 2. 게임 종료                 *");
@@ -15,6 +17,7 @@ public class ScissorsRockPaperGame {
 			System.out.print("[ 선택하세요 ] : ");
 			String selection = scanner.next();
 			
+			// 선택에 따른 작업 수행
 			switch (selection) {
 			case "1": 
 				// 1. 컴퓨터 선택 ( 난수, 0:가위 or 1:바위 or 2:보 )

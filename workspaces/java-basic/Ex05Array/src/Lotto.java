@@ -42,8 +42,10 @@ public class Lotto {
 						sum += numbers[i]; // sum = sum + numbers[i];
 					}
 					avg = sum / numbers.length;
-				} while (avg < 20 || avg > 26);
-				// 3. 평균이 20 ~ 26 범위를 벗어나면 1부터 다시
+				} while (avg < 20 || avg > 26); // 3. 평균이 20 ~ 26 범위를 벗어나면 1부터 다시
+				
+				// 뽑힌 숫자 정렬
+				java.util.Arrays.sort(numbers);
 				
 				// 4. 뽑힌 숫자 출력
 				System.out.print("[당첨 예상 번호]:");

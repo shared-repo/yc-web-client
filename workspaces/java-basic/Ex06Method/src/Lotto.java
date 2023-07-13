@@ -25,14 +25,11 @@ public class Lotto {
 				do {
 					
 					// 1. 6개의 숫자 뽑기 ( 조건 : 1 ~ 45, Random, 중복X ) + 배열에 저장
-					numbers = selectBasicNumbers(); // 이 호출이 가능하도록 메서드 구현하세요
+					numbers = selectBasicNumbers(); 
 					
 					// 2. 뽑힌 숫자의 평균 계산
-					int sum = 0;
-					for (int i = 0; i < numbers.length; i++) {
-						sum += numbers[i]; // sum = sum + numbers[i];
-					}
-					avg = sum / numbers.length;
+					avg = getAverage(numbers);// 이 호출이 가능하도록 메서드 구현하세요
+				
 				} while (avg < 20 || avg > 26); // 3. 평균이 20 ~ 26 범위를 벗어나면 1부터 다시
 				
 				// 뽑힌 숫자 정렬
@@ -68,6 +65,16 @@ public class Lotto {
 			}
 		}
 		return numbers;
+	}
+	
+	public static double getAverage(int[] numbers) {
+		int sum = 0;
+		for (int i = 0; i < numbers.length; i++) {
+			sum += numbers[i]; // sum = sum + numbers[i];
+		}
+		double avg = (double)sum / numbers.length;
+		
+		return avg;
 	}
 	
 	public static void showNumbers(int[] numbers, double avg) {

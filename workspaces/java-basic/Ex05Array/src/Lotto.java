@@ -56,7 +56,7 @@ public class Lotto {
 				
 				break;
 			case "2":
-				System.out.println("행운을 빕니다. 부자되세요");
+				System.out.println("행운을 빕니다. 부자되세요.");
 				System.out.println("프로그램을 종료합니다.");
 				break main_loop;
 			default:

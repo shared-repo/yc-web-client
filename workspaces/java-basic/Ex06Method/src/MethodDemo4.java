@@ -23,7 +23,7 @@ public class MethodDemo4 {
 		result = sum(10, 20, 30, 40, 50);
 		System.out.println(result);
 		
-		System.out.printf("%s%d%s%d", 1, 2, 3, 4);
+		System.out.printf("%s%d%s", 1, 2, 3);
 	}
 	
 	public static void useArrayParam(int[] ar) {

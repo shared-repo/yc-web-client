@@ -1,5 +1,5 @@
 
-public class MethodDemo3 {
+public class MethodDemo4 {
 	
 	public static void main(String[] args) {
 		

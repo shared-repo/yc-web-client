@@ -1,14 +1,14 @@
 
 public class MethodDemo {
-	
-	public static void drawBox() {
-		
-		
-		
-	}
 
 	public static void main(String[] args) {
 		
+		drawBox(); // 메서드 호출 ( 실행 )
+		
+	}
+
+	// 메서드 정의 ( 만들기 )
+	private static void drawBox() {
 		// 20 x 10 크기의 박스 그리기
 		for (int row = 0; row < 10; row++) {
 			for (int col = 0; col < 20; col++) {
@@ -20,7 +20,6 @@ public class MethodDemo {
 			}
 			System.out.println();			
 		}
-		
 	}
 
 }

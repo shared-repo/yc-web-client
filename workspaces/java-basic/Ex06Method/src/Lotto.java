@@ -1,20 +1,19 @@
 import java.util.Scanner;
 
 public class Lotto {
+	
+	static java.util.Scanner scanner = new java.util.Scanner(System.in);
 
 	public static void main(String[] args) {
 		
 		// 로또 번호 추출기 만들기
 		
 		// 5. 사용자가 원할 때까지 반복 ( 메뉴 시스템으로 구현 )
-		java.util.Scanner scanner = new java.util.Scanner(System.in);
+		//java.util.Scanner scanner = new java.util.Scanner(System.in);
 		main_loop : while (true) {
-			System.out.println("**************************************");
-			System.out.println("* 1. 당첨 예상 번호 뽑기                 *");
-			System.out.println("* 2. 종료                             *");
-			System.out.println("**************************************");
-			System.out.print("작업을 선택하세요 : ");
-			String selection = scanner.nextLine();
+
+			//String selection = selectTask(scanner);
+			String selection = selectTask();
 			
 			System.out.println();
 			switch (selection) {
@@ -48,6 +47,18 @@ public class Lotto {
 			}
 			System.out.println();
 		}
+	}
+	
+	//public static String selectTask(java.util.Scanner scanner) {
+	public static String selectTask() {
+		System.out.println("**************************************");
+		System.out.println("* 1. 당첨 예상 번호 뽑기                 *");
+		System.out.println("* 2. 종료                             *");
+		System.out.println("**************************************");
+		System.out.print("작업을 선택하세요 : ");
+		String selection = scanner.nextLine();
+		
+		return selection;
 	}
 
 	public static int[] selectBasicNumbers() {

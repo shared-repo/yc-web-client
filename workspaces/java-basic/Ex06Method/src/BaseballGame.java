@@ -16,15 +16,25 @@ public class BaseballGame {
 				int[] comNums = selectComNums();
 				System.out.printf("%d %d %d\n", comNums[0], comNums[1], comNums[2]);
 				
-				// 2. 사용자 숫자 선택 (0~9, 입력, 3개) --> 배열에 저장
-				
-				int[] userNums = inputUserNums();
-				// System.out.printf("%d %d %d\n", userNums[0], userNums[1], userNums[2]);
-						
-				// 3. 컴퓨터 숫자와 사용자 선택 비교 후 결과 판정 ( S, B, O ) --> 3S가 나오면 Win, 아니면 2부터 다시, 10회 반복되면 Lose
-				int[] sbo = compareNumbers(comNums, userNums); // { s_count, b_count, o_count }
-				System.out.printf("s:%d b:%d o:%d\n", sbo[0], sbo[1], sbo[2]);
-				
+				int round = 0;
+				for (; round < 10; round++) {
+					// 2. 사용자 숫자 선택 (0~9, 입력, 3개) --> 배열에 저장				
+					int[] userNums = inputUserNums();
+					// System.out.printf("%d %d %d\n", userNums[0], userNums[1], userNums[2]);
+							
+					// 3. 컴퓨터 숫자와 사용자 선택 비교 후 결과 판정 ( S, B, O ) --> 3S가 나오면 Win, 아니면 2부터 다시, 10회 반복되면 Lose
+					int[] sbo = compareNumbers(comNums, userNums); // { s_count, b_count, o_count }
+					if (sbo[0] == 3) { // 3 strike
+						System.out.println("축하합니다. 게임에서 승리했습니다.");
+						break;
+					} else {
+						System.out.printf("ROUND %2d : [STRIKE:%d][BALL:%d][OUT:%d]\n", 
+										  round + 1, sbo[0], sbo[1], sbo[2]);
+					}
+				}
+				if (round == 10) {
+					System.out.println("아쉽지만 게임에서 졌습니다.");
+				}
 				break;
 				
 			case "2": break;

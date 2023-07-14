@@ -9,7 +9,9 @@ public class Person {
 	
 	// 기능 : 메서드로 표현
 	String info() {
-		String info = "[" + no + "][" + name + "][" + phone + "][" + email + "]";
+		// System.out.printf("[%d][%s][%s][%s]", no, name, phone, email); // 문자열 + 데이터 결합 후 출력
+		// String info = "[" + no + "][" + name + "][" + phone + "][" + email + "]";
+		String info = String.format("[%d][%s][%s][%s]", no, name, phone, email); // 문자열 + 데이터 결합
 		return info;
 	}
 

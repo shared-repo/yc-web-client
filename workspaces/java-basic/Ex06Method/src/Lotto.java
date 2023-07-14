@@ -18,18 +18,10 @@ public class Lotto {
 			System.out.println();
 			switch (selection) {
 			case "1":
-				// 0. 6개의 숫자를 저장할 배열 만들기
-				int[] numbers; // = new int[6]; // selectBasicNumbers 메서드에서 new 처리
-				double avg = 0;
-				do {
-					
-					// 1. 6개의 숫자 뽑기 ( 조건 : 1 ~ 45, Random, 중복X ) + 배열에 저장
-					numbers = selectBasicNumbers(); 
-					
-					// 2. 뽑힌 숫자의 평균 계산
-					avg = getAverage(numbers);// 이 호출이 가능하도록 메서드 구현하세요
-				
-				} while (avg < 20 || avg > 26); // 3. 평균이 20 ~ 26 범위를 벗어나면 1부터 다시
+				// 당첨 예상 번호 뽑기
+				int[] numbers = selectWinningNumbers();
+				// 평균 계산
+				double avg = getAverage(numbers);
 				
 				// 뽑힌 숫자 정렬
 				java.util.Arrays.sort(numbers);
@@ -59,6 +51,23 @@ public class Lotto {
 		String selection = scanner.nextLine();
 		
 		return selection;
+	}
+	
+	public static int[] selectWinningNumbers() {
+		// 0. 6개의 숫자를 저장할 배열 만들기
+		int[] numbers; // = new int[6]; // selectBasicNumbers 메서드에서 new 처리
+		double avg = 0;
+		do {
+			
+			// 1. 6개의 숫자 뽑기 ( 조건 : 1 ~ 45, Random, 중복X ) + 배열에 저장
+			numbers = selectBasicNumbers(); 
+			
+			// 2. 뽑힌 숫자의 평균 계산
+			avg = getAverage(numbers);// 이 호출이 가능하도록 메서드 구현하세요
+		
+		} while (avg < 20 || avg > 26); // 3. 평균이 20 ~ 26 범위를 벗어나면 1부터 다시
+		
+		return numbers;
 	}
 
 	public static int[] selectBasicNumbers() {

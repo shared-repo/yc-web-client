@@ -19,9 +19,11 @@ public class BaseballGame {
 				// 2. 사용자 숫자 선택 (0~9, 입력, 3개) --> 배열에 저장
 				
 				int[] userNums = inputUserNums();
-				System.out.printf("%d %d %d\n", userNums[0], userNums[1], userNums[2]);
+				// System.out.printf("%d %d %d\n", userNums[0], userNums[1], userNums[2]);
 						
 				// 3. 컴퓨터 숫자와 사용자 선택 비교 후 결과 판정 ( S, B, O ) --> 3S가 나오면 Win, 아니면 2부터 다시, 10회 반복되면 Lose
+				int[] sbo = compareNumbers(comNums, userNums); // { s_count, b_count, o_count }
+				System.out.printf("s:%d b:%d o:%d\n", sbo[0], sbo[1], sbo[2]);
 				
 				break;
 				
@@ -35,6 +37,28 @@ public class BaseballGame {
 			}
 			System.out.println();
 		}
+	}
+
+	private static int[] compareNumbers(int[] comNums, int[] userNums) {
+		int[] result = new int[3]; // 사용자 번호 전체에 대한 s, b, o 개수 저장 배열
+		
+		for (int ui = 0; ui < userNums.length; ui++) {
+			
+			int tempResult = 2;// 사용자 번호 1개에 대한 s:0, b:1, o:2 저장 변수			
+			for (int ci = 0; ci < comNums.length; ci++) {				
+				if (userNums[ui] == comNums[ci]) {
+					if (ui == ci) {
+						tempResult = 0;	// strike
+					} else {
+						tempResult = 1;	// ball
+					}
+					break;
+				}
+			}
+			result[tempResult] = result[tempResult] + 1;
+		}
+		
+		return result;
 	}
 
 	private static int[] inputUserNums() {

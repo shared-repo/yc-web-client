@@ -13,8 +13,34 @@ public class ToDoApp {
 		outer : while (true) {
 			String selection = selectTask();
 			switch(selection) {
-			case "1": break;
-			case "2": break;
+			case "1": // 등록 처리
+				// 1. ToDo 인스턴스 만들기
+				ToDo toDo = new ToDo();
+				// 2. 사용자 입력 
+				System.out.print("할 일 제목 : ");
+				String title = scanner.nextLine();
+				System.out.print("할 일 내용 : ");
+				String content = scanner.nextLine();
+				java.util.Date now = new java.util.Date(); // new java.util.Date(); 현재 시간으로 Date 객체 초기화
+				// 3. 입력 데이터를 toDo 인스턴스에 저장
+				toDo.setTitle(title);
+				toDo.setContent(content);
+				toDo.setRegDate(now); 
+				// 4. ToDo 인스턴스를 할 일 관리 배열에 추가
+				toDos[nextPosition] = toDo;
+				nextPosition++; // 다음에 등록할 위치 변경
+				break;
+			case "2": 
+				if (nextPosition == 0) {
+					System.out.println("등록된 할 일이 없습니다.");
+				} else {
+					System.out.println("[전체 할 일 목록]");
+					for (int i = 0; i < nextPosition; i++) { // 처음부터 마지막 할 일이 등록되어 있는 위치까지 순회
+						String info = toDos[i].info();
+						System.out.println(info);
+					}
+				}
+				break;
 			case "3": break;
 			case "4": break;
 			case "5": break;
@@ -46,8 +72,9 @@ public class ToDoApp {
 
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		ToDoApp toDoApp = new ToDoApp();
+		toDoApp.doManage();
 
 	}
 

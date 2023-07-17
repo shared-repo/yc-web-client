@@ -10,10 +10,12 @@ class Person3 {
 	
 	// 생성자 : new 할 때 자동으로 호출되는 인스턴스 초기화 함수
 	public Person3() {
+		//this(1, "", "", ""); // 같은 클래스의 전달인자 4개인 생성자 메서드 호출
 		System.out.println("전달인자 없는 생성자 메서드가 자동으로 호출되었습니다.");
 	}
 	
 	public Person3(int no, String name, String phone, String email) {
+		this(); // 같은 클래스의 전달인자 없는 생성자 메서드 호출
 		System.out.println("전달인자 4개인 생성자 메서드가 자동으로 호출되었습니다.");
 		// this : 클래스의 멤버를 표시하기 위해 사용하는 표현
 		this.no = no;
@@ -22,6 +24,7 @@ class Person3 {
 		this.email = email;
 	}
 
+	
 	// getter, setter : 변수에 접근하는 약속된 메서드 ( getter : 읽기, setter : 쓰기 )
 	public int getNo() {
 		return no;

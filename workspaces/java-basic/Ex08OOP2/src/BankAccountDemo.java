@@ -29,6 +29,20 @@ public class BankAccountDemo {
 
 	public static void main(String[] args) {
 
+		// 계좌 10개 ( minus 3개, 입출금 4개, 적금 3개 )
+		// minus, savings, general 클래스의 부모 클래스인 BankAccount 클래스의 배열을 만들면 
+		// minus, savings, general 클래스의 인스턴스를 저장할 수 있습니다.
+		BankAccount[] accounts = new BankAccount[10];
+		
+		for (int i = 0; i < 10; i++) {
+			if (i % 3 == 0) {
+				accounts[i] = new GeneralAccount();
+			} else if (i % 3 == 1) {
+				accounts[i] = new SavingsAccount();
+			} else {
+				accounts[i] = new MinusAccount();
+			}
+		}
 	}
 
 }

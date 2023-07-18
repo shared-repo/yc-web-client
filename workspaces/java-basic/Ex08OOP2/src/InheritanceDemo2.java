@@ -33,6 +33,12 @@ public class InheritanceDemo2 {
 		//TheChild2 c = (TheChild2)new TheParent2(); // 형변환 하더라도 자식 타입 참조 -> 부모 타입 인스턴스 접근 불가능
 		
 		TheChild2 c2 = (TheChild2)p;
+		
+		if (p instanceof TheChild2) { // 안전한 형변환 : p를 TheChild2 타입으로 형변환 할 수 있으면 true 반환
+			System.out.println("형변환 가능");
+			TheChild2 c3 = (TheChild2)p;
+		}
+		
 		System.out.println("End of Program!!!");
 	}
 	

@@ -5,23 +5,41 @@ class BankAccount {
 	double balance;
 	
 	void deposit() {
-		System.out.println("예금");
+		System.out.println("공통 예금");
 	}
 	void withdraw() {
-		System.out.println("인출");
+		System.out.println("공통 인출");
 	}
 }
 
 class GeneralAccount extends BankAccount {
-	double interestRate;
-	double depositAmount;
+	boolean salaryAccount;
+	void deposit() {
+		System.out.println("입출금계좌 예금");
+	}
+	void withdraw() {
+		System.out.println("입출금계좌 인출");
+	}
 }
 class SavingsAccount extends BankAccount { // 적금
-	boolean salaryAccount;
+	double interestRate;
+	double depositAmount;
+	void deposit() {
+		System.out.println("적금계좌 예금");
+	}
+	void withdraw() {
+		System.out.println("적금계좌 인출");
+	}
 }
 class MinusAccount extends BankAccount {
 	double interestRate;
 	double limit;
+	void deposit() {
+		System.out.println("마이너스계좌 예금");
+	}
+	void withdraw() {
+		System.out.println("마이너스계좌 인출");
+	}
 }
 
 
@@ -42,6 +60,12 @@ public class BankAccountDemo {
 			} else {
 				accounts[i] = new MinusAccount();
 			}
+		}
+		
+		for (int i = 0; i < 10; i++) {
+			accounts[i].deposit();
+			accounts[i].withdraw();
+			
 		}
 	}
 

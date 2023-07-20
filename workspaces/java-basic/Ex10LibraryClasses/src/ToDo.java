@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ToDo {
+public class ToDo implements Serializable {
 	
 	private int no;
 	private String title;

@@ -1,3 +1,9 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,7 +12,24 @@ public class ToDoApp {
 	private Scanner scanner = new Scanner(System.in);
 	// private ToDo[] toDos = new ToDo[1000]; // 할 일을 저장, 관리하는 배열
 	private int nextPosition = 1; // 다음 할 일을 등록할 때 사용할 자동 증가 값
-	private ArrayList<ToDo> toDos = new ArrayList<>();
+	private ArrayList<ToDo> toDos; // = new ArrayList<>(); // 초기화는 생성자에서 처리
+
+	public ToDoApp() { // 생성자 메서드 - ToDoApp 프로그램 시작 위치로 해석 가능
+		
+		// 파일에 저장되어 있는 ToDo 리스트 데이터 읽어서 변수에 저장
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		try {
+			fis = new FileInputStream("todos.dat");
+			ois = new ObjectInputStream(fis);
+			toDos = (ArrayList<ToDo>)ois.readObject();			
+		} catch (IOException | ClassNotFoundException ex) { // 두 종류의 예외를 한 곳에서 처리
+			toDos = new ArrayList<>(); // 파일 읽기 실패하면 빈 ArrayList로 초기화
+		} finally {
+			try { fis.close(); } catch (Exception ex) { /* do nothin - ignore exception */ }
+		}
+	}
+	
 	
 	/**
 	 *  할 일 목록 관리 로직 구현 메서드
@@ -46,8 +69,12 @@ public class ToDoApp {
 				break;
 			case "4": break;
 			case "5": break;
+			case "6": // 저장
+				saveToDos();
+				break;
 			case "9": 
 				System.out.println("할 일 관리 프로그램을 종료합니다.");
+				// saveToDos(); // 자동 저장 기능
 				break outer;
 			default : 
 				System.out.println("지원하지 않는 작업입니다.");
@@ -55,6 +82,22 @@ public class ToDoApp {
 			}
 		}
 		
+	}
+
+	private void saveToDos() {
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		try {
+			fos = new FileOutputStream("todos.dat");	// 저장
+			oos = new ObjectOutputStream(fos);			// 객체 -> byte[] 변환
+			oos.writeObject(toDos);
+			System.out.println("파일에 할 일 데이터를 저장했습니다.");
+		} catch (IOException e) { // IOException은 FileNotFoundException의 부모 클래스
+			e.printStackTrace();
+		} finally {
+			try { oos.close(); } catch (Exception ex) { /* do nothing - ignore exception */ }
+			try { fos.close(); } catch (Exception ex) { /* do nothing - ignore exception */ }
+		}
 	}
 
 	private void showToDos(ArrayList<ToDo> searchedToDos) {
@@ -107,6 +150,7 @@ public class ToDoApp {
 		System.out.println("* 3. 할 일 검색                        *");
 		System.out.println("* 4. 할 일 수정                        *");
 		System.out.println("* 5. 할 일 삭제                        *");
+		System.out.println("* 6. 할 일 저장                        *");
 		System.out.println("* 9. 종료                             *");
 		System.out.println("**************************************");
 		System.out.print("작업을 선택하세요 : ");

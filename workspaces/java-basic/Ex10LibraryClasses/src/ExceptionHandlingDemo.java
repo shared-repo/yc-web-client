@@ -38,7 +38,7 @@ public class ExceptionHandlingDemo {
 		
 		System.out.println("5");
 	}	
-	public static void method2() throws FileNotFoundException {
+	public static void method2() throws FileNotFoundException { // 예외 발생 표시 : 이 메서드를 사용하는 곳에서 반드시 예외처리 하세요
 		
 		System.out.println("3");
 		

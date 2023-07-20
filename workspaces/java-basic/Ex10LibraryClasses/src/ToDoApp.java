@@ -22,10 +22,15 @@ public class ToDoApp {
 		try {
 			fis = new FileInputStream("todos.dat");
 			ois = new ObjectInputStream(fis);
-			toDos = (ArrayList<ToDo>)ois.readObject();			
+			toDos = (ArrayList<ToDo>)ois.readObject();
+			if (toDos.size() > 0) { // 읽어 온 목록에 데이터가 1개 이상인 경우에만 다음 번호 조정
+				ToDo lastToDo = toDos.get(toDos.size() - 1); // 마지막 할 일
+				nextPosition = lastToDo.getNo() + 1; // 마지막 할 일 번호의 다음 번호를 다음에 생성할 ToDo의 번호로 저장
+			}
 		} catch (IOException | ClassNotFoundException ex) { // 두 종류의 예외를 한 곳에서 처리
 			toDos = new ArrayList<>(); // 파일 읽기 실패하면 빈 ArrayList로 초기화
 		} finally {
+			try { ois.close(); } catch (Exception ex) { /* do nothin - ignore exception */ }
 			try { fis.close(); } catch (Exception ex) { /* do nothin - ignore exception */ }
 		}
 	}

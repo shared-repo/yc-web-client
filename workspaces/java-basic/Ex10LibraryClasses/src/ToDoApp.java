@@ -36,12 +36,22 @@ public class ToDoApp {
 				System.out.print("검색어를 입력하세요 : ");
 				String searchWord = scanner.nextLine();
 				// 입력된 내용이 포함된 ToDo 찾기 (반복문)
-				//for (int i = 0; i < nextPosition; i++) {
+				ArrayList<ToDo> searchedToDos = new ArrayList<>(); // 검색 결과를 저장하는 리스트 변수
 				for (int i = 0; i < toDos.size(); i++) { // toDos.size() : 등록된 할 일 갯수
 					String title = toDos.get(i).getTitle();
 					if (title.contains(searchWord)) { // constains(str) : str이 포함되어 있다면 true 아니면 false 
-						System.out.println(toDos.get(i).info());
+						//System.out.println(toDos.get(i).info());
+						searchedToDos.add(toDos.get(i));
 					}
+				}
+				
+				if (searchedToDos.size() == 0) {
+					System.out.println("검색 결과가 없습니다.");
+					break;
+				}
+				System.out.println("[검색 결과]");
+				for (ToDo toDo2 : searchedToDos) {
+					System.out.println(toDo2.info());
 				}
 				break;
 			case "4": break;

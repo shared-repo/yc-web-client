@@ -11,7 +11,7 @@ public class BizCard {
 	private String phone;		// 전화번호 (휴대전화)
 	
 	// 2. 생성자 (constructor)
-	// public BizCard() {} // 전달인자 없는 생성자 메서드를 만들면 특별한 이유가 없는 한 전달인자 없는 생성자도 만듭니다.
+	public BizCard() {} // 전달인자 없는 생성자 메서드를 만들면 특별한 이유가 없는 한 전달인자 없는 생성자도 만듭니다.
 	public BizCard(int no, String name, String phone) {
 		this.no = no;
 		this.name = name;

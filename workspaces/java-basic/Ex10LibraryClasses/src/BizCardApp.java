@@ -1,3 +1,8 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +13,23 @@ public class BizCardApp {
 	private ArrayList<BizCard> bizCards;	// 명함 목록을 저장할 변수
 	
 	public BizCardApp() {
-		bizCards = new ArrayList<BizCard>();
+		// bizCards = new ArrayList<BizCard>();
+		FileInputStream fis = null;		// 파일에서 읽는 객체
+		ObjectInputStream ois = null;	// byte[] -> 객체 변환하는 객체
+		try {
+			fis = new FileInputStream("bizcards.dat");
+			ois = new ObjectInputStream(fis);
+			bizCards = (ArrayList<BizCard>)ois.readObject();
+			if (bizCards.size() > 0) { // 읽어 온 목록에 데이터가 1개 이상인 경우에만 다음 번호 조정
+				BizCard lastBizCard = bizCards.get(bizCards.size() - 1); // 마지막 할 일
+				nextBizCardNo = lastBizCard.getNo() + 1; // 마지막 할 일 번호의 다음 번호를 다음에 생성할 ToDo의 번호로 저장
+			}
+		} catch (IOException | ClassNotFoundException ex) { // 두 종류의 예외를 한 곳에서 처리
+			bizCards = new ArrayList<>(); // 파일 읽기 실패하면 빈 ArrayList로 초기화
+		} finally {
+			try { ois.close(); } catch (Exception ex) { /* do nothin - ignore exception */ }
+			try { fis.close(); } catch (Exception ex) { /* do nothin - ignore exception */ }
+		}
 	}
 	
 	////////////////////////////////////////////////////
@@ -52,6 +73,7 @@ public class BizCardApp {
 			case "5": // 삭제
 				break;
 			case "6": // 저장
+				saveBizCards();
 				break;
 			case "9": // 종료
 				System.out.println("명함 관리 프로그램을 종료합니다.");
@@ -107,6 +129,22 @@ public class BizCardApp {
 //			BizCard bizCard2 = bizCards.get(i);
 		for (BizCard bizCard2 : bizCards) {
 			System.out.println(bizCard2.toString());
+		}
+	}
+	
+	private void saveBizCards() {
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		try {
+			fos = new FileOutputStream("bizcards.dat");	// 저장
+			oos = new ObjectOutputStream(fos);			// 객체 -> byte[] 변환
+			oos.writeObject(bizCards);	// 파일에 데이터 쓰기
+			System.out.println("파일에 할 일 데이터를 저장했습니다.");
+		} catch (IOException e) { // IOException은 FileNotFoundException의 부모 클래스
+			e.printStackTrace(); // 예외 정보를 화면에 출력 ( 테스트를 위해 사용 )
+		} finally {
+			try { oos.close(); } catch (Exception ex) { /* do nothing - ignore exception */ }
+			try { fos.close(); } catch (Exception ex) { /* do nothing - ignore exception */ }
 		}
 	}
 	

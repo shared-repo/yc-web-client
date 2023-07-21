@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class BizCard {
+public class BizCard implements Serializable {
 	
 	// 1. 필드
 	private int no;				// 관리 번호 ( 자동 증가 번호 )

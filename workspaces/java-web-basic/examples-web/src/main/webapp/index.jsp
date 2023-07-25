@@ -15,8 +15,8 @@
 	<br><br>
 	
 	<div style="width:700px;margin:0 auto">
-		<h2>1. <a href="hello-servlet">Hello, Servlet ( GET 방식 )</a></h2>
-		<h2>2. <a href="hello-servlet2">Hello, Servlet 2 ( GET 방식 )</a></h2>
+		<h2>1. <a href="hello-servlet">Hello, Servlet ( GET 방식, web.xml에 등록 )</a></h2>
+		<h2>2. <a href="hello-servlet2">Hello, Servlet 2 ( GET 방식, annotation 등록 )</a></h2>
 		<h2>3. <a href="hello.jsp">Hello, JSP</a></h2>
 		
 		<h2>4. 폼 데이터 전송 ( GET / POST 방식 )</h2>

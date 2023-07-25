@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// 서블릿은 @WebServlet annotation이나 web.xml 파일에 등록해야 동작합니다. 
-public class HelloServlet extends HttpServlet { // HttpServlet을 상속하면 Servlet 클래스로 사용할 수 있습니다.
+@WebServlet(urlPatterns = { "/hello-servlet2" }) // hello-servlet2 요청에 대해 호출될 서블릿으로 등록
+public class HelloServlet2 extends HttpServlet { // HttpServlet을 상속하면 Servlet 클래스로 사용할 수 있습니다.
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,7 +22,7 @@ public class HelloServlet extends HttpServlet { // HttpServlet을 상속하면 S
 		out.println("<title>hello, servlet</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<h1>Hello, Servlet</h1>");
+		out.println("<h1>Hello, Servlet 2</h1>");
 		out.println("<h2>" + new Date() + "</h>");
 		out.println("</body>");
 		out.println("</html>");

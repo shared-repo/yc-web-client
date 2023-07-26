@@ -51,7 +51,7 @@ public class RegisterServlet extends HttpServlet {
 //		PrintWriter out = resp.getWriter();
 //		out.printf("<h1>[%s][%s][%s][%s]</h1>", memberId, passwd, confirm, email);
 		
-		resp.sendRedirect("/demoweb/index.jsp");
+		resp.sendRedirect("/demoweb/home.action"); // 이 주소는 브라우저가 사용하는 주소이므로 애플리케이션 이름 포함해야 합니다.
 		
 		
 		

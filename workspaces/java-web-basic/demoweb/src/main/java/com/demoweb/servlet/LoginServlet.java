@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 		// 3. JSP에게 전달할 데이터를 request객체에 저장
 		
 		// 4. 일련의 작업이 끝났으면 redirect로 이동
-		resp.sendRedirect("/demoweb/index.jsp");
+		resp.sendRedirect("/demoweb/home.action");
 		
 	}
 }

@@ -27,17 +27,15 @@
 			<input type="submit" value="전송">
 		</form>
 		
-		<h2>5. 폼 데이터 전송2 ( POST 방식 )</h2>
-		<form action="process-data2" method="post">
-			출력할 단 : <input type="text" name="dan"><br>
-			<input type="submit" value="전송">
-		</form>
+		<h2>5. <a href="01.jsp-structure.jsp">JSP Structure</a></h2>
+	
+		<h2>6. <a href="02.jsp-object.jsp">JSP Object</a></h2>
 		
-		<h2>6. 폼 데이터 전송3 ( JSP )</h2>
-		<form action="process-data.jsp" method="post">
-			출력할 단 : <input type="text" name="dan"><br>
-			<input type="submit" value="전송">
-		</form>
+		<h2>7-1. <a href="03.forward.jsp">Forward</a></h2>
+		<h2>7-2. <a href="03.redirect.jsp">Redirect</a></h2>
+		
+		<h2>7-2. <a href="03.redirect.jsp">Redirect</a></h2>
+		
 	</div>
 </body>
 </html>

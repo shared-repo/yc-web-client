@@ -34,7 +34,7 @@
 		<h2>7-1. <a href="03.forward.jsp">Forward</a></h2>
 		<h2>7-2. <a href="03.redirect.jsp">Redirect</a></h2>
 		
-		<h2>7-2. <a href="03.redirect.jsp">Redirect</a></h2>
+		<h2>8. <a href="model2">요청 처리와 응답 컨텐츠 생산 분리 (Model 2)</a></h2>
 		
 	</div>
 </body>

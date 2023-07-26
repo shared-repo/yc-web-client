@@ -20,7 +20,8 @@
                 <a href="#">DEMO WEBSITE</a>
             </div>
             <div class="links">
-            	<a href="#">로그인</a>
+            	<!-- <a href="#">로그인</a> -->
+            	<a href="/demoweb/account/login.action">로그인</a>
                 <!-- <a href="account/register.jsp">회원가입</a> -->
                 <!-- <a href="/demoweb/account/register.jsp">회원가입</a> --> <!-- 절대경로 사용 -->
                 <a href="/demoweb/account/register.action">회원가입</a>

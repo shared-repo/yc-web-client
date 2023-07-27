@@ -48,6 +48,12 @@
 		    </div>
 		</div>  	
 	</div>
+	
+	<script>
+		<% if (request.getAttribute("loginfail") != null) { %>
+			alert("로그인 실패 : 아이디 또는 패스워드가 일치하지 않습니다.");
+		<% } %>
+	</script>
 
 </body>
 </html>

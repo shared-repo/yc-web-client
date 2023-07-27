@@ -14,11 +14,14 @@
                 <a href="#">DEMO WEBSITE</a>
             </div>
             <div class="links">
-            	<!-- <a href="#">로그인</a> -->
+            	<% String loginUser = (String)session.getAttribute("loginuser"); %>
+            	<% if (loginUser == null) { %> <%-- 로그인 여부 확인 (세션에 저장된 정보 확인) --%>
             	<a href="/demoweb/account/login.action">로그인</a>
-                <!-- <a href="account/register.jsp">회원가입</a> -->
-                <!-- <a href="/demoweb/account/register.jsp">회원가입</a> --> <!-- 절대경로 사용 -->
                 <a href="/demoweb/account/register.action">회원가입</a>
+                <% } else { %>
+                <%= loginUser %>님 환영합니다.
+                <a href="/demoweb/account/logout.action">로그아웃</a>
+                <% } %>
             </div>
         </div>
                 

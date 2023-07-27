@@ -15,7 +15,7 @@
 
 	<div id='pageContainer'>
 		
-		<jsp:include page="/modules/header.jsp" />		
+		<jsp:include page="/WEB-INF/views/modules/header.jsp" />		
 		
 		<div id="inputcontent">
 			<br /><br />

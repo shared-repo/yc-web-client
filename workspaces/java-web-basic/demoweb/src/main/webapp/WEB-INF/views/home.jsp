@@ -16,7 +16,7 @@
 	<div id='pageContainer'>
 		
 		<%-- jsp:param -> include의 전달인자 --%>
-		<jsp:include page="/modules/header.jsp">
+		<jsp:include page="/WEB-INF/views/modules/header.jsp">
 			<jsp:param name="bgColor" value="skyblue" />
 		</jsp:include>
 		

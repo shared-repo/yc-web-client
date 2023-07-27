@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
 		// 2. 요청 처리
 		// 3. JSP에게 전달할 데이터를 request객체에 저장
 		// 4. JSP로 이동
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/account/login.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/login.jsp");
 		dispatcher.forward(req, resp);
 		
 	}

@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
 		//3. JSP에서 읽을 수 있도록 Request 객체에 데이터 저장 (생략)
 		
 		//4. 응답 컨텐츠 생상 ( JSP에서 처리 - forward로 이동)
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/account/register.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/account/register.jsp");
 		dispatcher.forward(req, resp);
 		
 	}

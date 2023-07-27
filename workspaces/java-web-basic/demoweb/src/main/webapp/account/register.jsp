@@ -12,27 +12,8 @@
 <body>
 
 	<div id='pageContainer'>
-		
-		<div id="header">    	
-            <div class="title">
-                <a href="#">DEMO WEBSITE</a>
-            </div>
-            <div class="links">
-            	<a href="#">로그인</a>
-                <a href="#">회원가입</a>
-            </div>
-        </div>
-                
-        <div id="menu">
-            <div>
-                <ul>
-                    <li><a href="#">사용자관리</a></li>
-					<li><a href="#">메일보내기</a></li>
-					<li><a href="#">자료실</a></li>
-					<li><a href="#">게시판</a></li>
-                </ul>
-            </div>
-		</div>
+
+		<jsp:include page="/modules/header.jsp" />
 		
 		<div id="inputcontent">
 			<br /><br />

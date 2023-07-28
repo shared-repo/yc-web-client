@@ -5,8 +5,8 @@
   
   <!-- 파일이름이 지정되지 않으면 자동으로 사용할 파일 목록 -->
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
   
   <!--  컨테이너에 서블릿 등록 -->

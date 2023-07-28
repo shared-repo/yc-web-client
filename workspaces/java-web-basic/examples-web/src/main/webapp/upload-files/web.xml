@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  
+  <display-name>examples-web</display-name>
+  
+  <!-- 파일이름이 지정되지 않으면 자동으로 사용할 파일 목록 -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!--  컨테이너에 서블릿 등록 -->
+  <servlet>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<servlet-class>com.exampleweb.servlet.HelloServlet</servlet-class>
+  </servlet>
+  
+  <!-- 어떤 요청에 어떤 서블릿을 호출할지 설정 -->
+  <servlet-mapping>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<url-pattern>/hello-servlet</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
+
+
+
+
+
+
+

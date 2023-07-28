@@ -9,10 +9,12 @@ import javax.servlet.http.HttpSessionListener;
 @WebListener
 public class ExampleWebListener implements ServletContextListener, HttpSessionListener {
 
-    public void sessionCreated(HttpSessionEvent se)  { 
+    public void sessionCreated(HttpSessionEvent se)  {
+    	System.out.println("Session Start !!!!!");
     }
 
     public void sessionDestroyed(HttpSessionEvent se)  {
+    	System.out.println("Session Finish !!!!!");
     }
 
     public void contextDestroyed(ServletContextEvent sce)  { 

@@ -19,7 +19,11 @@
 	%>
 	<h2>File List</h2>
 	<% for (int i = 0; i < files.length; i++) { %>
-		<h3><%= i + 1 %>. <%= files[i].getName() %></h3>
+		<h3>
+			<%= i + 1 %>. <%= files[i].getName() %>
+			&nbsp;
+			[<a href="file-download?filename=<%= files[i].getName() %>">다운로드</a>]
+		</h3>
 	<% } %>
 	
 	

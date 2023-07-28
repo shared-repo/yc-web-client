@@ -20,8 +20,8 @@
 		<h2>3. <a href="hello.jsp">Hello, JSP</a></h2>
 		
 		<h2>4. 폼 데이터 전송 ( GET / POST 방식 )</h2>
-		<form action="process-data" method="post">
-		<!-- <form action="process-data" method="get"> -->
+		<!-- <form action="process-data" method="post"> -->
+		<form action="process-data" method="get">
 			Your Name : <input type="text" name="name"><br>
 			Your Email : <input type="text" name="email"><br>
 			<input type="submit" value="전송">

@@ -31,8 +31,15 @@
 		                </td>
 		            </tr>
 		            <tr>
-		            	<% for (int i = 0; i < 6; i++) { %>
-		                <th><%= i %></th>
+		            	<% int[] numbers = (int[])request.getAttribute("numbers"); %>
+		            	<% if (numbers == null) { %>		            	
+			            	<% for (int i = 0; i < 6; i++) { %>
+			                <th>&nbsp;</th>
+			                <% } %>			                
+		                <% } else { %>		                
+		                	<% for (int number : numbers) { %>
+			                <th><%= number %></th>
+			                <% } %>		                
 		                <% } %>
 		            </tr>
 		        </table>

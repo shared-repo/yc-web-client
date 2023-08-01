@@ -29,7 +29,7 @@
             <div>
                 <ul>
                     <li><a href="/demowebsup/game/lotto.action">로또</a></li>
-					<li><a href="#">메일보내기</a></li>
+					<li><a href="/demowebsup/exchange-rate.action">환율</a></li>
 					<li><a href="#">자료실</a></li>
 					<li><a href="#">게시판</a></li>
                 </ul>

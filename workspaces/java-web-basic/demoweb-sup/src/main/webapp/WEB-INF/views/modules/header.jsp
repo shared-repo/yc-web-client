@@ -11,7 +11,7 @@
 		<% }  %>
 		   	
             <div class="title">
-                <a href="#">DEMO WEBSITE</a>
+                <a href="/demowebsup/home.action">DEMO WEBSITE</a>
             </div>
             <div class="links">
             	<% String loginUser = (String)session.getAttribute("loginuser"); %>
@@ -31,7 +31,7 @@
                     <li><a href="/demowebsup/game/lotto.action">로또</a></li>
 					<li><a href="/demowebsup/exchange-rate.action">환율</a></li>
 					<li><a href="#">자료실</a></li>
-					<li><a href="#">게시판</a></li>
+					<li><a href="/demowebsup/board/list.action">게시판</a></li>
                 </ul>
             </div>
 		</div>

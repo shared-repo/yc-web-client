@@ -44,12 +44,9 @@ public class BoardWriteServlet extends HttpServlet {
 		System.out.printf("[%s][%s]\n", title, content);
 		// 임시로 모든 사용자가 공유하는 application 객체에 boardDto 객체 저장
 		ServletContext application = req.getServletContext(); // ServletContext : jsp의 application객체와 같은 객체
-		ArrayList<BoardDto> boards = (ArrayList<BoardDto>)application.getAttribute("boards");
-		if (boards == null) {
-			boards = new ArrayList<BoardDto>();
-		}
-		boards.add(boardDto);
-		application.setAttribute("boards", boards);
+		ArrayList<BoardDto> boards = 
+				(ArrayList<BoardDto>)application.getAttribute("boards"); // application 객체에서 게시글을 저장할 배열 가져오기
+		boards.add(boardDto); // 배열에 게시글 데이터 추가
 		
 		// 3. JSP에서 읽을 수 있도록 데이터를 request에 저장
 		// 4. JSP로 forward 또는 다른 Servlet으로 redirect

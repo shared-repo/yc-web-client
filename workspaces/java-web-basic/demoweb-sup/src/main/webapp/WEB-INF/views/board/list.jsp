@@ -35,18 +35,18 @@
 					<th style="width:125px">작성일</th>					
 				</tr>
 				<% ArrayList<BoardDto> boards = (ArrayList<BoardDto>)application.getAttribute("boards"); %>
-				<% if (boards != null) { %>
 				<% for (BoardDto board : boards) { %>
 				<tr style="height:30px">
 					<td><%= board.getBoardNo() %></td>
 					<td style="text-align:left; padding-left:5px;">
-						<%= board.getTitle() %>
+						<a href="detail.action?boardno=<%= board.getBoardNo() %>"><%= board.getTitle() %>(상대경로)</a>
+						<br>
+						<a href="/demowebsup/board/detail.action?boardno=<%= board.getBoardNo() %>"><%= board.getTitle() %>(절대경로)</a>
 					</td>
 					<td></td>
 					<td></td>
 					<td><%= board.getWriteDate() %></td>
 				</tr>
-				<% } %>
 				<% } %>
 								
 			</table>

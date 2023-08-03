@@ -39,7 +39,10 @@ public class BoardWriteServlet extends HttpServlet {
 		boardDto.setTitle(title);
 		boardDto.setContent(content);
 		boardDto.setWriteDate(new Date()); // 현재 시간으로 작성일자 적용
-		// 1-3. 임시로 모든 사용자가 공유하는 application 객체에 boardDto 객체 저장
+		
+		// 2. 요청 처리 ( 다른 클래스 사용 )
+		System.out.printf("[%s][%s]\n", title, content);
+		// 임시로 모든 사용자가 공유하는 application 객체에 boardDto 객체 저장
 		ServletContext application = req.getServletContext(); // ServletContext : jsp의 application객체와 같은 객체
 		ArrayList<BoardDto> boards = (ArrayList<BoardDto>)application.getAttribute("boards");
 		if (boards == null) {
@@ -48,8 +51,6 @@ public class BoardWriteServlet extends HttpServlet {
 		boards.add(boardDto);
 		application.setAttribute("boards", boards);
 		
-		// 2. 요청 처리 ( 다른 클래스 사용 )
-		System.out.printf("[%s][%s]\n", title, content);
 		// 3. JSP에서 읽을 수 있도록 데이터를 request에 저장
 		// 4. JSP로 forward 또는 다른 Servlet으로 redirect
 		resp.sendRedirect("/demowebsup/board/list.action");

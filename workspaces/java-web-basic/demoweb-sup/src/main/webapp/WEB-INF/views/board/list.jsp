@@ -1,3 +1,5 @@
+<%@page import="com.demowebsup.dto.BoardDto"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>    
 
@@ -32,14 +34,20 @@
 					<th style="width:50px">조회수</th>
 					<th style="width:125px">작성일</th>					
 				</tr>
+				<% ArrayList<BoardDto> boards = (ArrayList<BoardDto>)application.getAttribute("boards"); %>
+				<% if (boards != null) { %>
+				<% for (BoardDto board : boards) { %>
 				<tr style="height:30px">
-					<td></td>
-					<td style="text-align:left; padding-left:5px;">	
+					<td><%= board.getBoardNo() %></td>
+					<td style="text-align:left; padding-left:5px;">
+						<%= board.getTitle() %>
 					</td>
 					<td></td>
 					<td></td>
-					<td></td>
+					<td><%= board.getWriteDate() %></td>
 				</tr>
+				<% } %>
+				<% } %>
 								
 			</table>
 			

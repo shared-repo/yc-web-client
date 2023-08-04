@@ -29,13 +29,18 @@ public class BoardWriteServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		ServletContext application = req.getServletContext(); // ServletContext : jsp의 application객체와 같은 객체
+		
 		// 1-1. 요청 데이터 읽기
 		req.setCharacterEncoding("utf-8");
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
 		// 1-2. DTO 객체에 저장
 		BoardDto boardDto = new BoardDto();
-		boardDto.setBoardNo( (int)(Math.random() * 10000) + 1 ); // 임시로 난수 사용
+		int nextBoardNo = (int)application.getAttribute("nextBoardNo");
+		boardDto.setBoardNo( nextBoardNo );
+		application.setAttribute("nextBoardNo", nextBoardNo + 1);
 		boardDto.setTitle(title);
 		boardDto.setContent(content);
 		boardDto.setWriteDate(new Date()); // 현재 시간으로 작성일자 적용
@@ -43,7 +48,6 @@ public class BoardWriteServlet extends HttpServlet {
 		// 2. 요청 처리 ( 다른 클래스 사용 )
 		System.out.printf("[%s][%s]\n", title, content);
 		// 임시로 모든 사용자가 공유하는 application 객체에 boardDto 객체 저장
-		ServletContext application = req.getServletContext(); // ServletContext : jsp의 application객체와 같은 객체
 		ArrayList<BoardDto> boards = 
 				(ArrayList<BoardDto>)application.getAttribute("boards"); // application 객체에서 게시글을 저장할 배열 가져오기
 		boards.add(boardDto); // 배열에 게시글 데이터 추가

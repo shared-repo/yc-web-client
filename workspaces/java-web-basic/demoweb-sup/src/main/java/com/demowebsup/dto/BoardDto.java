@@ -1,5 +1,6 @@
 package com.demowebsup.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 // DTO 만들기
@@ -7,7 +8,8 @@ import java.util.Date;
 // 2. 생성자 만들기 (필요한 경우)
 // 3. getter, setter 만들기
 
-public class BoardDto {
+// 객체를 파일에 쓰거나 파일에서 읽기 위해서는 Serializable 인터페이스 구현 필요
+public class BoardDto implements Serializable {
 	
 	private int boardNo;
 	private String title;

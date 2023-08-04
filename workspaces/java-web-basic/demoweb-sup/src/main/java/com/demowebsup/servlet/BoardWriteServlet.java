@@ -37,10 +37,11 @@ public class BoardWriteServlet extends HttpServlet {
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
 		// 1-2. DTO 객체에 저장
-		BoardDto boardDto = new BoardDto();
 		int nextBoardNo = (int)application.getAttribute("nextBoardNo");
-		boardDto.setBoardNo( nextBoardNo );
 		application.setAttribute("nextBoardNo", nextBoardNo + 1);
+		
+		BoardDto boardDto = new BoardDto();
+		boardDto.setBoardNo( nextBoardNo );
 		boardDto.setTitle(title);
 		boardDto.setContent(content);
 		boardDto.setWriteDate(new Date()); // 현재 시간으로 작성일자 적용

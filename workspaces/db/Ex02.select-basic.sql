@@ -79,3 +79,18 @@ WHERE bookname LIKE '%축구%'; -- % : 0개 이상의 문자
 SELECT *
 FROM book
 WHERE bookname LIKE '_구%';
+
+-- 축구에 관한 도서 중 가격이 20000원 이상인 도서 조회
+SELECT *
+FROM book
+WHERE (bookname LIKE '%축구%') AND price >= 20000;
+
+-- 도서를 이름순으로 조회
+SELECT *
+FROM book
+ORDER BY bookname ASC; -- ASC : 오름차순(기본), DESC : 내림차순
+
+-- 도서를 가격순으로 정렬하고 가격이 같으면 이름순으로 정렬해서 조회
+SELECT *
+FROM book
+ORDER BY price ASC, bookname ASC;

@@ -20,3 +20,10 @@ FROM customer c
 INNER JOIN orders o
 ON c.custid = o.custid; -- ON : join에 대한 where
 
+-- 고객의 이름과 고객 주문의 판매가격 조회
+-- SELECT custid, name, saleprice -- 양쪽 테이블에 모두 존재하는 컬럼 사용 주의
+SELECT c.custid, c.name, o.saleprice
+FROM customer c, orders o
+WHERE c.custid = o.custid
+ORDER BY c.custid;
+

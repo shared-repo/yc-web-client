@@ -32,3 +32,13 @@ FROM book; -- 중복 출판사 확인
 SELECT COUNT(DISTINCT publisher) "총 출판사 수"
 FROM book;
 
+-- 모든 고객의 이름, 주소 조회
+SELECT name, address
+FROM customer;
+
+-- 2014년 7월 4일~7월 7일 사이에 주문 받은 도서의 주문번호
+-- 날짜는 작은 따옴표 사용, 년-월-일, 년/월/일
+SELECT *
+FROM orders
+WHERE orderdate BETWEEN '2014/7/4' AND '2014/7/7';
+

@@ -15,3 +15,8 @@ WHERE price >= 20000;
 SELECT SUM(saleprice) "박지성 고객의 총구매액"
 FROM orders
 WHERE custid = 1;
+
+-- 박지성 고객의 구매 도서 수량( 박지성 고객의 고객번호는 1번으로 놓고 작성 )
+SELECT COUNT(*) "박지성 고객의 구매 도서 수량"
+FROM orders
+WHERE custid = 1;

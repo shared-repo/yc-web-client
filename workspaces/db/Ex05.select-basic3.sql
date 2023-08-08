@@ -27,3 +27,21 @@ FROM customer c, orders o
 WHERE c.custid = o.custid
 ORDER BY c.custid;
 
+-- 고객별 주문 총액을 고객별로 정렬해서 조회
+SELECT c.custid 고객번호, c.name 고객이름, SUM(o.saleprice) 주문총액
+FROM customer c, orders o
+WHERE c.custid = o.custid
+GROUP BY c.custid, c.name
+ORDER BY c.custid;
+
+SELECT c.custid 고객번호, c.name 고객이름, SUM(o.saleprice) 주문총액
+FROM customer c
+INNER JOIN orders o
+ON c.custid = o.custid
+GROUP BY c.custid, c.name
+ORDER BY c.custid;
+
+-- 모든 주문에 대해 고객번호, 고객이름, 도서이름, 주문일자, 주문가격 조회
+SELECT c.custid, c.name, b.bookname, o.saleprice, o.orderdate
+FROM customer c, orders o, book b
+WHERE c.custid = o.custid AND o.bookid = b.bookid;

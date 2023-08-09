@@ -56,5 +56,21 @@ WHERE C.CUSTID = O.CUSTID
 GROUP BY C.CUSTID, C.NAME;
 
 -- (11) 고객의 이름과 고객이 구매한 도서 목록
+SELECT C.CUSTID, C.NAME, B.BOOKNAME
+FROM BOOK B
+INNER JOIN ORDERS O
+ON B.BOOKID = O.BOOKID 
+INNER JOIN CUSTOMER C
+ON C.CUSTID = O.CUSTID
+ORDER BY C.CUSTID;
+
 -- (12) 도서의 가격(Book 테이블)과 판매가격(Orders 테이블)의 차이가 가장 많은 주문
+SELECT O.*, B.BOOKNAME, (B.PRICE - O.SALEPRICE) 할인액
+FROM BOOK B, ORDERS O
+WHERE B.BOOKID = O.BOOKID
+	  AND
+	  (B.PRICE - O.SALEPRICE) = ( SELECT MAX(B2.PRICE - O2.SALEPRICE)
+								  FROM BOOK B2, ORDERS O2
+                                  WHERE B2.BOOKID = O2.BOOKID );
+
 -- (13) 도서의 판매액 평균보다 자신의 구매액 평균이 더 높은 고객의 이름

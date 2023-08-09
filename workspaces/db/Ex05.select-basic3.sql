@@ -67,12 +67,22 @@ ON o.bookid = b.bookid
 WHERE b.price = 20000;
 
 -- 모든 고객의 고객별 주문 실적 조회 (고객아이디, 고객이름, 주문 건수, 주문 총액)
-SELECT c.custid, c.name, COUNT(o.saleprice) 주목건수, SUM(o.saleprice) 주문총액
+-- 문제 상황 확인
+SELECT c.custid, c.name, COUNT(o.saleprice) 주문수량, SUM(o.saleprice) 주문총액
 FROM customer c, orders o
 WHERE c.custid = o.custid
 GROUP BY c.custid, c.name;
 
-SELECT * FROM customer;
+SELECT 
+	c.custid, c.name, 
+    COUNT(o.saleprice) 주문수량, 
+    COALESCE(SUM(o.saleprice), 0) 주문총액 -- COALESCE : NULL 값을 다른 값으로 대체
+FROM customer c
+LEFT OUTER JOIN orders o -- customer는 모두 조회, orders는 양쪽 모두 있는 경우만 조회
+ON c.custid = o.custid
+GROUP BY c.custid, c.name;
+
+
 
 
 

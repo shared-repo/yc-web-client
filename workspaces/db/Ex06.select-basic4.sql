@@ -39,9 +39,11 @@ WHERE c.custid = o.custid AND o.bookid = b.bookid AND b.publisher = '대한미�
 
 -- 출판사별로 출판사의 평균 도서 가격보다 비싼 도서 조회
 SELECT *
-FROM book b
+FROM book b1
 -- WHERE b.price > 현재 조회중인 도서의 출판사가 출간한 도서의 평균가격
-WHERE b.price > 
+WHERE b1.price > ( SELECT AVG(b2.price)
+				   FROM book b2
+                   WHERE b1.publisher = b2.publisher );
 
 
 

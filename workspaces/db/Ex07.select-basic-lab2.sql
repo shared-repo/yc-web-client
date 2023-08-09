@@ -46,7 +46,15 @@ FROM CUSTOMER C
 WHERE C.CUSTID NOT IN ( SELECT O.CUSTID FROM ORDERS O );
 
 -- (9) 주문 금액의 총액과 주문의 평균 금액
+SELECT SUM(SALEPRICE) 주문총액, AVG(SALEPRICE) 평균주문액
+FROM ORDERS;
+
 -- (10) 고객의 이름과 고객별 구매액
+SELECT C.CUSTID, C.NAME, SUM(O.SALEPRICE) 구매액
+FROM CUSTOMER C, ORDERS O
+WHERE C.CUSTID = O.CUSTID
+GROUP BY C.CUSTID, C.NAME;
+
 -- (11) 고객의 이름과 고객이 구매한 도서 목록
 -- (12) 도서의 가격(Book 테이블)과 판매가격(Orders 테이블)의 차이가 가장 많은 주문
 -- (13) 도서의 판매액 평균보다 자신의 구매액 평균이 더 높은 고객의 이름

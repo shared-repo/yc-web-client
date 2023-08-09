@@ -35,6 +35,12 @@ WHERE E.EMP_NO = DE.EMP_NO AND D.DEPT_NO = DE.DEPT_NO AND E.EMP_NO = T.EMP_NO
 ORDER BY E.EMP_NO;
 
 -- 5. 현재 개발부서(Development)에 근무하는 직원 정보 조회
+SELECT E.*
+FROM EMPLOYEES E, DEPARTMENTS D, DEPT_EMP DE
+WHERE E.EMP_NO = DE.EMP_NO AND D.DEPT_NO = DE.DEPT_NO
+	  AND DE.TO_DATE = '9999-01-01'
+      AND D.DEPT_NAME = 'Development';
+      
 -- 6. 현재 급여가 50000 ~ 60000인 직원 조회
 -- 7. 부서별 직원의 평균 급여 조회
 -- 8. 직급별 직원의 평균 급여

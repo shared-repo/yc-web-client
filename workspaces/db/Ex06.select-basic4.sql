@@ -44,6 +44,37 @@ FROM book b1
 WHERE b1.price > ( SELECT AVG(b2.price)
 				   FROM book b2
                    WHERE b1.publisher = b2.publisher );
+                   
+-- 대한민국 거주 고객과 주문 실적이 있는 고객 조회
+SELECT *
+FROM customer
+WHERE address LIKE '%대한민국%'
+UNION
+SELECT c.*
+FROM customer c, orders o
+WHERE c.custid = o.custid;
+
+-- 대한민국 거주 고객 중 주문실적이 없는 고객 조회
+SELECT *
+FROM customer
+WHERE address LIKE '%대한민국%' AND custid NOT IN ( SELECT c.custid
+												  FROM customer c, orders o
+												  WHERE c.custid = o.custid );
+                                                  
+-- 대한민국 거주 고객 중 주문실적이 있는 고객 조회
+SELECT *
+FROM customer
+WHERE address LIKE '%대한민국%' AND custid IN ( SELECT c.custid
+											  FROM customer c, orders o
+											  WHERE c.custid = o.custid );
+
+-- 주문 실적이 있는 고객 조회
+SELECT *
+FROM customer c
+-- WHERE c.custid IN ( SELECT o.custid FROM orders o );
+WHERE EXISTS ( SELECT * FROM orders o WHERE c.custid = o.custid );
+
+
 
 
 

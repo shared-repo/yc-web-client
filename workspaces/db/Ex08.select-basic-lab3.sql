@@ -27,6 +27,13 @@ FROM EMPLOYEES E
 GROUP BY E.GENDER;
 
 -- 4. 사원 정보 조회 (employees 테이블의 모든 정보, 현재 부서이름, 현재 직급)
+SELECT E.*, D.DEPT_NAME, T.TITLE
+FROM EMPLOYEES E, DEPARTMENTS D, DEPT_EMP DE, TITLES T
+WHERE E.EMP_NO = DE.EMP_NO AND D.DEPT_NO = DE.DEPT_NO AND E.EMP_NO = T.EMP_NO
+	  AND
+      T.TO_DATE = '9999-01-01' AND DE.TO_DATE = '9999-01-01'
+ORDER BY E.EMP_NO;
+
 -- 5. 현재 개발부서(Development)에 근무하는 직원 정보 조회
 -- 6. 현재 급여가 50000 ~ 60000인 직원 조회
 -- 7. 부서별 직원의 평균 급여 조회

@@ -31,11 +31,20 @@ INNER JOIN CUSTOMER C
 ON C.CUSTID = O.CUSTID
 WHERE C.NAME = '박지성';
 
--- (7) 박지성이 구매하지 않은 도서의 이름
+-- (7) 박지성 고객이 구매하지 않은 도서의 이름
+SELECT B.*
+FROM BOOK B
+WHERE B.BOOKID NOT IN ( SELECT O.BOOKID 
+						FROM ORDERS O
+                        WHERE O.CUSTID IN ( SELECT C.CUSTID
+											FROM CUSTOMER C
+                                            WHERE C.NAME = '박지성' ) );
 
---  
--- 마당서점의 운영자와 경영자가 요구하는 다음 질문에 대해 SQL 문을 작성하시오.
 -- (8) 주문하지 않은 고객의 이름(부속질의 사용)
+SELECT C.*
+FROM CUSTOMER C
+WHERE C.CUSTID NOT IN ( SELECT O.CUSTID FROM ORDERS O );
+
 -- (9) 주문 금액의 총액과 주문의 평균 금액
 -- (10) 고객의 이름과 고객별 구매액
 -- (11) 고객의 이름과 고객이 구매한 도서 목록

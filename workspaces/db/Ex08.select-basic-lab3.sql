@@ -15,6 +15,12 @@ WHERE E.HIRE_DATE BETWEEN '1990-01-01' AND '1990-12-31'
 ORDER BY E.HIRE_DATE DESC;
 
 -- 2. 이름에 K가 포함된 직원 조회
+SELECT E.EMP_NO, CONCAT(E.FIRST_NAME, ' ', E.LAST_NAME) NAME, E.HIRE_DATE
+FROM EMPLOYEES E
+-- WHERE E.FIRST_NAME LIKE '%K%' OR E.FIRST_NAME LIKE '%k%' OR ...
+-- WHERE LOWER(E.FIRST_NAME) LIKE '%k%' OR LOWER(E.LAST_NAME) LIKE '%k%'
+WHERE LOWER(CONCAT(E.FIRST_NAME, ' ', E.LAST_NAME)) LIKE '%k%';
+
 -- 3. 성별 직원수 조회
 -- 4. 사원 정보 조회 (employees 테이블의 모든 정보, 현재 부서이름, 현재 직급)
 -- 5. 현재 개발부서(Development)에 근무하는 직원 정보 조회

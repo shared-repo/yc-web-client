@@ -22,6 +22,10 @@ FROM EMPLOYEES E
 WHERE LOWER(CONCAT(E.FIRST_NAME, ' ', E.LAST_NAME)) LIKE '%k%';
 
 -- 3. 성별 직원수 조회
+SELECT E.GENDER, COUNT(E.GENDER) 직원수
+FROM EMPLOYEES E
+GROUP BY E.GENDER;
+
 -- 4. 사원 정보 조회 (employees 테이블의 모든 정보, 현재 부서이름, 현재 직급)
 -- 5. 현재 개발부서(Development)에 근무하는 직원 정보 조회
 -- 6. 현재 급여가 50000 ~ 60000인 직원 조회

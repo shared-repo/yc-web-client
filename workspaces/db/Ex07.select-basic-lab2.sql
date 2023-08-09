@@ -2,11 +2,21 @@
 USE madang;
 
 -- (5) 박지성 고객이 구매한 도서의 출판사 수
-SELECT COUNT(B.PUBLISHER)
+SELECT COUNT(DISTINCT B.PUBLISHER)
 FROM BOOK B, CUSTOMER C, ORDERS O
 WHERE C.NAME = '박지성' 
 	  AND 
       B.BOOKID = O.BOOKID AND C.CUSTID = O.CUSTID;
+      
+SELECT COUNT(DISTINCT B.PUBLISHER)
+FROM BOOK B
+INNER JOIN ORDERS O
+ON B.BOOKID = O.BOOKID 
+INNER JOIN CUSTOMER C
+ON C.CUSTID = O.CUSTID
+WHERE C.NAME = '박지성';
+
+
 
 -- (6) 박지성이 구매한 도서의 이름, 가격, 정가와 판매가격의 차이
 -- (7) 박지성이 구매하지 않은 도서의 이름

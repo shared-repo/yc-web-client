@@ -32,3 +32,20 @@ WHERE c.custid IN ( SELECT o.custid
                     WHERE o.bookid IN ( SELECT b.bookid
 									    FROM book b
                                         WHERE b.publisher = '대한미디어') );
+                                        
+SELECT c.*
+FROM customer c, orders o, book b
+WHERE c.custid = o.custid AND o.bookid = b.bookid AND b.publisher = '대한미디어';
+
+-- 출판사별로 출판사의 평균 도서 가격보다 비싼 도서 조회
+SELECT *
+FROM book b
+-- WHERE b.price > 현재 조회중인 도서의 출판사가 출간한 도서의 평균가격
+WHERE b.price > 
+
+
+
+
+
+
+

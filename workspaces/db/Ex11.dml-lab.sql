@@ -21,4 +21,26 @@ ROLLBACK;
 SELECT * FROM BOOK;
 
 -- (3) ‘이상미디어’에서 출판한 도서를 삭제해야 한다. 삭제가 안 될 경우 원인을 생각해보자.
+START TRANSACTION;
+
+DELETE FROM BOOK
+WHERE PUBLISHER = '이상미디어'; -- 자식 데이터가 있는 부모 데이터는 삭제 불가
+
+SELECT * FROM BOOK;
+
+ROLLBACK;
+
+SELECT * FROM BOOK;
+
 -- (4) 출판사 ‘대한미디어’가 ‘대한출판사’로 이름을 바꾸었다.
+START TRANSACTION;
+
+UPDATE BOOK
+SET PUBLISHER = '대한출판사'
+WHERE PUBLISHER = '대한미디어'; 
+
+SELECT * FROM BOOK;
+
+ROLLBACK;
+
+SELECT * FROM BOOK;

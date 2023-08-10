@@ -70,4 +70,9 @@ WHERE E.EMP_NO = S.EMP_NO AND
 	  S.TO_DATE = '9999-01-01'
 GROUP BY E.GENDER;
 
--- 10. 부서 이동 횟수가 2 이상인 직원 조회
+-- 10. 근무했던 부서가 2 이상인 직원 조회 ( 부서 이동이 있었던 직원 조회 )
+SELECT E.EMP_NO, CONCAT(E.FIRST_NAME, ' ', E.LAST_NAME) NAME, COUNT(*) 근무부서수
+FROM EMPLOYEES E, DEPT_EMP DE
+WHERE E.EMP_NO = DE.EMP_NO
+GROUP BY E.EMP_NO
+HAVING COUNT(*) >= 2;

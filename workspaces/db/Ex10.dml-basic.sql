@@ -45,3 +45,22 @@ WHERE BOOKID = 4;
 
 SELECT * FROM NEWBOOK;
 
+-- ---------------------------------------------
+
+-- CUSTOMER 테이블의 데이터 변경
+SELECT * FROM CUSTOMER;
+
+START TRANSACTION;
+
+UPDATE CUSTOMER
+SET 
+	ADDRESS = '대한민국 제주도',
+    PHONE = '010-1234-5678'
+WHERE CUSTID = 5;
+
+SELECT * FROM CUSTOMER;
+
+ROLLBACK; -- 취소
+COMMIT; -- 확정
+
+SELECT * FROM CUSTOMER;

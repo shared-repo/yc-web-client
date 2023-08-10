@@ -21,6 +21,11 @@ FROM EMPLOYEES E
 -- WHERE LOWER(E.FIRST_NAME) LIKE '%k%' OR LOWER(E.LAST_NAME) LIKE '%k%'
 WHERE LOWER(CONCAT(E.FIRST_NAME, ' ', E.LAST_NAME)) LIKE '%k%';
 
+-- 대소문자 구분 참고
+SELECT 'A' = 'B', 
+	   'a' = 'a', 'A' = 'A', 
+       'a' = 'A', BINARY 'a' = 'A';
+
 -- 3. 성별 직원수 조회
 SELECT E.GENDER, COUNT(E.GENDER) 직원수
 FROM EMPLOYEES E

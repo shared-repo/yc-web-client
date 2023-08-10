@@ -42,6 +42,13 @@ WHERE E.EMP_NO = DE.EMP_NO AND D.DEPT_NO = DE.DEPT_NO
       AND D.DEPT_NAME = 'Development';
       
 -- 6. 현재 급여가 50000 ~ 60000인 직원 조회
+SELECT E.*, S.SALARY
+FROM EMPLOYEES E, SALARIES S
+WHERE E.EMP_NO = S.EMP_NO AND 
+	  S.TO_DATE = '9999-01-01' AND
+      -- S.SALARY BETWEEN 50000 AND 60000;
+      S.SALARY >= 50000 AND S.SALARY < 60000;
+
 -- 7. 부서별 직원의 평균 급여 조회
 -- 8. 직급별 직원의 평균 급여
 -- 9. 성별 평균 급여 조회

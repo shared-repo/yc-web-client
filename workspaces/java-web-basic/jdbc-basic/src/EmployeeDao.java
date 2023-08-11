@@ -26,7 +26,7 @@ public class EmployeeDao {
 											   "devuserone", "devuserone");				// 계정 정보
 			
 			// 3. SQL 작성
-			String sql = "SELECT emp_no, first_name, last_name, hire_date, gender " +
+			String sql = "SELECT emp_no, first_name, last_name, gender, birth_date, hire_date " +
 						 "FROM employees " + 
 						 "WHERE gender = ? " + // ? : 데이터가 삽입될 위치 표시
 						 "LIMIT 15 ";
@@ -60,7 +60,7 @@ public class EmployeeDao {
 			try { conn.close(); } catch (Exception ex) {}
 		}
 		
-		return null;
+		return employees;
 	}
 
 }

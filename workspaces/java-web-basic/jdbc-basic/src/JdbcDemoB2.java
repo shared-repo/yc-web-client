@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 
 import com.mysql.cj.jdbc.Driver;
 
-public class JdbcDemoB {
+public class JdbcDemoB2 {
 
 	public static void main(String[] args) {
 		
@@ -26,11 +26,12 @@ public class JdbcDemoB {
 			// 3. SQL 작성
 			String sql = "SELECT emp_no, first_name, last_name, hire_date, gender " +
 						 "FROM employees " + 
-						 "WHERE gender = '" + gender + "' " + 
+						 "WHERE gender = ? " + // ? : 데이터가 삽입될 위치 표시
 						 "LIMIT 15 ";
 			
 			// 4. 명령 객체 만들기
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, gender); // SQL에 포함된 첫 번째 ?에 삽입될 데이터 지정
 			
 			// 5. 명령 실행
 			// pstmt.executeUpdate();	// insert, update, delete

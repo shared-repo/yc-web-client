@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class EmployeeDao {
 	
+	public String x;
+	
 	public ArrayList<EmployeeDto> selectEmployeesByGender(String gender) {
 		
 		ArrayList<EmployeeDto> employees = new ArrayList<EmployeeDto>(); // 조회 결과를 저장할 ArrayList 객체
@@ -42,12 +44,13 @@ public class EmployeeDao {
 			// 6. 결과가 있으면 결과 처리 ( SELECT SQL을 실행한 경우 )
 			while (rs.next()) { // 결과 집합의 다음 행으로 이동 ( 다음 행이 없으면 false 반환 )
 				EmployeeDto employee = new EmployeeDto(); 	// 한 행의 데이터를 저장할 EmployeeDto 객체 만들기
-				employee.setEmpNo(rs.getInt(1));			// 각 컬럼의 데이터를 필드에 저장
+				employee.setEmpNo(rs.getInt(1));			// 각 컬럼의 데이터를 객체의 필드에 저장
 				employee.setFirstName(rs.getString(2));
 				employee.setLastName(rs.getString(3));
 				employee.setGender(rs.getString(4));
 				employee.setBirthDate(rs.getDate(5));
 				employee.setHireDate(rs.getDate(6));
+				
 				employees.add(employee); // 한 행의 데이터를 저장한 EmployeeDto 객체를 ArrayList에 추가
 			}
 			

@@ -14,7 +14,8 @@ public class AccountDao {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null; // 조회 결과를 저장하는 변수
+		// ResultSet rs = null; // 조회 결과를 저장하는 변수
+		
 		try {
 			// 1. 드라이버 준비
 			// DriverManager.registerDriver(new Driver());
@@ -35,23 +36,16 @@ public class AccountDao {
 			pstmt.setString(3, member.getEmail());
 			
 			// 5. 명령 실행
-			// pstmt.executeUpdate();	// insert, update, delete
-			rs = pstmt.executeQuery(); 	// select 
+			pstmt.executeUpdate();			// insert, update, delete
+			// rs = pstmt.executeQuery(); 	// select 
 			
 			// 6. 결과가 있으면 결과 처리 ( SELECT SQL을 실행한 경우 )
-			while (rs.next()) { // 결과 집합의 다음 행으로 이동 ( 다음 행이 없으면 false 반환 )
-				member = new MemberDto(); 	// 한 행의 데이터를 저장할 MemberDto 객체 만들기
-				member.setMemberId(rs.getString(1));			// 각 컬럼의 데이터를 객체의 필드에 저장
-				member.setEmail(rs.getString(2));
-				member.setUserType(rs.getString(3));
-				member.setRegDate(rs.getDate(4));
-			}
 			
 		} catch (Exception ex) {
 			ex.printStackTrace(); // 콘솔에 오류메시지 출력
 		} finally {
 			// 7. 연결 닫기
-			try { rs.close(); } catch (Exception ex) {}
+			// try { rs.close(); } catch (Exception ex) {}
 			try { pstmt.close(); } catch (Exception ex) {}
 			try { conn.close(); } catch (Exception ex) {}
 		}

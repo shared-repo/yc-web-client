@@ -14,6 +14,8 @@ public class MemberDto {
 	private String passwd;
 	private String email;
 	private Date regDate;
+	private String userType;
+	private boolean deleted;
 	
 	public String getMemberId() {
 		return memberId;
@@ -38,6 +40,18 @@ public class MemberDto {
 	}
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+	public boolean isDeleted() {
+		return deleted;
+	}
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 	
 }

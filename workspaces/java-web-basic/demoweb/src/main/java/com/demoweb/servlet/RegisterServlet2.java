@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.demoweb.dao.AccountDao;
 import com.demoweb.dto.MemberDto;
 
 // 서블릿 만들기
@@ -22,8 +21,8 @@ import com.demoweb.dto.MemberDto;
 // 2. @WebServlet 매핑
 // 3. doGet or doPost 구현
 
-@WebServlet(urlPatterns = { "/account/register.action" } ) // 서버 코드에서는 절대 경로에 웹애플리케이션 이름 사용 X
-public class RegisterServlet extends HttpServlet {
+// @WebServlet(urlPatterns = { "/account/register.action" } ) // 서버 코드에서는 절대 경로에 웹애플리케이션 이름 사용 X
+public class RegisterServlet2 extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -55,9 +54,12 @@ public class RegisterServlet extends HttpServlet {
 		member.setEmail(email);
 		member.setRegDate(new Date());
 		
-		// 2. 처리 (회원가입정보 저장 - Dao 클래스 활용)
-		AccountDao dao = new AccountDao();
-		dao.insertMember(member);
+		// 2. 처리 (회원가입정보 저장)
+		// System.out.printf("[%s][%s][%s][%s]\n", memberId, passwd, confirm, email);
+		ServletContext application = req.getServletContext(); // jsp의 application 기본 객체와 같은 객체
+		ArrayList<MemberDto> members = (ArrayList<MemberDto>)application.getAttribute("members");
+		// members에 회원 데이터 저장하는 코드 작성
+		members.add(member);
 
 		// 3. 응답컨텐츠 생산 ( 여기서는 다른 작업 영역으로 redirect로 이동 )
 //		resp.setContentType("text/html;charset=utf-8");

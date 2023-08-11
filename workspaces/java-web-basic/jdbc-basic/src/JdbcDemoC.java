@@ -2,6 +2,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Scanner;
 
 import com.mysql.cj.jdbc.Driver;
 
@@ -9,7 +10,10 @@ public class JdbcDemoC {
 
 	public static void main(String[] args) {
 		
-		String gender = "F";
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.print("성별(M/F)을 입력하세요 : ");
+		String gender = scanner.nextLine();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;

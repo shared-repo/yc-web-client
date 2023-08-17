@@ -8,6 +8,10 @@ public class MyServiceConsumer implements ServiceConsumer {
 		
 		System.out.println("MyServiceConsumer.doSomething() is called !!!");
 		
+		// MyMessageService 사용
+		
+		// MyTimeService 사용
+		
 		
 	}
 

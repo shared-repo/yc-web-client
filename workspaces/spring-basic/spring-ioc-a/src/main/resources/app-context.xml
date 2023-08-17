@@ -3,7 +3,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="serviceConsumer" class="com.springexample.ioc.MyServiceConsumer" />
+	<!-- <bean id="serviceConsumer" class="com.springexample.ioc.MyServiceConsumer" /> -->
+	
+	<bean id="serviceConsumer" class="com.springexample.ioc.MyServiceConsumer">
+		<property name="messageService" ref="messageService" /> <!-- serviceConsumer.setMessageService(messageService) -->
+		<property name="timeService" ref="timeService" /> <!-- serviceConsumer.setTimeService(timeService) -->
+	</bean>
+	
+	<bean id="messageService" class="com.springexample.ioc.MyMessageService" />
+	<bean id="timeService" class="com.springexample.ioc.MyTimeService" />
 
 
 </beans>

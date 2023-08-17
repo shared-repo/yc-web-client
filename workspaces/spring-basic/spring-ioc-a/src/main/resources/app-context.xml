@@ -18,5 +18,4 @@
 		<constructor-arg value="yyyy-MM-dd a hh:mm:ss" />
 	</bean>
 
-
 </beans>

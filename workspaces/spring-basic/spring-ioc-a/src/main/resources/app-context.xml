@@ -5,13 +5,17 @@
 
 	<!-- <bean id="serviceConsumer" class="com.springexample.ioc.MyServiceConsumer" /> -->
 	
-	<bean id="serviceConsumer" class="com.springexample.ioc.MyServiceConsumer"> <!-- MyServiceConsumer serviceConsumer = new MyServiceConsumer(); -->
+	<bean id="serviceConsumer" 
+		  class="com.springexample.ioc.MyServiceConsumer"
+		  scope="singleton"> <!-- MyServiceConsumer serviceConsumer = new MyServiceConsumer(); -->
 		<property name="messageService" ref="messageService" /> <!-- serviceConsumer.setMessageService(messageService) -->
 		<property name="timeService" ref="timeService" /> <!-- serviceConsumer.setTimeService(timeService) -->
 	</bean>
 	
 	<!-- MyMessageService messageService = new MyMessageService(); -->
-	<bean id="messageService" class="com.springexample.ioc.MyMessageService" />
+	<bean id="messageService" class="com.springexample.ioc.MyMessageService" 
+		  scope="singleton"
+		  init-method="init" destroy-method="destroy" />
 	
 	<!-- MyTimeService messageService = new MyTimeService("yyyy-MM-dd a hh:mm:ss"); --> 
 	<bean id="timeService" class="com.springexample.ioc.MyTimeService">

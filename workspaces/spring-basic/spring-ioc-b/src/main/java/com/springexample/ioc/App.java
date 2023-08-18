@@ -6,7 +6,9 @@ public class App {
 
 	public static void main(String[] args) {
 		
-		GenericXmlApplicationContext context = new GenericXmlApplicationContext("app-context.xml");
+		// GenericXmlApplicationContext context = new GenericXmlApplicationContext("app-context.xml");
+		GenericXmlApplicationContext context = 
+				new GenericXmlApplicationContext("app-context3.xml", "app-context2.xml");
 		
 		ServiceConsumer serviceConsumer = context.getBean("serviceConsumer", ServiceConsumer.class);
 		serviceConsumer.doSomething();

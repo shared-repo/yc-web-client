@@ -3,12 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- 다른 설정 파일 내용 가져오기 -->
-	<import resource="app-context2.xml" />
-
-	<bean id="serviceConsumer" class="com.springexample.ioc.MyServiceConsumer">
-		<property name="messageService" ref="messageService" />
-		<property name="timeService" ref="timeService" />
-	</bean>
 	
+	<bean id="messageService" class="com.springexample.ioc.MyMessageService" />
+	
+	<bean id="timeService" class="com.springexample.ioc.MyTimeService">
+		<constructor-arg value="yyyy-MM-dd a hh:mm:ss" />
+	</bean>
+
 </beans>

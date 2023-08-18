@@ -9,5 +9,5 @@
 
 	<!-- com.springexample.ioc 패키지 및 하위 패키지의 모든 클래스를 검사해서 @Component 등의 설정을 적용하세요 -->
 	<context:component-scan base-package="com.springexample.ioc" />
-
+	
 </beans>

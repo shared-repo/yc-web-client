@@ -9,13 +9,12 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Component("timeService1")
-@NoArgsConstructor 	// 전달인자 없는 생성자 메서드 자동으로 구현
+@Component("timeService2")
+@NoArgsConstructor // 전달인자 없는 생성자 메서드 자동으로 구현
 @AllArgsConstructor // 모든 필드를 전달인자로 사용하는 생성자 메서드 자동으로 구현 (전달인자 없는 생성자 메서드는 만들지 않습니다)
-public class MyTimeService implements TimeService {
+public class MyTimeService2 implements TimeService {
 	
 	private String pattern = "yyyy-MM-dd a hh:mm:ss";
-	
 	@Override
 	public String getTimeString() {
 		

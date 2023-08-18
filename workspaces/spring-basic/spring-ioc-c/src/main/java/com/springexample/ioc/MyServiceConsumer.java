@@ -1,6 +1,7 @@
 package com.springexample.ioc;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component("serviceConsumer")
@@ -8,7 +9,9 @@ public class MyServiceConsumer implements ServiceConsumer {
 
 	@Autowired
 	private MessageService messageService;
-	@Autowired
+	
+	@Autowired // 1. 호환 가능한 자료형의 bean 찾기 -> 2. timeService 이름의 bean 찾기
+	@Qualifier("timeService1") // timeService1 이름의 bean 찾기
 	private TimeService timeService;
 	
 	public void doSomething() {

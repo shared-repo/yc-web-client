@@ -63,14 +63,16 @@ public class Logger {
 		long lap = stop - start;
 		System.out.printf("%s.%s 실행 소요 시간 : %d\n",
 				joinPoint.getSignature().getDeclaringTypeName(),
-				joinPoint.getSignature().getName(), 
+				joinPoint.getSignature().getName(),
 				lap);
 		
 		return returnValue; // 실제 메서드 호출의 반환 값을 대신 반환
 		
 	}
 	
-	
+	// joinPoint.getSignature() : 현재 실행중인 메서드 정보 반환
+	// joinPoint.getSignature().getDeclaringTypeName() : 현재 실행중인 메서드가 포함된 패키지이름.클래스이름
+	// joinPoint.getSignature().getName() : 현재 실행중인 메서드 이름
 
 }
 

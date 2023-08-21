@@ -20,7 +20,7 @@ public class Logger {
 	@Pointcut("execution( * *..*.*1(..) )")
 	public void pointcut1() {}
 	
-	@Pointcut("execution( * com.springexample.aop.*.*(..) )")
+	@Pointcut("execution( * com.springexample.aop.Test*.*(..) )")
 	public void pointcutAll() {}
 	
 	// @Before("bean(testA)") // 포인트컷 표현식을 직접 적용 가능
@@ -47,6 +47,7 @@ public class Logger {
 		
 		// before area
 		long start = System.nanoTime(); // 현재 시간
+		// long start = System.currentTimeMillis(); // 현재 시간
 		
 		Object returnValue = null;
 		try {
@@ -57,6 +58,8 @@ public class Logger {
 		
 		// after area
 		long stop = System.nanoTime(); // 현재 시간
+		// long stop = System.currentTimeMillis(); // 현재 시간
+		
 		long lap = stop - start;
 		System.out.printf("%s.%s 실행 소요 시간 : %d\n",
 				joinPoint.getSignature().getDeclaringTypeName(),

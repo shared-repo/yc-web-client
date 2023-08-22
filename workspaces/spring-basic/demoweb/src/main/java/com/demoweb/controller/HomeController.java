@@ -1,14 +1,14 @@
 package com.demoweb.controller;
 
+import com.demoweb.dto.HandleResultDto;
+
 public class HomeController {
+	
+	public HandleResultDto handleRequest(String method, Object formData) {
 
-	public String handleRequest() {
-
-		// 1. 요청 데이터 읽기
 		// 2. 요청 처리
 		// 3. 처리 결과를 모델에 저장해서 반환
-		
-		return "home.jsp";
+		return new HandleResultDto(false, "home.jsp", null);
 		
 	}
 	

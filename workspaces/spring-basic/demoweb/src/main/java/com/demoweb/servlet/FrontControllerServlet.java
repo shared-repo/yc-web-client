@@ -1,6 +1,7 @@
 package com.demoweb.servlet;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.demoweb.controller.HomeController;
+import com.demoweb.controller.LoginController;
 import com.demoweb.controller.RegisterController;
+import com.demoweb.dto.HandleResultDto;
+import com.demoweb.dto.MemberDto;
 
 @WebServlet(urlPatterns = { "*.action" })
 public class FrontControllerServlet extends HttpServlet {
@@ -23,22 +27,46 @@ public class FrontControllerServlet extends HttpServlet {
 		
 		//2. 처리기 선택
 		//3. 처리기 호출
-		String result = null;
+		String method = req.getMethod().toLowerCase(); // "get" or "post"
+		HandleResultDto result = null;
 		if (url.contains("/home.action")) {
 			HomeController controller = new HomeController();
-			result = controller.handleRequest();
+			result = controller.handleRequest(method, null);
 		} else if (url.contains("/account/login.action")) {
-			
+			LoginController controller = new LoginController();
+			result = controller.handleRequest(method, null);
 		} else if (url.contains("/account/register.action")) {
+			MemberDto member = null;
+			if (method.equals("post")) {
+				// 1-1. 요청 데이터 읽기 : req.getParameter("이름")
+				String memberId = req.getParameter("memberId");
+				String passwd = req.getParameter("passwd");
+				String confirm = req.getParameter("confirm");
+				String email = req.getParameter("email");
+				
+				// 1-2. MemberDto 객체에 요청 데이터 저장
+				member = new MemberDto();
+				member.setMemberId(memberId);
+				member.setPasswd(passwd);
+				member.setEmail(email);
+				member.setRegDate(new Date());
+			}
+			
 			RegisterController controller = new RegisterController();
-			result = controller.handleRequest();
+			result = controller.handleRequest(method, member);
 		} else if (url.contains("/account/logout.action")) {
 			
-		}		
+		}
+		
 		//4. 뷰 선택 ( 처리기 호출 결과에 따라 )
 		//5. 뷰 호출 ( jsp로 forward or servlet으로 redirect )
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/" + result);
-		dispatcher.forward(req, resp);
+		if (result.isRedirect()) {
+			resp.sendRedirect(result.getViewName());
+		} else {
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/" + result.getViewName());
+			dispatcher.forward(req, resp);	
+		}
+		
 	}
 	
 	@Override

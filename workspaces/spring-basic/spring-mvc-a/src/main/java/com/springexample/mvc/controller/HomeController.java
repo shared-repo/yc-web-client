@@ -9,7 +9,6 @@ public class HomeController {
 	@RequestMapping(path = { "/", "/home" })
 	public String home() {
 		
-		return "home"; // "home.jsp"로 해석
+		return "home"; // "/WEB-INF/views/ + "home" + ".jsp"로 해석
 	}
-
 }

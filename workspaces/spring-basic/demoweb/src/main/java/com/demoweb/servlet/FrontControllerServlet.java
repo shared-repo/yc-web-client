@@ -31,8 +31,10 @@ public class FrontControllerServlet extends HttpServlet {
 		String method = req.getMethod().toLowerCase(); // "get" or "post"
 		HandleResultDto result = null;
 		if (url.contains("/home.action")) {
+			
 			HomeController controller = new HomeController();
 			result = controller.handleRequest(method, null);
+			
 		} else if (url.contains("/account/login.action")) {
 			
 			// 1. 요청 데이터 읽기
@@ -74,7 +76,9 @@ public class FrontControllerServlet extends HttpServlet {
 			RegisterController controller = new RegisterController();
 			result = controller.handleRequest(method, member);
 		} else if (url.contains("/account/logout.action")) {
-			
+			HttpSession session = req.getSession(); // request 객체에서 세션 가져오기
+			session.removeAttribute("loginuser");
+			result = new HandleResultDto(true, "/demoweb/home.action", null);
 		}
 		
 		//4. 뷰 선택 ( 처리기 호출 결과에 따라 )

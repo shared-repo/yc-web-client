@@ -10,5 +10,7 @@
 </head>
 <body>
 
+	<h3>DATA1 : <%= request.getAttribute("data1") %> / DATA2 : <%= request.getAttribute("data2") %></h3>
+
 </body>
 </html>

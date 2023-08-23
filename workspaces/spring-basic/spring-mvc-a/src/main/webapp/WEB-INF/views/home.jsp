@@ -17,9 +17,10 @@
 			나이 : <input type="text" name="age" /><br />
 			<input type="submit" value="전송" />
 		</form>
-		<h3>3. <a href="#">Transfer Data from Controller to View (Refer to 1, 2)</a></h3>
-		<h3>4. <a href="demo/redirect">Redirect to Another Action</a></h3>
-		<h3>5. <a href="demo/forward">Forward to HTML</a></h3>
+		<h3>3. <a href="demo/param2/johndoe/10">Process Request Parameter (Path Parameter)</a></h3>
+		<h3>4. <a href="#">Transfer Data from Controller to View (Refer to 1, 2, 3)</a></h3>
+		<h3>5. <a href="demo/redirect">Redirect to Another Action</a></h3>
+		<h3>6. <a href="demo/forward">Forward to HTML</a></h3>
 	</div>
 </body>
 </html>

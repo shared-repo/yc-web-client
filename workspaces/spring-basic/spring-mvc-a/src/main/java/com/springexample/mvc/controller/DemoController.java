@@ -5,11 +5,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.springexample.mvc.dto.Person;
 
@@ -60,6 +62,7 @@ public class DemoController {
 		
 		model.addAttribute("data1", data1); // model 객체에 데이터를 저장하면 View에서 읽을 수 있습니다.
 		model.addAttribute("data2", data2);
+		model.addAttribute("data3", data3);
 		
 		return "result"; // "/WEB-INF/views/" + result + ".jsp"
 	}
@@ -82,20 +85,38 @@ public class DemoController {
 	
 	// 4. 요청 데이터 읽기 연습 - POST 방식 요청, 처리된 DTO 객체 사용 ( 필드 이름을 일치 시켜야 합니다. )
 	@PostMapping(path = { "/demo/param" })
-	public String processParams4(Person person) {
+	// public String processParams4(Person person) {
+	public String processParams4(@ModelAttribute Person person, // @ModelAttribute 지정된 객체는 자동으로 View로 전달
+								 Model model) { 
 		
 		System.out.println(person); // person.toString()
+		
+		model.addAttribute("person2", person);
 		
 		return "result"; // "/WEB-INF/views/" + result + ".jsp"
 	}
 	
+//	// 5. 요청 데이터 읽기 연습 - GET 방식 요청, 처리된 변수 사용 ( 요청 데이터에 없는 primitive 타입 전달인자 사용 - 오류 )
+//	@GetMapping(path = { "/demo/param2/{name}/{age}" }) // {name}, {age} : 경로를 통해 전달되는 데이터 표시
+//	public String processParams5(@PathVariable String name, @PathVariable int age) {
+//		
+//		System.out.printf("NAME : %s, AGE : %d\n", name, age);
+//		
+//		return "result"; // "/WEB-INF/views/" + result + ".jsp"
+//	}
+	
 	// 5. 요청 데이터 읽기 연습 - GET 방식 요청, 처리된 변수 사용 ( 요청 데이터에 없는 primitive 타입 전달인자 사용 - 오류 )
 	@GetMapping(path = { "/demo/param2/{name}/{age}" }) // {name}, {age} : 경로를 통해 전달되는 데이터 표시
-	public String processParams5(@PathVariable String name, @PathVariable int age) {
+	public ModelAndView processParams5(@PathVariable String name, @PathVariable int age) {
 		
 		System.out.printf("NAME : %s, AGE : %d\n", name, age);
 		
-		return "result"; // "/WEB-INF/views/" + result + ".jsp"
+		ModelAndView mav = new ModelAndView(); // View와 View로 전송할 데이터 저장하는 객체
+		mav.setViewName("result"); // "/WEB-INF/views/" + result + ".jsp"
+		mav.addObject("name", name);
+		mav.addObject("age", age);
+		
+		return mav; 
 	}
 	
 }

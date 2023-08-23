@@ -119,6 +119,26 @@ public class DemoController {
 		return mav; 
 	}
 	
+	// 6. redirect 처리
+	@GetMapping(path = { "/demo/redirect" })
+	public String redirect() {
+		// return "/demo/redirect-target"; // "/WEB-INF/views/" + /demo/redirect-target + ".jsp"
+		return "redirect:/demo/redirect-target";
+	}
+	@GetMapping(path = { "/demo/redirect-target" })
+	public String redirectTarget() {
+		
+		return "redirect-result"; // "/WEB-INF/views/" + redirect-result + ".jsp";
+	}
+	
+	// 7. forward 처리
+	@GetMapping(path = { "/demo/forward" })
+	public String forward() {
+		System.out.println("forward");
+		return "forward:/resources/forward-result.html";
+	}
+	
+	
 }
 
 

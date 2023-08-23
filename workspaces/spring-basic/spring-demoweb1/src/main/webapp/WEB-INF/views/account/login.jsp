@@ -22,7 +22,7 @@
 		    <div id="inputmain">
 		        <div class="inputsubtitle">로그인정보</div>
 		        
-		        <form action="login.action" method="post">
+		        <form action="login" method="post">
 		       
 		        <table>
 		            <tr>

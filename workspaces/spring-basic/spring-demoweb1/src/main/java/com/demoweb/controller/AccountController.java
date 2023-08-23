@@ -32,4 +32,24 @@ public class AccountController {
 		
 		return "account/login"; // "/WEB-INF/views/" + account/login + ".jsp"
 	}
+	
+	@PostMapping(path = { "/login" })
+	// public String login(String memberId, String passwd) {
+	public String login(MemberDto member) {
+		
+		AccountDao dao = new AccountDao();
+		MemberDto member2 = dao.selectMemberByIdAndPasswd(member.getMemberId(), member.getPasswd());
+		
+		System.out.println(member2);
+		
+		return "redirect:/home";
+	}
 }
+
+
+
+
+
+
+
+

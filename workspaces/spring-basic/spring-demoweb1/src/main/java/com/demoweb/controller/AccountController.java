@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.demoweb.dao.AccountDaoImpl;
+import com.demoweb.dao.JdbcAccountDao;
 import com.demoweb.dto.MemberDto;
 import com.demoweb.service.AccountService;
 import com.demoweb.service.AccountServiceImpl;

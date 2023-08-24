@@ -5,9 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.sql.DataSource;
+
 import com.demoweb.dto.MemberDto;
 
-public class AccountDaoImpl implements AccountDao {
+import lombok.Setter;
+
+public class DataSourceAccountDao implements AccountDao {
+	
+	@Setter
+	private DataSource dataSource;
 	
 	// 회원가입에 사용할 메서드
 	@Override
@@ -18,13 +25,7 @@ public class AccountDaoImpl implements AccountDao {
 		// ResultSet rs = null; // 조회 결과를 저장하는 변수
 		
 		try {
-			// 1. 드라이버 준비
-			// DriverManager.registerDriver(new Driver());
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			
-			// 2. 연결 객체 만들기
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/demoweb", // 연결할 DB 정보 
-											   "devuserone", "devuserone");				// 계정 정보
+			conn = dataSource.getConnection(); // Connection Pool에서 Connection 가져오기 (생성X -> 대여O)
 			
 			// 3. SQL 작성
 			String sql = "INSERT INTO member (memberid, passwd, email) " +
@@ -48,7 +49,7 @@ public class AccountDaoImpl implements AccountDao {
 			// 7. 연결 닫기
 			// try { rs.close(); } catch (Exception ex) {}
 			try { pstmt.close(); } catch (Exception ex) {}
-			try { conn.close(); } catch (Exception ex) {}
+			try { conn.close(); } catch (Exception ex) {} // 연결 닫기 X -> Connection Pool에 연결 반환
 		}
 	}
 	
@@ -63,13 +64,7 @@ public class AccountDaoImpl implements AccountDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null; // 조회 결과를 저장하는 변수
 		try {
-			// 1. 드라이버 준비
-			// DriverManager.registerDriver(new Driver());
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			
-			// 2. 연결 객체 만들기
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/demoweb", // 연결할 DB 정보 
-											   "devuserone", "devuserone");				// 계정 정보
+			conn = dataSource.getConnection(); // Connection Pool에서 Connection 가져오기 (생성X -> 대여O)
 			
 			// 3. SQL 작성
 			String sql = "SELECT memberId, email, usertype, regdate " +
@@ -100,7 +95,7 @@ public class AccountDaoImpl implements AccountDao {
 			// 7. 연결 닫기
 			try { rs.close(); } catch (Exception ex) {}
 			try { pstmt.close(); } catch (Exception ex) {}
-			try { conn.close(); } catch (Exception ex) {}
+			try { conn.close(); } catch (Exception ex) {}	// 연결 닫기 X -> Connection Pool에 연결 반환
 		}
 		
 		return member;

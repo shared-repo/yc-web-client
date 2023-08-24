@@ -1,7 +1,7 @@
 package com.demoweb.service;
 
 import com.demoweb.dao.AccountDao;
-import com.demoweb.dao.AccountDaoImpl;
+import com.demoweb.dao.JdbcAccountDao;
 import com.demoweb.dto.MemberDto;
 
 import lombok.Setter;

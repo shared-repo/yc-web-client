@@ -30,9 +30,8 @@ public class AccountController {
 		return "redirect:/home";
 	}
 	
-	@GetMapping(path = { "/login2" })
+	@GetMapping(path = { "/login" })
 	public String loginForm() {
-		
 		return "account/login"; // "/WEB-INF/views/" + account/login + ".jsp"
 	}
 	

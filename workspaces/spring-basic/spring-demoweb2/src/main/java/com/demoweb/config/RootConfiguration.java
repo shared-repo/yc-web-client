@@ -1,4 +1,4 @@
-package com.springexample.demoweb.config;
+package com.demoweb.config;
 
 import org.springframework.context.annotation.Configuration;
 

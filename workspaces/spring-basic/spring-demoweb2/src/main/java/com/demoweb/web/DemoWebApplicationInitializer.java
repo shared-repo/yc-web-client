@@ -1,15 +1,14 @@
-package com.springexample.demoweb.web;
+package com.demoweb.web;
 
-import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.springexample.demoweb.config.RootConfiguration;
-import com.springexample.demoweb.config.WebConfiguration;
+import com.demoweb.config.RootConfiguration;
+import com.demoweb.config.WebConfiguration;
 
+// web.xml 역할을 수행하는 코드 기반 설정 파일
 public class DemoWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override

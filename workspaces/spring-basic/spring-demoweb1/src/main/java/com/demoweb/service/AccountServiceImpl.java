@@ -13,14 +13,14 @@ public class AccountServiceImpl implements AccountService {
 	
 	@Override
 	public void register(MemberDto member) {
-		AccountDao dao = new AccountDaoImpl();
-		dao.insertMember(member);
+		// AccountDao accountDao = new AccountDaoImpl();
+		accountDao.insertMember(member);
 	}
 	
 	@Override
 	public MemberDto findLoginMember(MemberDto member) {
-		AccountDao dao = new AccountDaoImpl();
-		MemberDto loginMember = dao.selectMemberByIdAndPasswd(member.getMemberId(), member.getPasswd());
+		// AccountDao accountDao = new AccountDaoImpl();
+		MemberDto loginMember = accountDao.selectMemberByIdAndPasswd(member.getMemberId(), member.getPasswd());
 		return loginMember;
 	}
 

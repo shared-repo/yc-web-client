@@ -36,8 +36,8 @@ public class AccountController {
 	@PostMapping(path = { "/register" })
 	public String register(MemberDto member) {
 		
-		AccountService service = new AccountServiceImpl();
-		service.register(member);
+		// AccountService accountService = new AccountServiceImpl();
+		accountService.register(member);
 		
 		return "redirect:/home";
 	}
@@ -52,8 +52,8 @@ public class AccountController {
 	// public String login(String memberId, String passwd) {
 	public String login(MemberDto member, HttpSession session, Model model) {
 		
-		AccountService service = new AccountServiceImpl();
-		MemberDto loginMember = service.findLoginMember(member);
+		// AccountService accountService = new AccountServiceImpl();
+		MemberDto loginMember = accountService.findLoginMember(member);
 		
 		if (loginMember != null) { // 로그인 가능 : 사용자가 입력한 id와 passwd에 해당하는 사용자가 존재
 			session.setAttribute("loginuser", loginMember);

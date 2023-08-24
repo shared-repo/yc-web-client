@@ -32,11 +32,19 @@ public class DemoController2 {
 	}
 
 	@PostMapping(path = { "/param" })
-	public String processParams4(@ModelAttribute Person person, // @ModelAttribute 지정된 객체는 자동으로 View로 전달
+	public String processParams4Post(@ModelAttribute Person person, // @ModelAttribute 지정된 객체는 자동으로 View로 전달
 								 Model model) { 
 		
-		System.out.println(person); // person.toString()
+		System.out.println(person); // person.toString()		
+		model.addAttribute("person2", person);
 		
+		return "result"; // "/WEB-INF/views/" + result + ".jsp"
+	}
+	@GetMapping(path = { "/param3" })
+	public String processParams4Get(@ModelAttribute Person person, // @ModelAttribute 지정된 객체는 자동으로 View로 전달
+								 Model model) { 
+		
+		System.out.println(person); // person.toString()		
 		model.addAttribute("person2", person);
 		
 		return "result"; // "/WEB-INF/views/" + result + ".jsp"

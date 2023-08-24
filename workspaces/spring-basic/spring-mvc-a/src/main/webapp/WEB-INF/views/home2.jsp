@@ -9,8 +9,16 @@
 		<h2>Spring MVC Controller Demo</h2>
 		
 		<h3>1. <a href="demo2/param?data1=this%20is%20test%20data&data2=100">Process Request Parameter</a></h3>
-		<h3>2. Process Request Parameter (POST)</h3>
+		<h3>2-1. Process Request Parameter (POST)</h3>
 		<form action="demo2/param" method="post">
+			이름 : <input type="text" name="name" value="홍길동" /><br />
+			전화 : <input type="text" name="phone" /><br />
+			메일 : <input type="text" name="email" /><br />
+			나이 : <input type="text" name="age" /><br />
+			<input type="submit" value="전송" />
+		</form>
+		<h3>2-2. Process Request Parameter (GET)</h3>
+		<form action="demo2/param3" method="get">
 			이름 : <input type="text" name="name" value="홍길동" /><br />
 			전화 : <input type="text" name="phone" /><br />
 			메일 : <input type="text" name="email" /><br />

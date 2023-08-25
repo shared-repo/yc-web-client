@@ -30,10 +30,14 @@
 	<beans:bean id="dataSourceAccountDao" class="com.demoweb.dao.DataSourceAccountDao">
 		<beans:property name="dataSource" ref="dbcpDataSource" />
 	</beans:bean>
+	<beans:bean id="jdbcTemplateAccountDao" class="com.demoweb.dao.JdbcTemplateAccountDao">
+		<beans:property name="jdbcTemplate" ref="jdbcTemplate" />
+	</beans:bean>
 	
 	<beans:bean id="accountService" class="com.demoweb.service.AccountServiceImpl">
 		<!-- <beans:property name="accountDao" ref="jdbcAccountDao" /> -->
-		<beans:property name="accountDao" ref="dataSourceAccountDao" />
+		<!-- <beans:property name="accountDao" ref="dataSourceAccountDao" /> -->
+		<beans:property name="accountDao" ref="jdbcTemplateAccountDao" />
 	</beans:bean>
 	
 	<beans:bean id="dbcpDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -44,6 +48,11 @@
 		<beans:property name="maxTotal" value="10" />
 		<beans:property name="maxIdle" value="5" />
 		<beans:property name="maxWaitMillis" value="-1" />
+	</beans:bean>
+	
+	<beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<!-- <beans:constructor-arg ref="dbcpDataSource" /> -->
+		<beans:property name="dataSource" ref="dbcpDataSource" />
 	</beans:bean>
 	
 </beans:beans>

@@ -29,8 +29,9 @@ public class RootConfiguration {
 	
 	@Bean
 	public JdbcTemplate jdbcTemplate() {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		jdbcTemplate.setDataSource(dbcpDataSource()); // 의존 주입 ( bean 생성 메서드 호출 -> getBean() 과 같은 의미)
+		// JdbcTemplate jdbcTemplate = new JdbcTemplate(dbcpDataSource()); // 생성자 주입
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(); 
+		jdbcTemplate.setDataSource(dbcpDataSource()); // 세터주입 ( bean 생성 메서드 호출 -> getBean() 과 같은 의미)
 	
 		return jdbcTemplate;
 	}

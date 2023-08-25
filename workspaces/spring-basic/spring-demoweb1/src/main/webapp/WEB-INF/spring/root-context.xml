@@ -6,6 +6,35 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<bean id="jdbcAccountDao" class="com.demoweb.dao.JdbcAccountDao" />
+	<bean id="dataSourceAccountDao" class="com.demoweb.dao.DataSourceAccountDao">
+		<property name="dataSource" ref="dbcpDataSource" />
+	</bean>
+	<bean id="jdbcTemplateAccountDao" class="com.demoweb.dao.JdbcTemplateAccountDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	
+	<bean id="accountService" class="com.demoweb.service.AccountServiceImpl">
+		<!-- <property name="accountDao" ref="jdbcAccountDao" /> -->
+		<!-- <property name="accountDao" ref="dataSourceAccountDao" /> -->
+		<property name="accountDao" ref="jdbcTemplateAccountDao" />
+	</bean>
+	
+	<bean id="dbcpDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/demoweb" />
+		<property name="username" value="devuserone" />
+		<property name="password" value="devuserone" />
+		<property name="maxTotal" value="10" />
+		<property name="maxIdle" value="5" />
+		<property name="maxWaitMillis" value="-1" />
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<!-- <constructor-arg ref="dbcpDataSource" /> -->
+		<property name="dataSource" ref="dbcpDataSource" />
+	</bean>
 
 </beans>
 

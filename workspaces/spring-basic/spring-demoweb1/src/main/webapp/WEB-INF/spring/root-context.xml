@@ -35,6 +35,15 @@
 		<!-- <constructor-arg ref="dbcpDataSource" /> -->
 		<property name="dataSource" ref="dbcpDataSource" />
 	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSesstionFactoryBean">
+		<property name="dataSource" ref="dbcpDataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
 
 </beans>
 

@@ -35,8 +35,8 @@ public class MyBatisAccountDao implements AccountDao {
 	@Override
 	public MemberDto selectMemberByIdAndPasswd(String id, String passwd) {
 		
-		HashMap<String, Object> params = new HashMap<>();
-		params.put("memberId", id);
+		HashMap<String, Object> params = new HashMap<>(); // 다수의 데이터를 저장하는 컬렉션 변수
+		params.put("memberId", id);		// 컬렉션에 데이터 추가
 		params.put("passwd", passwd);
 		MemberDto member = 
 				sqlSessionTemplate.selectOne("com.demoweb.mapper.MemberMapper.selectMemberByIdAndPasswd", params);

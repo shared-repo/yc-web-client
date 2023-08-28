@@ -6,14 +6,14 @@
 	
 <mapper namespace="com.demoweb.mapper.MemberMapper">
 
-	<insert id="insertMember" parameterType="com.demoweb.dto.Member">
+	<insert id="insertMember" parameterType="com.demoweb.dto.MemberDto">
 	insert into member (memberId, passwd, email)
 	values (#{ memberId }, #{ passwd }, #{ email })
 	</insert>
 
 	<select id="selectMemberByIdAndPasswd" 
 			parameterType="hashmap" 
-			resultType="com.demoweb.dto.Member">
+			resultType="com.demoweb.dto.MemberDto">
 	select memberId, email, userType, regDate
 	from member
 	where memberId = #{ memberId } and passwd = #{ passwd }

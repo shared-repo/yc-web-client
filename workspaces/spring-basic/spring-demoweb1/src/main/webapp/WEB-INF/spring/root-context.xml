@@ -14,11 +14,15 @@
 	<bean id="jdbcTemplateAccountDao" class="com.demoweb.dao.JdbcTemplateAccountDao">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
+	<bean id="myBatisAccountDao" class="com.demoweb.dao.MyBatisAccountDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
 	
 	<bean id="accountService" class="com.demoweb.service.AccountServiceImpl">
 		<!-- <property name="accountDao" ref="jdbcAccountDao" /> -->
 		<!-- <property name="accountDao" ref="dataSourceAccountDao" /> -->
-		<property name="accountDao" ref="jdbcTemplateAccountDao" />
+		<!-- <property name="accountDao" ref="jdbcTemplateAccountDao" /> -->
+		<property name="accountDao" ref="myBatisAccountDao" />
 	</bean>
 	
 	<bean id="dbcpDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -36,7 +40,7 @@
 		<property name="dataSource" ref="dbcpDataSource" />
 	</bean>
 	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSesstionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dbcpDataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
 	</bean>

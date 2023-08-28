@@ -23,6 +23,7 @@
 		<!-- <property name="accountDao" ref="dataSourceAccountDao" /> -->
 		<!-- <property name="accountDao" ref="jdbcTemplateAccountDao" /> -->
 		<property name="accountDao" ref="myBatisAccountDao" />
+		<property name="memberMapper" ref="memberMapper" />
 	</bean>
 	
 	<bean id="dbcpDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -48,6 +49,13 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
+	
+	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.demoweb.mapper.MemberMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	
 
 </beans>
 

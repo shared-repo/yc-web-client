@@ -20,15 +20,14 @@ public class MyBatisAccountDao implements AccountDao {
 	@Setter
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	private final String MEMBER_MAPPER = "com.demoweb.mapper.MemberMapper";
+	
 	// 회원가입에 사용할 메서드
 	@Override
 	public void insertMember(MemberDto member) {
 		
-//		String sql = "INSERT INTO member (memberid, passwd, email) VALUES (?, ?, ?) "; // ? : 데이터가 삽입될 위치 표시
-//		jdbcTemplate.update(sql, member.getMemberId(), member.getPasswd(), member.getEmail());
-		
-		sqlSessionTemplate.insert("com.demoweb.mapper.MemberMapper.insertMember", member);
-			
+		sqlSessionTemplate.insert(MEMBER_MAPPER + ".insertMember", member);
+
 	}
 	
 	// 로그인에 사용할 메서드
@@ -39,9 +38,10 @@ public class MyBatisAccountDao implements AccountDao {
 		params.put("memberId", id);		// 컬렉션에 데이터 추가
 		params.put("passwd", passwd);
 		MemberDto member = 
-				sqlSessionTemplate.selectOne("com.demoweb.mapper.MemberMapper.selectMemberByIdAndPasswd", params);
+				sqlSessionTemplate.selectOne(MEMBER_MAPPER + ".selectMemberByIdAndPasswd", params);
 
 		return member;
 	}
+	
 
 }

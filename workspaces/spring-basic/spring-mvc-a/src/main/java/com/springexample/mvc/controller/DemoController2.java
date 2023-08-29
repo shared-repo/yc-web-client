@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import com.springexample.mvc.dto.Person;
+import com.springexample.mvc.view.MyView;
 
 @Controller
 @RequestMapping(path = { "/demo2" })
@@ -78,6 +80,14 @@ public class DemoController2 {
 	public String forward() {
 		System.out.println("forward");
 		return "forward:/resources/forward-result.html";
+	}
+	
+	@GetMapping(path = { "/custom-view" })
+	public View showCustomView() {
+
+		MyView myView = new MyView();
+		
+		return myView;
 	}
 	
 	

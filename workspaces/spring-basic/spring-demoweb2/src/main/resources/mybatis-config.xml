@@ -7,11 +7,9 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias type="com.demoweb.dto.MemberDto" alias="MemberDto" />
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="com/demoweb/mapper/MemberMapper.xml" />
 	</mappers>
 
 </configuration>

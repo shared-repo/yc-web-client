@@ -29,6 +29,7 @@
 		<h3>4. <a href="#">Transfer Data from Controller to View (Refer to 1, 2, 3)</a></h3>
 		<h3>5. <a href="demo2/redirect">Redirect to Another Action</a></h3>
 		<h3>6. <a href="demo2/forward">Forward to HTML</a></h3>
+		<h3>7. <a href="demo2/custom-view">Custom View Object</a></h3>
 	</div>
 </body>
 </html>

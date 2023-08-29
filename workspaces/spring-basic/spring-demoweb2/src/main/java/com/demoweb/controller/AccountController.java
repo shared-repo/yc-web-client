@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,8 @@ import com.demoweb.dao.JdbcAccountDao;
 import com.demoweb.dto.MemberDto;
 import com.demoweb.service.AccountService;
 import com.demoweb.service.AccountServiceImpl;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping(path = { "/account" })
@@ -29,13 +32,17 @@ public class AccountController {
 	}
 
 	@GetMapping(path = { "/register" })
-	public String registerForm(@ModelAttribute("member") MemberDto member) {
+	public String registerForm(MemberDto member) {
 		
 		return "account/register"; // "/WEB-INF/views/" + account/register + ".jsp"
 	}
 	
 	@PostMapping(path = { "/register" })
-	public String register(MemberDto member) {
+	public String register(@ModelAttribute("member") @Valid MemberDto member, BindingResult result) {
+		
+		if (result.hasErrors()) {
+			return "account/register";
+		}
 		
 		// AccountService accountService = new AccountServiceImpl();
 		accountService.register(member);

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <!DOCTYPE html>
 
 <html>
@@ -21,31 +19,30 @@
 			<br /><br />
 		    <div id="inputmain">
 		        <div class="inputsubtitle">회원기본정보</div>
-		        <!-- form:form은 반드시 controlloler에서 전달한 객체에 바인딩되어야 합니다. -->
-				<form:form id="registerform" action="register" method="post" modelAttribute="member">
+				<form id="registerform" action="register" method="post">
 		        <table>
 		            <tr>
 		                <th>아이디(ID)</th>
 		                <td>
-		                    <form:input style="width:280px" path="memberId" />
+		                    <input type="text" style="width:280px" name="memberId" />
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>비밀번호</th>
 		                <td>
-		                	<form:password path="passwd" style="width:280px" />
+		                	<input type="password" style="width:280px" name="passwd" />
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>비밀번호 확인</th>
 		                <td>
-		                    <input type="password" name="confirm" style="width:280px" />
+		                    <input type="password" style="width:280px" name="confirm"/>
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>이메일</th>
 		                <td>
-		                	<form:input path="email" style="width:280px" />
+		                	<input type="text" style="width:280px" name="email" />
 		                </td>
 		            </tr>
 		                       		            
@@ -53,8 +50,9 @@
 		        <div class="buttons">
 		        	<input id="register" type="submit" value="등록" style="height:25px" />
 		        	<input id="cancel" type="button" value="취소" style="height:25px"  />
+
 		        </div>
-		        </form:form>
+		        </form>
 		    </div>
 		</div>   	
 	</div>

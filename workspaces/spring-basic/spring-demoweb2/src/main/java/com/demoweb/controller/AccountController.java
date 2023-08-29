@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,7 +29,7 @@ public class AccountController {
 	}
 
 	@GetMapping(path = { "/register" })
-	public String registerForm() {
+	public String registerForm(@ModelAttribute("member") MemberDto member) {
 		
 		return "account/register"; // "/WEB-INF/views/" + account/register + ".jsp"
 	}

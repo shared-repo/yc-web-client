@@ -1,6 +1,7 @@
 package com.demoweb.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,7 +18,6 @@ import com.demoweb.dto.MemberDto;
 import com.demoweb.service.AccountService;
 import com.demoweb.service.AccountServiceImpl;
 
-import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping(path = { "/account" })
@@ -32,7 +32,7 @@ public class AccountController {
 	}
 
 	@GetMapping(path = { "/register" })
-	public String registerForm(MemberDto member) {
+	public String registerForm(@ModelAttribute("member") MemberDto member) {
 		
 		return "account/register"; // "/WEB-INF/views/" + account/register + ".jsp"
 	}

@@ -2,27 +2,32 @@
 <%@ page language="java" 
 		 contentType="text/html; charset=UTF-8"
     	 pageEncoding="UTF-8"%>
+    	 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-		<% String bgColor=request.getParameter("bgColor"); %>
-		<% if (bgColor != null && !bgColor.equals("")) { %>
-		<div id="header" 
-			 style="background-color:<%= bgColor %>"> 
-		<% } else { %>
+<c:choose>
+	<c:when test="${ not empty param.bgColor }">
+		<div id="header" style="background-color:${ param.bgColor }"> 
+	</c:when>
+	<c:otherwise>
 		<div id="header">
-		<% }  %>
+	</c:otherwise>
+</c:choose>
 		   	
             <div class="title">
                 <a href="/spring-demoweb/home">DEMO WEBSITE</a>
             </div>
             <div class="links">
-            	<% MemberDto loginUser = (MemberDto)session.getAttribute("loginuser"); %>
-            	<% if (loginUser == null) { %> <%-- 로그인 여부 확인 (세션에 저장된 정보 확인) --%>
-            	<a href="/spring-demoweb/account/login">로그인</a>
-                <a href="/spring-demoweb/account/register">회원가입</a>
-                <% } else { %>
-                <%= loginUser.getMemberId() %>님 환영합니다.
-                <a href="/spring-demoweb/account/logout">로그아웃</a>
-                <% } %>
+		<c:choose>
+			<c:when test="${ loginuser eq null }">
+				<a href="/spring-demoweb/account/login">로그인</a>
+				<a href="/spring-demoweb/account/register">회원가입</a>
+			</c:when>
+			<c:otherwise>
+				${ sessionScope.loginuser.memberId }님 환영합니다.
+				<a href="/spring-demoweb/account/logout">로그아웃</a>
+			</c:otherwise>
+		</c:choose>
             </div>
         </div>
                 

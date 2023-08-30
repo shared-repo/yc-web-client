@@ -10,6 +10,12 @@
 	<title>Register</title>
 	<link rel='Stylesheet' href='/spring-demoweb/resources/styles/default.css' />
 	<link rel='Stylesheet' href='/spring-demoweb/resources/styles/input.css' />
+	<style type="text/css">
+		.error {
+			color: red;
+			font-weight: bold;
+		}
+	</style>
 </head>
 <body>
 
@@ -27,25 +33,28 @@
 		            <tr>
 		                <th>아이디(ID)</th>
 		                <td>
-		                    <form:input style="width:280px" path="memberId" />
+		                    <form:input style="width:300px" path="memberId" />
+		                    <form:errors path="memberId" cssClass="error" />
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>비밀번호</th>
 		                <td>
-		                	<form:password path="passwd" style="width:280px" />
+		                	<form:password path="passwd" style="width:300px" />
+		                	<form:errors path="passwd" cssClass="error" />
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>비밀번호 확인</th>
 		                <td>
-		                    <input type="password" name="confirm" style="width:280px" />
+		                    <input type="password" name="confirm" style="width:300px" />
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>이메일</th>
 		                <td>
-		                	<form:input path="email" style="width:280px" />
+		                	<form:input path="email" style="width:300px" />
+		                	<form:errors path="email" cssClass="error" />
 		                </td>
 		            </tr>
 		                       		            

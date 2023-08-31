@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.MemberDto;
 
 @Controller
@@ -30,8 +31,13 @@ public class BoardController {
 	}
 	
 	@PostMapping(path = { "/write" })
-	public String write() {
+	public String write(BoardDto board) {
 		
+		// 1. 요청 데이터 읽기 ( 전달인자에서 자동 처리 )
+		System.out.println(board);
+		// 2. 요청 처리 ( 서비스 객체 호출 )
+		// 3. JSP에서 읽을 수 있도록 데이터 저장 (선택적 - 여기서는 없음)
+		// 4. View(jsp) 또는 다른 controller로 이동
 		return "redirect:list";
 	}
 }

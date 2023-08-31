@@ -1,8 +1,10 @@
 package com.demoweb.web;
 
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.demoweb.config.RootConfiguration;
@@ -29,10 +31,10 @@ public class DemoWebApplicationInitializer extends AbstractAnnotationConfigDispa
 	
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-//		FilterRegistration characterEncodingFilter = servletContext.addFilter("characterEncodingFilter", CharacterEncodingFilter.class);
-//		characterEncodingFilter.setInitParameter("encoding", "UTF-8");
-//		characterEncodingFilter.setInitParameter("forceEncoding", "true");
-//		characterEncodingFilter.addMappingForUrlPatterns(null, true, "/*");
+		FilterRegistration characterEncodingFilter = servletContext.addFilter("characterEncodingFilter", CharacterEncodingFilter.class);
+		characterEncodingFilter.setInitParameter("encoding", "UTF-8");
+		characterEncodingFilter.setInitParameter("forceEncoding", "true");
+		characterEncodingFilter.addMappingForUrlPatterns(null, true, "/*");
 		
 		super.onStartup(servletContext);
 	}

@@ -34,10 +34,10 @@
 		                <td>
 		                	
 		                	${ loginuser.memberId }
-		                	<input type="hidden" name="memberId" value="${ loginuser.memberId }">
+		                	<input type="hidden" name="writer" value="${ loginuser.memberId }">
 		                	
 		                	<%-- 
-		                	<input type="text" name="memberId" value="${ loginuser.memberId }" 
+		                	<input type="text" name="writer" value="${ loginuser.memberId }" 
 		                		   style="width:580px" readonly>
 		                	--%>
 		                </td>

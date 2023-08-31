@@ -17,6 +17,8 @@ import com.demoweb.dao.JdbcAccountDao;
 import com.demoweb.dao.JdbcTemplateAccountDao;
 import com.demoweb.mapper.MemberMapper;
 import com.demoweb.service.AccountServiceImpl;
+import com.demoweb.service.BoardService;
+import com.demoweb.service.BoardServiceImpl;
 
 @Configuration
 @MapperScan(basePackages = { "com.demoweb.mapper" }) // xml 설정의 <mybatis:scan 을 대신하는 annotation
@@ -89,6 +91,15 @@ public class RootConfiguration implements ApplicationContextAware {
 		SqlSessionFactory sessionFactory = factoryBean.getObject(); // IoC 컨테이너에 등록할 객체 생성
 		return sessionFactory;
 		
+	}
+	
+	//////////////////////////////////////////////////
+	
+	@Bean
+	public BoardService boardService() {
+		BoardService boardService = new BoardServiceImpl();
+		
+		return boardService;
 	}
 
 	

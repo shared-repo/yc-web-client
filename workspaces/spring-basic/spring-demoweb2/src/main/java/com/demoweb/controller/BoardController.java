@@ -13,7 +13,7 @@ import com.demoweb.dto.MemberDto;
 import com.demoweb.service.BoardService;
 
 @Controller
-@RequestMapping(path = { "/board" }) // 이 컨터롤러의 메서드에 적용될 공통 경로 설정
+@RequestMapping(path = { "/board" }) // 이 컨트롤러의 메서드에 적용될 공통 경로 설정
 public class BoardController {
 	
 	@Autowired

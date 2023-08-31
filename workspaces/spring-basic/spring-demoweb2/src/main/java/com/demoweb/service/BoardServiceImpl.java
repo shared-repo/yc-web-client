@@ -13,7 +13,9 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void writeBoard(BoardDto board) {
 		
-		boardMapper.insertBoard(board);
+		System.out.println(board.getBoardNo()); // ---> 0
+		boardMapper.insertBoard(board);	// 자동 증가 번호 생성
+		System.out.println(board.getBoardNo()); // ---> 삽입하면서 생성된 자동 증가 번호
 		
 	}
 	

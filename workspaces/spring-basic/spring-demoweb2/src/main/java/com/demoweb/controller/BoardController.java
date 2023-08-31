@@ -31,7 +31,11 @@ public class BoardController {
 	}
 	
 	@PostMapping(path = { "/write" })
-	public String write(BoardDto board) {
+	public String write(HttpSession session, BoardDto board) {
+		
+		if (session.getAttribute("loginuser") == null) { // 로그인 하지 않은 사용자
+			return "redirect:/account/login";
+		}
 		
 		// 1. 요청 데이터 읽기 ( 전달인자에서 자동 처리 )
 		System.out.println(board);

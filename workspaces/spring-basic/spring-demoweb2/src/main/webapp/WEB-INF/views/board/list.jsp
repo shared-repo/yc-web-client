@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>    
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 
@@ -30,7 +33,17 @@
 					<th style="width:125px">작성자</th>
 					<th style="width:50px">조회수</th>
 					<th style="width:125px">작성일</th>					
-				</tr>			
+				</tr>
+				<c:forEach var="board" items="${ boardList }"><%-- request.getAttribute("boardList") --%>
+				<tr style="height:30px">
+					<td>${ board.boardNo }</td>
+					<td style="text-align:left;padding-left:10px">${ board.title }</td>
+					<td>${ board.writer }</td>
+					<td>${ board.readCount }</td>
+					<td><fmt:formatDate value="${ board.regDate }" pattern="yyyy-MM-dd" /></td>					
+				</tr>
+				</c:forEach>
+							
 			</table>
 			
 			<br><br>

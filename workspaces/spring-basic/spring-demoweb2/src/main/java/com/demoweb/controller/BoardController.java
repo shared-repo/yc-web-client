@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +23,13 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping(path = { "/list" })
-	public String list() {
+	public String list(Model model) {
 		
 		// 게시물 조회 ( 서비스 객체에 요청 )
 		List<BoardDto> boardList = boardService.listBoard();
+		
+		// View (JSP)에서 읽을 수 있도록 데이터 저장
+		model.addAttribute("boardList", boardList);
 		
 		return "board/list"; // "/WEB-INF/views/" + board/list + ".jsp"
 	}

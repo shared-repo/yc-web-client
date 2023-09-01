@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.MemberDto;
 import com.demoweb.service.BoardService;
+import com.demoweb.ui.ThePager;
 
 @Controller
 @RequestMapping(path = { "/board" }) // 이 컨트롤러의 메서드에 적용될 공통 경로 설정
@@ -28,12 +29,19 @@ public class BoardController {
 		
 		// 게시물 조회 ( 서비스 객체에 요청 )
 		// List<BoardDto> boardList = boardService.listBoard(); // 모든 게시물 조회
-		int pageSize = 3;	// 한 페이지에 표시될 게시물 갯수
+		int pageSize = 3;			// 한 페이지에 표시될 게시물 갯수
+		int pagerSize = 3;			// 표시할 페이지 번호 갯수
+		String linkUrl = "list";	// list?pageNo=3과 같은 형식으로 href값 생성
+		int dataCount = 100;		// 총 게시물 갯수 ( 데이터베이스에 조회 )
+		
 		int from = (pageNo - 1) * pageSize;	// 현재 페이지에 표시될 첫 번째 게시물 순서번호
 		List<BoardDto> boardList = boardService.listBoardByPage(from, pageSize); // 페이지별 게시물 조회
 		
+		ThePager pager = new ThePager(dataCount, pageNo, pageSize, pagerSize, linkUrl); // 페이지 번호 표시기 만들기
+		
 		// View (JSP)에서 읽을 수 있도록 데이터 저장
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("pager", pager);
 		
 		return "board/list"; // "/WEB-INF/views/" + board/list + ".jsp"
 	}

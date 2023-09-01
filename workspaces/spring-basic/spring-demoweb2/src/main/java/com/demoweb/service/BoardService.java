@@ -10,6 +10,7 @@ public interface BoardService {
 	
 	List<BoardDto> listBoard();
 	List<BoardDto> listBoardByPage(int from, int count);
+	int getBoardCount();
 	
 	BoardDto findBoardByBoardNo(int boardNo);
 

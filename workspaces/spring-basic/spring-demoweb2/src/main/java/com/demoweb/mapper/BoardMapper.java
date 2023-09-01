@@ -27,6 +27,8 @@ public interface BoardMapper {
 			+ "order by boardno desc "
 			+ "limit #{ from }, #{ count }")
 	List<BoardDto> selectBoardByPage(@Param("from")int from, @Param("count")int count);
+	@Select(  "select count(*) from board ")
+	int selectBoardCount();
 	
 	@Select(  "select boardNo, title, content, writer, readCount, regDate "
 			+ "from board "

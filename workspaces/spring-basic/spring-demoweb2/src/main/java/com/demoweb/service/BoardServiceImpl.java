@@ -31,12 +31,19 @@ public class BoardServiceImpl implements BoardService {
 		List<BoardDto> boardList = boardMapper.selectBoardByPage(from, count);
 		return boardList;
 	}
+	@Override
+	public int getBoardCount() {
+		int count = boardMapper.selectBoardCount();
+		return count;
+	}
 
 	@Override
 	public BoardDto findBoardByBoardNo(int boardNo) {
 		BoardDto board = boardMapper.selectBoardByBoardNo(boardNo);
 		return board;
 	}
+
+
 
 
 	

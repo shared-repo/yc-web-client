@@ -32,7 +32,7 @@ public class BoardController {
 		int pageSize = 3;			// 한 페이지에 표시될 게시물 갯수
 		int pagerSize = 3;			// 표시할 페이지 번호 갯수
 		String linkUrl = "list";	// list?pageNo=3과 같은 형식으로 href값 생성
-		int dataCount = 100;		// 총 게시물 갯수 ( 데이터베이스에 조회 )
+		int dataCount = boardService.getBoardCount(); // 총 게시물 갯수 ( 데이터베이스에 조회 )
 		
 		int from = (pageNo - 1) * pageSize;	// 현재 페이지에 표시될 첫 번째 게시물 순서번호
 		List<BoardDto> boardList = boardService.listBoardByPage(from, pageSize); // 페이지별 게시물 조회

@@ -9,5 +9,7 @@ public interface BoardService {
 	void writeBoard(BoardDto board);
 	
 	List<BoardDto> listBoard();
+	
+	BoardDto findBoardByBoardNo(int boardNo);
 
 }

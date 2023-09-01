@@ -27,5 +27,11 @@ public class BoardServiceImpl implements BoardService {
 		List<BoardDto> boardList = boardMapper.selectAllBoard();
 		return boardList;
 	}
+
+	@Override
+	public BoardDto findBoardByBoardNo(int boardNo) {
+		BoardDto board = boardMapper.selectBoardByBoardNo(boardNo);
+		return board;
+	}
 	
 }

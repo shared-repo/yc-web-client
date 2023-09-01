@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 
@@ -24,27 +24,27 @@
 		        <table>
 		        	<tr>
 		                <th>글번호</th>
-		                <td></td>
+		                <td>${ requestScope.board.boardNo }</td>
 		            </tr>
 		            <tr>
 		                <th>제목</th>
-		                <td></td>
+		                <td>${ board.title }</td>
 		            </tr>
 		            <tr>
 		                <th>작성자</th>
-		                <td></td>
+		                <td>${ board.writer }</td>
 		            </tr>
 		            <tr>
 		                <th>작성일</th>
-		                <td></td>
+		                <td><fmt:formatDate value="${ board.regDate }" pattern="yyyy-MM-dd" /></td>
 		            </tr>
 		            <tr>
 		                <th>조회수</th>
-		                <td></td>
+		                <td>${ board.readCount }</td>
 		            </tr>
 		            <tr>
 		                <th>글내용</th>
-		                <td></td>
+		                <td>${ board.content }</td>
 		            </tr>
 		        </table>
 		        <div class="buttons">

@@ -67,11 +67,19 @@ public class BoardController {
 	}
 	
 	@GetMapping(path = { "/detail" })
-	public String detail(@RequestParam(defaultValue = "-1") int boardNo) {
+	public String detail(@RequestParam(defaultValue = "-1") int boardNo, Model model) {
 		
-		if (boardNo == -1) {
+		if (boardNo == -1) { // 글 번호가 요청에 포함되지 않은 경우
 			return "redirect:list";
 		}
+		
+		BoardDto board = boardService.findBoardByBoardNo(boardNo);
+		
+		if (board == null) { // 조회된 글이 없는 경우
+			return "redirect:list";
+		}
+		
+		model.addAttribute("board", board); // View(JSP)에서 읽을 수 있도록 저장
 		
 		return "board/detail";
 	}

@@ -34,10 +34,12 @@
 					<th style="width:50px">조회수</th>
 					<th style="width:125px">작성일</th>					
 				</tr>
-				<c:forEach var="board" items="${ boardList }"><%-- request.getAttribute("boardList") --%>
+				<c:forEach var="board" items="${ boardList }"><!-- request.getAttribute("boardList") -->
 				<tr style="height:30px">
 					<td>${ board.boardNo }</td>
-					<td style="text-align:left;padding-left:10px">${ board.title }</td>
+					<td style="text-align:left;padding-left:10px">
+						<a href="detail?boardNo=${ board.boardNo }">${ board.title }</a>
+					</td>
 					<td>${ board.writer }</td>
 					<td>${ board.readCount }</td>
 					<td><fmt:formatDate value="${ board.regDate }" pattern="yyyy-MM-dd" /></td>					

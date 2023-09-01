@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.MemberDto;
@@ -63,6 +64,16 @@ public class BoardController {
 		
 		// 4. View(jsp) 또는 다른 controller로 이동
 		return "redirect:list";
+	}
+	
+	@GetMapping(path = { "/detail" })
+	public String detail(@RequestParam(defaultValue = "-1") int boardNo) {
+		
+		if (boardNo == -1) {
+			return "redirect:list";
+		}
+		
+		return "board/detail";
 	}
 }
 

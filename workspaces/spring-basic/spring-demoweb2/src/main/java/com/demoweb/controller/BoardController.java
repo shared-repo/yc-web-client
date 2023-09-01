@@ -1,5 +1,7 @@
 package com.demoweb.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class BoardController {
 	
 	@GetMapping(path = { "/list" })
 	public String list() {
+		
+		// 게시물 조회 ( 서비스 객체에 요청 )
+		List<BoardDto> boardList = boardService.listBoard();
 		
 		return "board/list"; // "/WEB-INF/views/" + board/list + ".jsp"
 	}

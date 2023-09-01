@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 
@@ -43,8 +45,10 @@
 		                <td>${ board.readCount }</td>
 		            </tr>
 		            <tr>
+<c:set var="enter" value="
+" />		            
 		                <th>글내용</th>
-		                <td>${ board.content }</td>
+		                <td>${ fn:replace(board.content, enter, "<br>") }</td>
 		            </tr>
 		        </table>
 		        <div class="buttons">

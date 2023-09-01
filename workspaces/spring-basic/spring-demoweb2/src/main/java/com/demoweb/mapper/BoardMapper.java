@@ -22,6 +22,11 @@ public interface BoardMapper {
 			+ "from board "
 			+ "order by boardno desc")
 	List<BoardDto> selectAllBoard();
+	@Select(  "select boardNo, title, writer, readCount, regDate, deleted "
+			+ "from board "
+			+ "order by boardno desc "
+			+ "limit #{ from }, #{ count }")
+	List<BoardDto> selectBoardByPage(@Param("from")int from, @Param("count")int count);
 	
 	@Select(  "select boardNo, title, content, writer, readCount, regDate "
 			+ "from board "

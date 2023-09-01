@@ -23,8 +23,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardDto> listBoard() {
-		
 		List<BoardDto> boardList = boardMapper.selectAllBoard();
+		return boardList;
+	}
+	@Override
+	public List<BoardDto> listBoardByPage(int from, int count) {
+		List<BoardDto> boardList = boardMapper.selectBoardByPage(from, count);
 		return boardList;
 	}
 
@@ -33,5 +37,7 @@ public class BoardServiceImpl implements BoardService {
 		BoardDto board = boardMapper.selectBoardByBoardNo(boardNo);
 		return board;
 	}
+
+
 	
 }

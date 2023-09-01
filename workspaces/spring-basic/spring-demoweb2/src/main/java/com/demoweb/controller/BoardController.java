@@ -24,10 +24,13 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping(path = { "/list" })
-	public String list(Model model) {
+	public String list(@RequestParam(defaultValue = "1") int pageNo, Model model) {
 		
 		// 게시물 조회 ( 서비스 객체에 요청 )
-		List<BoardDto> boardList = boardService.listBoard();
+		// List<BoardDto> boardList = boardService.listBoard(); // 모든 게시물 조회
+		int pageSize = 3;	// 한 페이지에 표시될 게시물 갯수
+		int from = (pageNo - 1) * pageSize;	// 현재 페이지에 표시될 첫 번째 게시물 순서번호
+		List<BoardDto> boardList = boardService.listBoardByPage(from, pageSize); // 페이지별 게시물 조회
 		
 		// View (JSP)에서 읽을 수 있도록 데이터 저장
 		model.addAttribute("boardList", boardList);

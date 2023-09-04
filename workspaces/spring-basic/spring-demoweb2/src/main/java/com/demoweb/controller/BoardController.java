@@ -98,7 +98,7 @@ public class BoardController {
 		board.setBoardAttachList(attachList);
 		
 		// 2. 요청 처리 ( 서비스 객체 호출 )
-		// boardService.writeBoard(board);
+		boardService.writeBoard(board);
 		
 		// 3. JSP에서 읽을 수 있도록 데이터 저장 (선택적 - 여기서는 없음)
 		

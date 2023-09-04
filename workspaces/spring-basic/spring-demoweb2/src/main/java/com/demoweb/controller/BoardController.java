@@ -1,7 +1,9 @@
 package com.demoweb.controller;
 
+import java.io.File;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.MemberDto;
@@ -60,7 +63,7 @@ public class BoardController {
 	}
 	
 	@PostMapping(path = { "/write" })
-	public String write(BoardDto board) {
+	public String write(BoardDto board, MultipartFile attach, HttpServletRequest req) {
 		
 		// 아래 코드는 AuthInterceptor 인터셉터에서 처리
 //		if (session.getAttribute("loginuser") == null) { // 로그인 하지 않은 사용자
@@ -70,8 +73,18 @@ public class BoardController {
 		// 1. 요청 데이터 읽기 ( 전달인자에서 자동 처리 )
 		// System.out.println(board);
 		
+		// 파일업로드 처리
+		if (!attach.isEmpty()) {
+			try {
+				String uploadDir = req.getServletContext().getRealPath("/resources/upload/");
+				attach.transferTo(new File(uploadDir, attach.getOriginalFilename()));
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		
 		// 2. 요청 처리 ( 서비스 객체 호출 )
-		boardService.writeBoard(board);
+		// boardService.writeBoard(board);
 		
 		// 3. JSP에서 읽을 수 있도록 데이터 저장 (선택적 - 여기서는 없음)
 		

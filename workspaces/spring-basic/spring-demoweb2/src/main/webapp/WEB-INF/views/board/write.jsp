@@ -21,7 +21,7 @@
 		<div id="inputcontent">
 		    <div id="inputmain">
 		        <div class="inputsubtitle">게시글 정보</div>
-		        <form action="write" method="post">
+		        <form action="write" method="post" enctype="multipart/form-data">
 		        <table>
 		            <tr>
 		                <th>제목</th>
@@ -40,6 +40,12 @@
 		                	<input type="text" name="writer" value="${ loginuser.memberId }" 
 		                		   style="width:580px" readonly>
 		                	--%>
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>첨부파일</th>
+		                <td>
+		                	<input type="file" name="attach" style="width:580px">
 		                </td>
 		            </tr>
 		            <tr>

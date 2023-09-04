@@ -45,6 +45,21 @@
 		</dependency>
 
 		<!-- end of servlet -->
+		
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.5</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.13.0</version>
+		</dependency>
+
+		
+		
 	
 		<dependency>
 		    <groupId>org.projectlombok</groupId>

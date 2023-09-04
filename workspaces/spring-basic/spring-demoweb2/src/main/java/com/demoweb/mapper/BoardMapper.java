@@ -39,6 +39,16 @@ public interface BoardMapper {
 			+ "from board "
 			+ "where boardno = #{ boardNo } and deleted = false")
 	BoardDto selectBoardByBoardNo(@Param("boardNo") int boardNo);
+	
+	@Select(  "select attachNo, boardNo, userFileName, savedFileName, downloadCount "
+			+ "from boardattach "
+			+ "where boardno = #{ boardNo }")
+	List<BoardAttachDto> selectBoardAttachByBoardNo(@Param("boardNo") int boardNo);
+	
+	@Select(  "select attachNo, boardNo, userFileName, savedFileName, downloadCount "
+			+ "from boardattach "
+			+ "where attachno = #{ attachNo }")
+	BoardAttachDto selectBoardAttachByAttachNo(@Param("attachNo") int attachNo);
 
 	
 

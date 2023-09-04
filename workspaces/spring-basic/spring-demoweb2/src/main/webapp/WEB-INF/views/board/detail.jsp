@@ -45,6 +45,15 @@
 		                <td>${ board.readCount }</td>
 		            </tr>
 		            <tr>
+		                <th>첨부파일</th>
+		                <td>
+		                <c:forEach var="attach" items="${ board.boardAttachList }">
+		                	<a href="download?attachNo=${ attach.attachNo }">${ attach.userFileName }</a>
+		                	[${attach.downloadCount }]<br>
+		                </c:forEach>
+		                </td>
+		            </tr>
+		            <tr>
 <c:set var="enter" value="
 " />		            
 		                <th>글내용</th>

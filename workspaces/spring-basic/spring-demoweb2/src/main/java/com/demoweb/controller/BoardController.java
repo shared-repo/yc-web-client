@@ -123,6 +123,17 @@ public class BoardController {
 		
 		return "board/detail";
 	}
+	
+	@GetMapping(path = { "/download" })
+	public String download(int attachNo) {
+		
+		// 1. 첨부파일 조회
+		BoardAttachDto attach = boardService.findBoardAttachByAttachNo(attachNo);
+		
+		// 2. 다운로드 처리
+		
+		return "download";
+	}
 }
 
 

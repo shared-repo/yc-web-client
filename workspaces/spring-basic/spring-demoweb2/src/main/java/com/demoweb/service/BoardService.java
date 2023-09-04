@@ -2,6 +2,7 @@ package com.demoweb.service;
 
 import java.util.List;
 
+import com.demoweb.dto.BoardAttachDto;
 import com.demoweb.dto.BoardDto;
 
 public interface BoardService {
@@ -13,5 +14,7 @@ public interface BoardService {
 	int getBoardCount();
 	
 	BoardDto findBoardByBoardNo(int boardNo);
+
+	BoardAttachDto findBoardAttachByAttachNo(int attachNo);
 
 }

@@ -47,8 +47,16 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardDto findBoardByBoardNo(int boardNo) {
-		BoardDto board = boardMapper.selectBoardByBoardNo(boardNo);
+		BoardDto board = boardMapper.selectBoardByBoardNo(boardNo);	// 게시글 조회 (from board)
+		List<BoardAttachDto> attachList = boardMapper.selectBoardAttachByBoardNo(boardNo); // 첨부파일 조회 (from boardattach)
+		board.setBoardAttachList(attachList);
 		return board;
+	}
+	
+	@Override
+	public BoardAttachDto findBoardAttachByAttachNo(int attachNo) {
+		BoardAttachDto attach = boardMapper.selectBoardAttachByAttachNo(attachNo);
+		return attach;
 	}
 
 

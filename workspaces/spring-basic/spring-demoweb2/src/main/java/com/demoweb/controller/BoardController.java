@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.View;
 
 import com.demoweb.common.Util;
 import com.demoweb.dto.BoardAttachDto;
@@ -22,6 +23,7 @@ import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.MemberDto;
 import com.demoweb.service.BoardService;
 import com.demoweb.ui.ThePager;
+import com.demoweb.view.DownloadView;
 
 @Controller
 @RequestMapping(path = { "/board" }) // 이 컨트롤러의 메서드에 적용될 공통 경로 설정
@@ -125,14 +127,17 @@ public class BoardController {
 	}
 	
 	@GetMapping(path = { "/download" })
-	public String download(int attachNo) {
+	public View download(int attachNo, Model model) {
 		
 		// 1. 첨부파일 조회
 		BoardAttachDto attach = boardService.findBoardAttachByAttachNo(attachNo);
 		
 		// 2. 다운로드 처리
+		model.addAttribute("attach", attach);	// View에서 사용할 수 있도록 데이터 저장
+		DownloadView downloadView = new DownloadView();
 		
-		return "download";
+		// return "download"; // "/WEB-INF/views/" + download + ".jsp"
+		return downloadView;
 	}
 }
 

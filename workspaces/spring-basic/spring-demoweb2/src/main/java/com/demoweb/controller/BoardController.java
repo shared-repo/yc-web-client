@@ -1,6 +1,7 @@
 package com.demoweb.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.demoweb.common.Util;
+import com.demoweb.dto.BoardAttachDto;
 import com.demoweb.dto.BoardDto;
 import com.demoweb.dto.MemberDto;
 import com.demoweb.service.BoardService;
@@ -74,14 +77,25 @@ public class BoardController {
 		// System.out.println(board);
 		
 		// 파일업로드 처리
+		ArrayList<BoardAttachDto> attachList = new ArrayList<>();
 		if (!attach.isEmpty()) {
 			try {
+				String savedFileName = Util.makeUniqueFileName(attach.getOriginalFilename());
+				
 				String uploadDir = req.getServletContext().getRealPath("/resources/upload/");
-				attach.transferTo(new File(uploadDir, attach.getOriginalFilename()));
+				attach.transferTo(new File(uploadDir, savedFileName)); // 파일을 컴퓨터에 저장
+				
+				// 파일 정보를 dto에 저장
+				BoardAttachDto boardAttach = new BoardAttachDto();
+				boardAttach.setUserFileName(attach.getOriginalFilename());
+				boardAttach.setSavedFileName(savedFileName);
+				
+				attachList.add(boardAttach);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}
+		board.setBoardAttachList(attachList);
 		
 		// 2. 요청 처리 ( 서비스 객체 호출 )
 		// boardService.writeBoard(board);

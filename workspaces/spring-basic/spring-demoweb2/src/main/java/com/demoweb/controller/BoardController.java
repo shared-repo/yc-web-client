@@ -80,12 +80,25 @@ public class BoardController {
 		// System.out.println(board);
 		
 		// 파일업로드 처리
+		String uploadDir = req.getServletContext().getRealPath("/resources/upload/");
+		ArrayList<BoardAttachDto> attachList = handleUploadFile(attach, uploadDir);
+		board.setBoardAttachList(attachList);
+		
+		// 2. 요청 처리 ( 서비스 객체 호출 )
+		boardService.writeBoard(board);
+		
+		// 3. JSP에서 읽을 수 있도록 데이터 저장 (선택적 - 여기서는 없음)
+		
+		// 4. View(jsp) 또는 다른 controller로 이동
+		return "redirect:list";
+	}
+
+	private ArrayList<BoardAttachDto> handleUploadFile(MultipartFile attach, String uploadDir) {
 		ArrayList<BoardAttachDto> attachList = new ArrayList<>();
 		if (!attach.isEmpty()) {
 			try {
 				String savedFileName = Util.makeUniqueFileName(attach.getOriginalFilename());
 				
-				String uploadDir = req.getServletContext().getRealPath("/resources/upload/");
 				attach.transferTo(new File(uploadDir, savedFileName)); // 파일을 컴퓨터에 저장
 				
 				// 파일 정보를 dto에 저장
@@ -98,15 +111,7 @@ public class BoardController {
 				ex.printStackTrace();
 			}
 		}
-		board.setBoardAttachList(attachList);
-		
-		// 2. 요청 처리 ( 서비스 객체 호출 )
-		boardService.writeBoard(board);
-		
-		// 3. JSP에서 읽을 수 있도록 데이터 저장 (선택적 - 여기서는 없음)
-		
-		// 4. View(jsp) 또는 다른 controller로 이동
-		return "redirect:list";
+		return attachList;
 	}
 	
 	@GetMapping(path = { "/detail" })
@@ -162,6 +167,20 @@ public class BoardController {
 		model.addAttribute("board", board); // View(JSP)에서 읽을 수 있도록 저장
 		
 		return "board/edit";
+	}
+	
+	@PostMapping(path = { "/edit" })
+	public String edit(BoardDto board, MultipartFile attach, HttpServletRequest req) {
+		
+		// 파일업로드 처리
+		String uploadDir = req.getServletContext().getRealPath("/resources/upload/");
+		ArrayList<BoardAttachDto> attachList = handleUploadFile(attach, uploadDir);
+		board.setBoardAttachList(attachList);
+		
+		// update 처리 ( 서비스 객체 사용 )
+		boardService.editBoard(board);
+		
+		return String.format("redirect:detail?boardNo=%d", board.getBoardNo());
 	}
 }
 

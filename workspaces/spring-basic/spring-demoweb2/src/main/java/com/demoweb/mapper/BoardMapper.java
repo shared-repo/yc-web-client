@@ -51,9 +51,15 @@ public interface BoardMapper {
 			+ "where attachno = #{ attachNo }")
 	BoardAttachDto selectBoardAttachByAttachNo(@Param("attachNo") int attachNo);
 	
-	@Update(  "update board set deleted = true "
+	@Update(  "update board "
+			+ "set deleted = true "
 			+ "where boardno = #{ boardNo }")
 	void deleteBoard(@Param("boardNo") int boardNo);
+	
+	@Update(  "update board "
+			+ "set title = #{ title }, content = #{ content } "
+			+ "where boardno = #{ boardNo }")
+	void updateBoard(BoardDto board);
 
 	
 

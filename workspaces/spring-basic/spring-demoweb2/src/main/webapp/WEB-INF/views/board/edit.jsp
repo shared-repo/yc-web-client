@@ -22,7 +22,8 @@
 		    <div id="inputmain">
 		        <div class="inputsubtitle">게시글 정보</div>
 		        
-		        <form action="edit.action" method="post">
+		        <form action="edit" method="post" enctype="multipart/form-data">
+		        <input type="hidden" name="boardNo" value="${ board.boardNo }">
 		        <table>
 		            <tr>
 		                <th>제목</th>

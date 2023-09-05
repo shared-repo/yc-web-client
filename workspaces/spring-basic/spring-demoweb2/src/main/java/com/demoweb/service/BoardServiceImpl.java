@@ -65,6 +65,19 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteBoard(int boardNo) {
 		boardMapper.deleteBoard(boardNo);
 	}
+	
+	@Override
+	public void editBoard(BoardDto board) {
+		
+		// 데이터베이스 데이터 수정 ( mapper 사용 )
+		boardMapper.updateBoard(board);
+		
+		// 첨부 파일 저장
+		for (BoardAttachDto attach : board.getBoardAttachList()) {
+			attach.setBoardNo(board.getBoardNo());
+			boardMapper.insertBoardAttach(attach);
+		}
+	}
 
 
 

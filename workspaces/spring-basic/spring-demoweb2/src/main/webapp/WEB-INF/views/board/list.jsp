@@ -41,7 +41,7 @@
 					<td style="text-align:left;padding-left:10px">
 					<c:choose>
 						<c:when test="${ not board.deleted }">
-						<a href="detail?boardNo=${ board.boardNo }">${ board.title }</a>
+						<a href="detail?boardNo=${ board.boardNo }&pageNo=${ pageNo }">${ board.title }</a>
 						</c:when>
 						<c:otherwise>
 						<span class="deleted">${ board.title } [삭제된 글]</span>

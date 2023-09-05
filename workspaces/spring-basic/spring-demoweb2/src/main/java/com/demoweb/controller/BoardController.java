@@ -53,6 +53,7 @@ public class BoardController {
 		// View (JSP)에서 읽을 수 있도록 데이터 저장
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("pager", pager);
+		model.addAttribute("pageNo", pageNo);
 		
 		return "board/list"; // "/WEB-INF/views/" + board/list + ".jsp"
 	}
@@ -115,9 +116,11 @@ public class BoardController {
 	}
 	
 	@GetMapping(path = { "/detail" })
-	public String detail(@RequestParam(defaultValue = "-1") int boardNo, Model model) {
+	public String detail(@RequestParam(defaultValue = "-1") int boardNo, 
+						 @RequestParam(defaultValue="-1") int pageNo, 
+						 Model model) {
 		
-		if (boardNo == -1) { // 글 번호가 요청에 포함되지 않은 경우
+		if (boardNo == -1 || pageNo == -1) { // 글 번호가 요청에 포함되지 않은 경우
 			return "redirect:list";
 		}
 		
@@ -128,6 +131,7 @@ public class BoardController {
 		}
 		
 		model.addAttribute("board", board); // View(JSP)에서 읽을 수 있도록 저장
+		model.addAttribute("pageNo", pageNo);
 		
 		return "board/detail";
 	}
@@ -147,14 +151,22 @@ public class BoardController {
 	}
 	
 	@GetMapping(path = { "/delete/{boardNo}" })
-	public String delete(@PathVariable("boardNo") int boardNo) {
+	public String delete(@PathVariable("boardNo") int boardNo, 
+						 @RequestParam(defaultValue = "-1") int pageNo) {
+		
+		if (pageNo == -1) {
+			return "redirect:/board/list";
+		}
+		
 		boardService.deleteBoard(boardNo);
-		return "redirect:/board/list";
+		return String.format("redirect:/board/list?pageNo=%d", pageNo);
 	}
 	
 	@GetMapping(path = { "/edit" })
-	public String showEditForm(@RequestParam(defaultValue = "-1") int boardNo, Model model) {
-		if (boardNo == -1) {
+	public String showEditForm(@RequestParam(defaultValue = "-1") int boardNo, 
+							   @RequestParam(defaultValue = "-1") int pageNo,
+							   Model model) {
+		if (boardNo == -1 || pageNo == -1) {
 			return "redirect:list";
 		}
 		
@@ -165,12 +177,18 @@ public class BoardController {
 		}
 		
 		model.addAttribute("board", board); // View(JSP)에서 읽을 수 있도록 저장
+		model.addAttribute("pageNo", pageNo);
 		
 		return "board/edit";
 	}
 	
 	@PostMapping(path = { "/edit" })
-	public String edit(BoardDto board, MultipartFile attach, HttpServletRequest req) {
+	public String edit(BoardDto board, MultipartFile attach, HttpServletRequest req, 
+					  @RequestParam(defaultValue = "-1") int pageNo) {
+		
+		if (pageNo < 1) {
+			return "redirect:list";
+		}
 		
 		// 파일업로드 처리
 		String uploadDir = req.getServletContext().getRealPath("/resources/upload/");
@@ -180,7 +198,7 @@ public class BoardController {
 		// update 처리 ( 서비스 객체 사용 )
 		boardService.editBoard(board);
 		
-		return String.format("redirect:detail?boardNo=%d", board.getBoardNo());
+		return String.format("redirect:detail?boardNo=%d&pageNo=%d", board.getBoardNo(), pageNo);
 	}
 }
 

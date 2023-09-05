@@ -24,6 +24,7 @@
 		        
 		        <form action="edit" method="post" enctype="multipart/form-data">
 		        <input type="hidden" name="boardNo" value="${ board.boardNo }">
+		        <input type="hidden" name="pageNo" value="${ pageNo }">
 		        <table>
 		            <tr>
 		                <th>제목</th>

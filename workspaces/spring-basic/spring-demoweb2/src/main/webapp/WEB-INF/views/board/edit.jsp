@@ -1,6 +1,6 @@
-
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 
@@ -37,6 +37,10 @@
 		            <tr>
 		                <th>첨부파일</th>
 		                <td>
+			                <c:forEach var="attach" items="${ board.boardAttachList }">
+			                ${ attach.userFileName } [<a href="delete-attach?attachNo=${ attach.attachNo }">삭제</a>]<br>
+			                </c:forEach>
+			                
 		                    <input type="file" name="attach" style="width:580px;height:20px" />
 		                </td>
 		            </tr>

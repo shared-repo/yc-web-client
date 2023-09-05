@@ -17,4 +17,6 @@ public interface BoardService {
 
 	BoardAttachDto findBoardAttachByAttachNo(int attachNo);
 
+	void deleteBoard(int boardNo);
+
 }

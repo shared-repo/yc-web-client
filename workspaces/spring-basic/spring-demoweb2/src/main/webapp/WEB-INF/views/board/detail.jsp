@@ -62,12 +62,37 @@
 		        </table>
 		        <div class="buttons">
 		        	[ <a href="list">목록보기</a> ]
+		        	<c:if test="${ not empty sessionScope.loginuser and loginuser.memberId eq board.writer }">
+		        	[ <a href="edit?boardNo=${ board.boardNo }">수정</a> ]
+		        	[ <a href="javascript:" id="delete-board-lnk">삭제</a> ]
+		        	</c:if>
 		        </div>
 		    </div>
 		</div>   	
 	
 	</div>
 	</div>
+	<script>
+	window.addEventListener('load', function(event) {
+		
+		const deleteBoardLnk = document.querySelector('#delete-board-lnk');
+		deleteBoardLnk.addEventListener('click', function(event) {
+			const yes = confirm(${ board.boardNo } + "번 게시물을 삭제할까요?");
+			if (yes) {
+				location.href = 'delete/' + ${ board.boardNo };
+			}
+		});
+		
+	})
+	</script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+

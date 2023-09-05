@@ -48,8 +48,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardDto findBoardByBoardNo(int boardNo) {
 		BoardDto board = boardMapper.selectBoardByBoardNo(boardNo);	// 게시글 조회 (from board)
-		List<BoardAttachDto> attachList = boardMapper.selectBoardAttachByBoardNo(boardNo); // 첨부파일 조회 (from boardattach)
-		board.setBoardAttachList(attachList);
+		if (board != null) {
+			List<BoardAttachDto> attachList = boardMapper.selectBoardAttachByBoardNo(boardNo); // 첨부파일 조회 (from boardattach)
+			board.setBoardAttachList(attachList);
+		}
 		return board;
 	}
 	
@@ -57,6 +59,11 @@ public class BoardServiceImpl implements BoardService {
 	public BoardAttachDto findBoardAttachByAttachNo(int attachNo) {
 		BoardAttachDto attach = boardMapper.selectBoardAttachByAttachNo(attachNo);
 		return attach;
+	}
+	
+	@Override
+	public void deleteBoard(int boardNo) {
+		boardMapper.deleteBoard(boardNo);
 	}
 
 

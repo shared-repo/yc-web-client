@@ -51,7 +51,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authInterceptor())
 				.addPathPatterns("/board/**") // 인터셉터를 적용할 요청 경로
-				.excludePathPatterns("/board/list", "/board/detail"); // 인터셉터를 적용하지 않을 요청 경로
+				.excludePathPatterns("/board/list", "/board/detail", "/board/download"); // 인터셉터를 적용하지 않을 요청 경로
 	}
 	
 

@@ -146,6 +146,23 @@ public class BoardController {
 		boardService.deleteBoard(boardNo);
 		return "redirect:/board/list";
 	}
+	
+	@GetMapping(path = { "/edit" })
+	public String showEditForm(@RequestParam(defaultValue = "-1") int boardNo, Model model) {
+		if (boardNo == -1) {
+			return "redirect:list";
+		}
+		
+		BoardDto board = boardService.findBoardByBoardNo(boardNo);
+		
+		if (board == null) { // 조회된 글이 없는 경우
+			return "redirect:list";
+		}
+		
+		model.addAttribute("board", board); // View(JSP)에서 읽을 수 있도록 저장
+		
+		return "board/edit";
+	}
 }
 
 

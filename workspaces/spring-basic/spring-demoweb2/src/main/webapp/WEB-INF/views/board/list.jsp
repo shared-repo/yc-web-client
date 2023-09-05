@@ -13,6 +13,7 @@
 	<link rel="Stylesheet" href="/spring-demoweb/resources/styles/default.css" />
 	<style>
 	a { text-decoration: none }
+	.deleted { color: lightgray; }
 	</style>
 </head>
 <body>
@@ -38,7 +39,14 @@
 				<tr style="height:30px">
 					<td>${ board.boardNo }</td>
 					<td style="text-align:left;padding-left:10px">
+					<c:choose>
+						<c:when test="${ not board.deleted }">
 						<a href="detail?boardNo=${ board.boardNo }">${ board.title }</a>
+						</c:when>
+						<c:otherwise>
+						<span class="deleted">${ board.title } [삭제된 글]</span>
+						</c:otherwise>
+					</c:choose>
 					</td>
 					<td>${ board.writer }</td>
 					<td>${ board.readCount }</td>

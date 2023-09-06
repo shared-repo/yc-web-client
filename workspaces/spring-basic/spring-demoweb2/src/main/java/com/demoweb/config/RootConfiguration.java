@@ -17,6 +17,8 @@ import com.demoweb.dao.JdbcAccountDao;
 import com.demoweb.dao.JdbcTemplateAccountDao;
 import com.demoweb.mapper.MemberMapper;
 import com.demoweb.service.AccountServiceImpl;
+import com.demoweb.service.BoardCommentService;
+import com.demoweb.service.BoardCommentServiceImpl;
 import com.demoweb.service.BoardService;
 import com.demoweb.service.BoardServiceImpl;
 
@@ -102,6 +104,11 @@ public class RootConfiguration implements ApplicationContextAware {
 		return boardService;
 	}
 
+	@Bean BoardCommentService boardCommentService() {
+		
+		BoardCommentService commentService = new BoardCommentServiceImpl();
+		return commentService;
+	}
 	
 
 }

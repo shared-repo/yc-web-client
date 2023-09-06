@@ -16,7 +16,7 @@ public class BoardCommentController {
 		if (pageNo < 1) {
 			return "redirect:list";
 		}
-		System.out.println(boardComment);
+		
 		return String.format("redirect:detail?boardNo=%d&pageNo=%d", boardComment.getBoardNo(), pageNo);
 	}
 

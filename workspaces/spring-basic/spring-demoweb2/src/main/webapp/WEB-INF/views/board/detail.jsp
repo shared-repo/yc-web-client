@@ -172,9 +172,12 @@
 				const currentDeleteLink = event.target; // 현재 이벤트를 발생시킨 요소
 				const commentNo = currentDeleteLink.getAttribute("data-comment-no");
 				
-				location.href = 'delete-comment?commentNo=' + commentNo + 
-											  '&boardNo=' + ${ board.boardNo } + 
-											  '&pageNo=' + ${ pageNo };
+				const yn = confirm(commentNo + "번 댓글을 삭제할까요?");
+				if (yn) {
+					location.href = 'delete-comment?commentNo=' + commentNo + 
+												  '&boardNo=' + ${ board.boardNo } + 
+												  '&pageNo=' + ${ pageNo };
+				}
 			});
 		}
 		

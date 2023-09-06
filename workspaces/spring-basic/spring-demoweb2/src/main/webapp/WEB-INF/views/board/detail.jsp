@@ -125,7 +125,7 @@
 						<br /><br />
 						<form>
 						<input type="hidden" name="commentNo" value="${ comment.commentNo }" />
-						<textarea name="content" style="width: 100%; resize: none" rows="3" maxlength="200">${ comment.content }</textarea>
+						<textarea name="content" style="width: 99%; resize: none" rows="3" maxlength="200">${ comment.content }</textarea>
 						</form>
 						<br />
 						<div>
@@ -180,6 +180,8 @@
 			});
 		}
 		
+		let currentEditCommentNo = null;
+		
 		// 편집 링크 클릭 이벤트 처리
 		const editCommentLinks = document.querySelectorAll(".edit-comment");
 		for (let i = 0; i < editCommentLinks.length; i++) {
@@ -192,6 +194,28 @@
 				
 				editDiv.style['display'] = '';
 				viewDiv.style['display'] = 'none';
+				if (currentEditCommentNo) { // 이전에 편집하던 요소의 표시 상태 변경 (복원)
+					document.querySelector('#comment-edit-area-' + currentEditCommentNo).style['display'] = 'none';
+					document.querySelector('#comment-view-area-' + currentEditCommentNo).style['display'] = '';
+				}
+				currentEditCommentNo = commentNo;
+				
+			}); // end of addEventListener
+		} // end of for
+		
+		// 편집 취소 링크 클릭 이벤트 처리
+		const cancelEditCommentLinks = document.querySelectorAll(".cancel-edit-comment");
+		for (let i = 0; i < cancelEditCommentLinks.length; i++) {
+			cancelEditCommentLinks[i].addEventListener('click', function(event) {
+				const currentCancelEditLink = event.target;
+				const commentNo = currentCancelEditLink.getAttribute("data-comment-no");
+				
+				const editDiv = document.querySelector('#comment-edit-area-' + commentNo);
+				const viewDiv = document.querySelector('#comment-view-area-' + commentNo);
+				
+				editDiv.style['display'] = 'none';
+				viewDiv.style['display'] = '';
+				currentEditCommentNo = null;
 				
 			}); // end of addEventListener
 		} // end of for

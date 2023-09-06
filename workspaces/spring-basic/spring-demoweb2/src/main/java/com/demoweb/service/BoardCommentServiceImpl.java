@@ -20,4 +20,16 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 		boardCommentMapper.updateGroupNo(boardComment.getCommentNo(), boardComment.getCommentNo());
 	}
 
+	@Override
+	public void deleteComment(int commentNo) {
+		boardCommentMapper.deleteComment(commentNo);
+	}
+
 }
+
+
+
+
+
+
+

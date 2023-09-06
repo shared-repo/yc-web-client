@@ -29,6 +29,11 @@ public interface BoardCommentMapper {
 			+ "where boardno = #{ boardNo } "
 			+ "order by groupno desc, step asc")
 	List<BoardCommentDto> selectBoardCommentByBoardNo(@Param("boardNo") int boardNo);
+
+	@Update(  "update boardcomment "
+			+ "set deleted = true "
+			+ "where commentno = #{ commentNo }")
+	void deleteComment(@Param("commentNo") int commentNo);
 	
 }
 

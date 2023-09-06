@@ -2,6 +2,7 @@ package com.demoweb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,5 +29,22 @@ public class BoardCommentController {
 		
 		return String.format("redirect:detail?boardNo=%d&pageNo=%d", boardComment.getBoardNo(), pageNo);
 	}
+	
+	@GetMapping(path = { "/delete-comment" })
+	public String deleteComment(int commentNo, int boardNo, int pageNo) {
+		
+		boardCommentService.deleteComment(commentNo);
+		
+		return String.format("redirect:detail?boardNo=%d&pageNo=%d", boardNo, pageNo);
+	}
 
 }
+
+
+
+
+
+
+
+
+

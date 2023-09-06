@@ -108,7 +108,7 @@
 						<br><br>
 					</c:when>
 					<c:otherwise>
-						${ comment.writer } &nbsp;&nbsp; [${ comment.regDate }]
+						${ comment.writer } &nbsp;&nbsp; [<fmt:formatDate value="${ comment.regDate }" pattern="yyyy-MM-dd hh:mm:ss"/>]
 					    <br /><br />
 					    <span>${ fn:replace(comment.content, enter, "<br>") }</span>
 						<br /><br />
@@ -117,7 +117,6 @@
 							&nbsp;
 							<a class="delete-comment" data-comment-no="${ comment.commentNo }" href="javascript:">삭제</a>
 						</div>
-						<a class="recomment-link btn btn-sm btn-success">댓글 쓰기</a>
 					</c:otherwise>
 					</c:choose>
 					</div>	                
@@ -158,11 +157,27 @@
 			});
 		}
 		
+		// 댓글 쓰기 이벤트 처리
 		const writeCommentLnk = document.querySelector("#write-comment-lnk");
 		writeCommentLnk.addEventListener("click", function(event) {
 			const commentForm = document.querySelector('#commentform');
 			commentForm.submit(); // <input type="submit"을 클릭한 것과 같은 효과 --> form을 submit
 		});
+		
+		// 댓글 삭제 이벤트 처리
+		const deleteCommentLinks = document.querySelectorAll(".delete-comment");
+		for (let i = 0; i < deleteCommentLinks.length; i++) {
+			deleteCommentLinks[i].addEventListener('click', function(event) {
+				// alert('delete comment');
+				const currentDeleteLink = event.target; // 현재 이벤트를 발생시킨 요소
+				const commentNo = currentDeleteLink.getAttribute("data-comment-no");
+				
+				location.href = 'delete-comment?commentNo=' + commentNo + 
+											  '&boardNo=' + ${ board.boardNo } + 
+											  '&pageNo=' + ${ pageNo };
+			});
+		}
+		
 		
 	})
 	</script>

@@ -5,13 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.demoweb.dto.BoardAttachDto;
+import com.demoweb.dto.BoardCommentDto;
 import com.demoweb.dto.BoardDto;
+import com.demoweb.mapper.BoardCommentMapper;
 import com.demoweb.mapper.BoardMapper;
 
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardMapper boardMapper;
+	
+	@Autowired
+	private BoardCommentMapper boardCommentMapper;
 	
 	@Override
 	public void writeBoard(BoardDto board) {
@@ -51,6 +56,8 @@ public class BoardServiceImpl implements BoardService {
 		if (board != null) {
 			List<BoardAttachDto> attachList = boardMapper.selectBoardAttachByBoardNo(boardNo); // 첨부파일 조회 (from boardattach)
 			board.setBoardAttachList(attachList);
+			List<BoardCommentDto> commentList = boardCommentMapper.selectBoardCommentByBoardNo(boardNo);
+			board.setBoardCommentList(commentList);
 		}
 		return board;
 	}

@@ -34,6 +34,11 @@ public interface BoardCommentMapper {
 			+ "set deleted = true "
 			+ "where commentno = #{ commentNo }")
 	void deleteComment(@Param("commentNo") int commentNo);
+
+	@Update(  "update boardcomment "
+			+ "set content = #{ content } "
+			+ "where commentno = #{ commentNo }")
+	void updateComment(BoardCommentDto boardComment);
 	
 }
 

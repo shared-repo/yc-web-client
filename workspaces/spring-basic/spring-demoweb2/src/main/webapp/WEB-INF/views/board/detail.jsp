@@ -123,7 +123,7 @@
 					<div id="comment-edit-area-${ comment.commentNo }" style="display: none">
 						${ comment.writer } &nbsp;&nbsp; [${ comment.regDate }]
 						<br /><br />
-						<form>
+						<form action="edit-comment" method="post">
 						<input type="hidden" name="commentNo" value="${ comment.commentNo }" />
 						<input type="hidden" name="boardNo" value="${ board.boardNo }" />
 						<input type="hidden" name="pageNo" value="${ pageNo }" />
@@ -131,7 +131,7 @@
 						</form>
 						<br />
 						<div>
-							<a class="update-comment" href="javascript:">수정</a> 
+							<a class="update-comment" data-comment-no="${ comment.commentNo }" href="javascript:">수정</a> 
 							&nbsp; 
 							<a class="cancel-edit-comment" data-comment-no="${ comment.commentNo }" href="javascript:">취소</a>
 						</div>
@@ -221,6 +221,20 @@
 				
 			}); // end of addEventListener
 		} // end of for
+		
+		// 댓글 수정 이벤트 처리
+		const updateCommentLinks = document.querySelectorAll(".update-comment");
+		for (let i = 0; i < updateCommentLinks.length; i++) {
+			updateCommentLinks[i].addEventListener('click', function(event) {
+
+				const currentUpdateLink = event.target; // 현재 이벤트를 발생시킨 요소
+				const commentNo = currentUpdateLink.getAttribute("data-comment-no");
+				
+							 // <div id='comment-edit-area-commentNo'>의 하위 <form> 찾기
+				const form = document.querySelector('#comment-edit-area-' + commentNo + ' form')
+				form.submit();
+			});
+		}
 		
 		
 	})

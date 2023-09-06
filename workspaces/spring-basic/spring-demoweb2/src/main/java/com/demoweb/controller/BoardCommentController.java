@@ -37,6 +37,14 @@ public class BoardCommentController {
 		
 		return String.format("redirect:detail?boardNo=%d&pageNo=%d", boardNo, pageNo);
 	}
+	
+	@PostMapping(path = { "/edit-comment" })
+	public String editComment(BoardCommentDto boardComment, @RequestParam(defaultValue = "-1") int pageNo) {
+		
+		boardCommentService.editComment(boardComment);
+		
+		return String.format("redirect:detail?boardNo=%d&pageNo=%d", boardComment.getBoardNo(), pageNo);
+	}
 
 }
 

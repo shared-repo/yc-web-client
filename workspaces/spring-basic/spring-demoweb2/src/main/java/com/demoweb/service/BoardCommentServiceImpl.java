@@ -25,6 +25,11 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 		boardCommentMapper.deleteComment(commentNo);
 	}
 
+	@Override
+	public void editComment(BoardCommentDto boardComment) {
+		boardCommentMapper.updateComment(boardComment);
+	}
+
 }
 
 

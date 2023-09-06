@@ -66,9 +66,30 @@
 		        	[ <a href="edit?boardNo=${ board.boardNo }&pageNo=${ pageNo }">수정</a> ]
 		        	[ <a href="javascript:" id="delete-board-lnk">삭제</a> ]
 		        	</c:if>
-		        </div>
+		        </div>		        
 		    </div>
-		</div>   	
+		</div>
+		
+		<br><br>
+		
+		<!-- write comment area -->
+		<form id="commentform" action="write-comment" method="post">
+			<input type="hidden" name="boardNo" value="${ board.boardNo }" />
+			<input type="hidden" name="pageNo" value="${ pageNo }" />
+			<input type="hidden" name="writer" value="${ loginuser.memberId }" />
+			<table style="width:800px;border:solid 1px;margin:0 auto">
+				<tr>
+					<td style="width:750px">	                	
+						<textarea id="comment_content" name="content" style="width:100%;resize: none;" rows="3"></textarea>	                    
+					</td>
+					<td style="width:50px;vertical-align:middle">
+						<a id="write-comment-lnk" href="javascript:" style="text-decoration:none">
+							댓글<br />등록
+						</a>
+					</td>
+				</tr>                    
+			</table>
+		</form>
 	
 	</div>
 	</div>
@@ -81,6 +102,12 @@
 			if (yes) {
 				location.href = 'delete/' + ${ board.boardNo } + "?pageNo=" + ${ pageNo };
 			}
+		});
+		
+		const writeCommentLnk = document.querySelector("#write-comment-lnk");
+		writeCommentLnk.addEventListener("click", function(event) {
+			const commentForm = document.querySelector('#commentform');
+			commentForm.submit(); // <input type="submit"을 클릭한 것과 같은 효과 --> form을 submit
 		});
 		
 	})

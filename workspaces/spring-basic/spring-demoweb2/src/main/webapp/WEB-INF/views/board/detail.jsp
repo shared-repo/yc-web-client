@@ -125,6 +125,8 @@
 						<br /><br />
 						<form>
 						<input type="hidden" name="commentNo" value="${ comment.commentNo }" />
+						<input type="hidden" name="boardNo" value="${ board.boardNo }" />
+						<input type="hidden" name="pageNo" value="${ pageNo }" />
 						<textarea name="content" style="width: 99%; resize: none" rows="3" maxlength="200">${ comment.content }</textarea>
 						</form>
 						<br />

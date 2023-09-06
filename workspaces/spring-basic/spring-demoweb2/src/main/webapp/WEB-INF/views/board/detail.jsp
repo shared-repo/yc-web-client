@@ -125,8 +125,7 @@
 						<br /><br />
 						<form>
 						<input type="hidden" name="commentNo" value="${ comment.commentNo }" />
-						<textarea name="content" style="width: 550px" rows="3" 
-							maxlength="200">${ comment.content }</textarea>
+						<textarea name="content" style="width: 100%; resize: none" rows="3" maxlength="200">${ comment.content }</textarea>
 						</form>
 						<br />
 						<div>
@@ -180,6 +179,22 @@
 				}
 			});
 		}
+		
+		// 편집 링크 클릭 이벤트 처리
+		const editCommentLinks = document.querySelectorAll(".edit-comment");
+		for (let i = 0; i < editCommentLinks.length; i++) {
+			editCommentLinks[i].addEventListener('click', function(event) {
+				const currentEditLink = event.target;
+				const commentNo = currentEditLink.getAttribute("data-comment-no");
+				
+				const editDiv = document.querySelector('#comment-edit-area-' + commentNo);
+				const viewDiv = document.querySelector('#comment-view-area-' + commentNo);
+				
+				editDiv.style['display'] = '';
+				viewDiv.style['display'] = 'none';
+				
+			}); // end of addEventListener
+		} // end of for
 		
 		
 	})

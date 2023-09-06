@@ -104,7 +104,8 @@ public class RootConfiguration implements ApplicationContextAware {
 		return boardService;
 	}
 
-	@Bean BoardCommentService boardCommentService() {
+	@Bean 
+	public BoardCommentService boardCommentService() {
 		
 		BoardCommentService commentService = new BoardCommentServiceImpl();
 		return commentService;

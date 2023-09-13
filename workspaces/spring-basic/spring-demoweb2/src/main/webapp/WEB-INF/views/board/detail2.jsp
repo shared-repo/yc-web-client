@@ -146,21 +146,19 @@
 	</div>
 	</div>
 	
-	<!-- 자사 웹서버에서 jquery js 파일 배포 -->
-	<script src="/spring-demoweb/resources/js/jquery-3.7.1.js"></script>
-	
-	<!-- CDN 서버에서 jquery js 파일 배포 -->
-	<!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> -->
 	
 	<script>
-	$(function(event) {
+	window.addEventListener('load', function(event) {
 		
-		$('#delete-board-lnk').on('click', function(event) {
-			const yes = confirm(${ board.boardNo } + "번 게시물을 삭제할까요?");
-			if (yes) {
-				location.href = 'delete/' + ${ board.boardNo } + "?pageNo=" + ${ pageNo };
-			}
-		});
+		const deleteBoardLnk = document.querySelector('#delete-board-lnk');
+		if (deleteBoardLnk) {
+			deleteBoardLnk.addEventListener('click', function(event) {
+				const yes = confirm(${ board.boardNo } + "번 게시물을 삭제할까요?");
+				if (yes) {
+					location.href = 'delete/' + ${ board.boardNo } + "?pageNo=" + ${ pageNo };
+				}
+			});
+		}
 		
 		// 댓글 쓰기 이벤트 처리
 		const writeCommentLnk = document.querySelector("#write-comment-lnk");

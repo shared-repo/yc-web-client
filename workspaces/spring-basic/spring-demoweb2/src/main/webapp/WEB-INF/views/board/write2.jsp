@@ -66,27 +66,14 @@
 	</div>
 	</div>
 
-	<!-- 자사 웹서버에서 jquery js 파일 배포 -->
-	<!-- <script src="spring-demoweb/resources/js/jquery-3.7.1.js"></script> -->
-	
-	<!-- CDN 서버에서 jquery js 파일 배포 -->
-	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-	
 	<script>
-	/* window.addEventListener("load", function(event) { // 브라우저가 현재 화면을 모두 처리한 후 호출하는 함수 등록
+	window.addEventListener("load", function(event) { // 브라우저가 현재 화면을 모두 처리한 후 호출하는 함수 등록
 		
 		const btnCancel = document.querySelector("#btnCancel"); // id="btnCancel"인 요소 찾기
-		
 		btnCancel.addEventListener("click", function(event) {
 			location.href = "list"; // 브라우저의 주소 입력기에 주소를 입력하는 것과 같은 효과 ( 이동 )
 		});
 
-	}); */
-	
-	$(function() { // DOM 트리가 완성된 후 호출되는 함수 등록
-		$('#btnCancel').on('click', function(event) {
-			location.href = 'list';
-		});
 	});
 	</script>
 	

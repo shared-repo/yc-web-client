@@ -163,82 +163,59 @@
 		});
 		
 		// 댓글 쓰기 이벤트 처리
-		const writeCommentLnk = document.querySelector("#write-comment-lnk");
-		writeCommentLnk.addEventListener("click", function(event) {
-			const commentForm = document.querySelector('#commentform');
-			commentForm.submit(); // <input type="submit"을 클릭한 것과 같은 효과 --> form을 submit
+		$("#write-comment-lnk").on("click", function(event) {
+			$('#commentform').submit(); // <input type="submit"을 클릭한 것과 같은 효과 --> form을 submit
 		});
 		
 		// 댓글 삭제 이벤트 처리
-		const deleteCommentLinks = document.querySelectorAll(".delete-comment");
-		for (let i = 0; i < deleteCommentLinks.length; i++) {
-			deleteCommentLinks[i].addEventListener('click', function(event) {
-				// alert('delete comment');
-				const currentDeleteLink = event.target; // 현재 이벤트를 발생시킨 요소
-				const commentNo = currentDeleteLink.getAttribute("data-comment-no");
-				
-				const yn = confirm(commentNo + "번 댓글을 삭제할까요?");
-				if (yn) {
-					location.href = 'delete-comment?commentNo=' + commentNo + 
-												  '&boardNo=' + ${ board.boardNo } + 
-												  '&pageNo=' + ${ pageNo };
-				}
-			});
-		}
+		$(".delete-comment").on('click', function(event) {
+			const commentNo = $(this).attr("data-comment-no");			
+			const yn = confirm(commentNo + "번 댓글을 삭제할까요?");
+			if (yn) {
+				location.href = 'delete-comment?commentNo=' + commentNo + 
+											  '&boardNo=' + ${ board.boardNo } + 
+											  '&pageNo=' + ${ pageNo };
+			}
+		});
+
 		
 		let currentEditCommentNo = null;
 		
 		// 편집 링크 클릭 이벤트 처리
-		const editCommentLinks = document.querySelectorAll(".edit-comment");
-		for (let i = 0; i < editCommentLinks.length; i++) {
-			editCommentLinks[i].addEventListener('click', function(event) {
-				const currentEditLink = event.target;
-				const commentNo = currentEditLink.getAttribute("data-comment-no");
-				
-				const editDiv = document.querySelector('#comment-edit-area-' + commentNo);
-				const viewDiv = document.querySelector('#comment-view-area-' + commentNo);
-				
-				editDiv.style['display'] = '';
-				viewDiv.style['display'] = 'none';
-				if (currentEditCommentNo) { // 이전에 편집하던 요소의 표시 상태 변경 (복원)
-					document.querySelector('#comment-edit-area-' + currentEditCommentNo).style['display'] = 'none';
-					document.querySelector('#comment-view-area-' + currentEditCommentNo).style['display'] = '';
-				}
-				currentEditCommentNo = commentNo;
-				
-			}); // end of addEventListener
-		} // end of for
+		$(".edit-comment").on('click', function(event) {
+			const commentNo = $(this).attr("data-comment-no");
+			
+			$('#comment-edit-area-' + commentNo).css('display', '');
+			$('#comment-view-area-' + commentNo).css('display', 'none');
+			
+			if (currentEditCommentNo) { // 이전에 편집하던 요소의 표시 상태 변경 (복원)
+				$('#comment-edit-area-' + currentEditCommentNo).css('display', 'none');
+				$('#comment-view-area-' + currentEditCommentNo).css('display', '');
+			}
+			currentEditCommentNo = commentNo;
+			
+		}); // end of addEventListener
+
 		
 		// 편집 취소 링크 클릭 이벤트 처리
-		const cancelEditCommentLinks = document.querySelectorAll(".cancel-edit-comment");
-		for (let i = 0; i < cancelEditCommentLinks.length; i++) {
-			cancelEditCommentLinks[i].addEventListener('click', function(event) {
-				const currentCancelEditLink = event.target;
-				const commentNo = currentCancelEditLink.getAttribute("data-comment-no");
-				
-				const editDiv = document.querySelector('#comment-edit-area-' + commentNo);
-				const viewDiv = document.querySelector('#comment-view-area-' + commentNo);
-				
-				editDiv.style['display'] = 'none';
-				viewDiv.style['display'] = '';
-				currentEditCommentNo = null;
-				
-			}); // end of addEventListener
-		} // end of for
+		$(".cancel-edit-comment").on('click', function(event) {
+			const commentNo = $(this).attr("data-comment-no");
+			
+			$('#comment-edit-area-' + commentNo).css('display', 'none');
+			$('#comment-view-area-' + commentNo).css('display', '');
+			
+			currentEditCommentNo = null;
+			
+		}); // end of addEventListener
 		
 		// 댓글 수정 이벤트 처리
-		const updateCommentLinks = document.querySelectorAll(".update-comment");
-		for (let i = 0; i < updateCommentLinks.length; i++) {
-			updateCommentLinks[i].addEventListener('click', function(event) {
+		$(".update-comment").click(function(event) {
 
-				const currentUpdateLink = event.target; // 현재 이벤트를 발생시킨 요소
-				const commentNo = currentUpdateLink.getAttribute("data-comment-no");
-				
-							 // <div id='comment-edit-area-commentNo'>의 하위 <form> 찾기
-				const form = document.querySelector('#comment-edit-area-' + commentNo + ' form')
-				form.submit();
-			});
-		}
+			// const commentNo = $(this).attr("data-comment-no");
+			const commentNo = $(this).data('comment-no'); // data-속성이름="값" 으로 표현된 속성의 값 읽기
+			$('#comment-edit-area-' + commentNo + ' form').submit();
+			
+		});
 		
 		
 	})

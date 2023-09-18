@@ -1,0 +1,24 @@
+1. 프로젝트 만들기
+   
+    - 스프링 프로젝트 템플릿 + 디자인 템플릿 적용
+    - group-id, artifact-id 설정 (pom.xml)
+    - bean 설정 파일 분할 구성 ( import 방식 or 다중 등록 방식 )
+    - 패키지 구성 ( controller, service, mapper 등등 )
+    - STS에서 Maven 프로젝트 임포트
+    - 기타 공통 작업
+
+2. 형상 관리 구성
+
+    - github 저장소 만들기 ( collaborator 등록 )
+    - clone ( 한사람만 )
+    - 로컬 저장소에 1에서 만든 workspace, project 복사 
+    - .gitignore 수정
+    - github 저장소에 적용 ( add -> commit -> push )
+    - clone (다른 팀원들 )
+    - STS에서 워크스페이스 열기
+    - 프로젝트 임포트 (maven import)
+
+3. db engineering
+
+   - 데이터베이스 이름, 사용자 아이디, 패스워드 결정
+   - engineering 실행

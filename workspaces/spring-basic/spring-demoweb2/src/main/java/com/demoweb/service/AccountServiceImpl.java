@@ -2,6 +2,7 @@ package com.demoweb.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.demoweb.common.Util;
 import com.demoweb.dao.AccountDao;
 import com.demoweb.dao.JdbcAccountDao;
 import com.demoweb.dto.MemberDto;
@@ -20,6 +21,10 @@ public class AccountServiceImpl implements AccountService {
 	
 	@Override
 	public void register(MemberDto member) {
+		
+		String hashedPasswd = Util.getHashedString(member.getPasswd(), "SHA-256");
+		member.setPasswd(hashedPasswd);
+		
 		// AccountDao accountDao = new AccountDaoImpl();
 		// accountDao.insertMember(member);
 		memberMapper.insertMember(member);
@@ -27,6 +32,10 @@ public class AccountServiceImpl implements AccountService {
 	
 	@Override
 	public MemberDto findLoginMember(MemberDto member) {
+		
+		String hashedPasswd = Util.getHashedString(member.getPasswd(), "SHA-256");
+		member.setPasswd(hashedPasswd);
+		
 		// AccountDao accountDao = new AccountDaoImpl();
 		// MemberDto loginMember = accountDao.selectMemberByIdAndPasswd(member.getMemberId(), member.getPasswd());
 		MemberDto loginMember = memberMapper.selectMemberByIdAndPasswd(member.getMemberId(), member.getPasswd());

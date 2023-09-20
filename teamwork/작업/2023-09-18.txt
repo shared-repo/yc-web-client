@@ -22,3 +22,11 @@
 
    - 데이터베이스 이름, 사용자 아이디, 패스워드 결정
    - engineering 실행
+
+team a 
+데이터 베이스 이름: rentalsite 
+사용자 아이디: rental 
+패스워드: rental
+
+
+ref. db-server-ip : 3.39.195.155

@@ -74,6 +74,8 @@
 	
 	$(function() {
 		
+		let dupChecked = false; // 중복검사 실행 여부 저장 변수
+		
 		$('#checkDup').on("click", function(event) {
 			event.preventDefault(); // 이벤트 발생 객체의 원래 동작 실행 막기
 			
@@ -89,12 +91,34 @@
 				"method": "get",
 				"data" : { "memberId" : memberId },
 				"success": function(data, status, xhr) {
-					alert(data);
+					if (data == "true") {
+						dupChecked = true;
+						alert("사용 가능한 아이디");
+					} else {
+						dupChecked = false;
+						alert("이미 사용중인 아이디");
+					}					
 				},
 				"error": function(xhr, status, err) {
 					alert("error");
 				}
 			});
+		});
+		
+		$('#register').on('click', function(event) {
+			event.preventDefault(); // 이벤트 발생 객체의 원래 동작 실행 막기
+			
+			if (!dupChecked) {
+				alert("아이디 중복 검사를 실행하세요");
+				return;
+			}
+			
+			$('#registerform').submit();
+			
+		});
+		
+		$('#memberId').on('keyup', function() {
+			dupChecked = false;
 		});
 		
 	});

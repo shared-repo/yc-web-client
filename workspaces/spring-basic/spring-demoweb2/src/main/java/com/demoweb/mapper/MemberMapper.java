@@ -12,14 +12,28 @@ import com.demoweb.dto.MemberDto;
 @Mapper // <mybatis:scan 을 통해 Mapper 인터페이스로 사용되는 설정
 public interface MemberMapper {
 	
-	@Insert("insert into member (memberId, passwd, email) "
+	@Insert(  "insert into member (memberId, passwd, email) "
 			+ "values (#{ memberId }, #{ passwd }, #{ email })")
 	void insertMember(MemberDto member);
 	
-	@Select("select memberId, email, userType, regDate "
+	@Select(  "select memberId, email, userType, regDate "
 			+ "	from member "
 			+ "	where memberId = #{ memberId } and passwd = #{ passwd }")
 	MemberDto selectMemberByIdAndPasswd(@Param("memberId") String memberId, // mapper.xml 파일의 #{ memberId }에 전달 
 										@Param("passwd")String passwd); // mapper.xml 파일의 #{ passwd }에 전달
 
+	@Select(  "select count(*) "
+			+ "from member "
+			+ "where memberId = #{ memberId }")
+	int selectMemberCountByMemberId(@Param("memberId") String memberId);
+
 }
+
+
+
+
+
+
+
+
+

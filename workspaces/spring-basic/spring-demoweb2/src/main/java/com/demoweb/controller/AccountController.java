@@ -87,7 +87,8 @@ public class AccountController {
 	@ResponseBody // 이 메서드가 반환하는 값은 view 이름이 아니고 응답컨텐츠입니다.
 	public String checkMemberIdDuplication(String memberId) {
 		
-		return "사용가능한 아이디"; // 
+		boolean valid = accountService.isMemberIdValid(memberId);
+		return String.valueOf(valid); // String.valueOf : 문자열 아닌 데이터 -> 문자열
 	}
 }
 

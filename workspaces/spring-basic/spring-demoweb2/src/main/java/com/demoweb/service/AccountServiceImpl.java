@@ -43,4 +43,10 @@ public class AccountServiceImpl implements AccountService {
 		return loginMember;
 	}
 
+	@Override
+	public boolean isMemberIdValid(String memberId) {
+		int count = memberMapper.selectMemberCountByMemberId(memberId);
+		return count == 0;
+	}
+
 }

@@ -33,7 +33,8 @@
 		            <tr>
 		                <th>아이디(ID)</th>
 		                <td>
-		                    <form:input style="width:300px" path="memberId" />
+		                    <form:input style="width:200px" path="memberId" />
+		                    <button id="checkDup" style="width:90px">중복검사</button>
 		                    <form:errors path="memberId" cssClass="error" />
 		                </td>
 		            </tr>
@@ -67,8 +68,52 @@
 		    </div>
 		</div>   	
 	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script>
+	
+	$(function() {
+		
+		$('#checkDup').on("click", function(event) {
+			event.preventDefault(); // 이벤트 발생 객체의 원래 동작 실행 막기
+			
+			const memberId = $('#memberId').val();
+			if (!memberId) { // !memberId : null or ""인 경우 true
+				alert('아이디를 입력하세요');
+				$('#memberId').focus();
+				return;
+			}
+			
+			$.ajax({
+				"url": "check-id-dup",
+				"method": "get",
+				"data" : { "memberId" : memberId },
+				"success": function(data, status, xhr) {
+					alert(data);
+				},
+				"error": function(xhr, status, err) {
+					alert("error");
+				}
+			});
+		});
+		
+	});
+	
+	</script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
 
 

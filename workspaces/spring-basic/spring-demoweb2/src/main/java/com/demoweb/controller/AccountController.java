@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.demoweb.dao.JdbcAccountDao;
 import com.demoweb.dto.MemberDto;
@@ -80,6 +81,13 @@ public class AccountController {
 		session.removeAttribute("loginuser");
 		
 		return "redirect:/home";
+	}
+	
+	@GetMapping(path = { "/check-id-dup" }, produces = "text/plain;charset=utf-8")
+	@ResponseBody // 이 메서드가 반환하는 값은 view 이름이 아니고 응답컨텐츠입니다.
+	public String checkMemberIdDuplication(String memberId) {
+		
+		return "사용가능한 아이디"; // 
 	}
 }
 

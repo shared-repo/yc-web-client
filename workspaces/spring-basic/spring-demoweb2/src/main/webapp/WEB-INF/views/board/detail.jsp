@@ -197,6 +197,7 @@
 					"data": "commentNo=" + commentNo,
 					"success": function(data, status, xhr) {
 						$('#comment-list').load('comment-list?boardNo=${board.boardNo}');
+						currentEditCommentNo = null;
 					},
 					"error": function(xhr, status, err) {
 						alert("댓글 삭제 실패");
@@ -251,6 +252,7 @@
 				"data": formData,
 				"success": function(data, status, xhr) {
 					$('#comment-list').load('comment-list?boardNo=${board.boardNo}');
+					currentEditCommentNo = null;
 				},
 				"error": function(xhr, status, err) {
 					alert('댓글 수정 실패')

@@ -164,21 +164,7 @@
 		
 		// 댓글 쓰기 이벤트 처리
 		$("#write-comment-lnk").on("click", function(event) {
-			// $('#commentform').submit(); // <input type="submit"을 클릭한 것과 같은 효과 --> form을 submit
-			
-			const formData = $('#commentform').serialize(); // serialize : form의 데이터만 뽑는 함수
-			// alert(formData);
-			$.ajax({
-				"url": "ajax-write-comment",
-				"method": "post",
-				"data": formData,
-				"success": function(data, status, xhr) {
-					alert(data);
-				},
-				"error": function(xhr, status, err) {
-					alert("fail");
-				}
-			});
+			$('#commentform').submit(); // <input type="submit"을 클릭한 것과 같은 효과 --> form을 submit
 		});
 		
 		// 댓글 삭제 이벤트 처리

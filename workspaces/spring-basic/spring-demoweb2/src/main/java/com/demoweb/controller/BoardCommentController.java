@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.demoweb.dto.BoardCommentDto;
 import com.demoweb.service.BoardCommentService;
@@ -28,6 +29,17 @@ public class BoardCommentController {
 		boardCommentService.writeComment(boardComment);
 		
 		return String.format("redirect:detail?boardNo=%d&pageNo=%d", boardComment.getBoardNo(), pageNo);
+	}
+	@PostMapping(path = { "/ajax-write-comment" })
+	@ResponseBody
+	public String ajaxWriteComment(BoardCommentDto boardComment, @RequestParam(defaultValue = "-1") int pageNo) {
+		if (pageNo < 1) {
+			return "redirect:list";
+		}
+		
+		boardCommentService.writeComment(boardComment);
+		
+		return "success";
 	}
 	
 	@GetMapping(path = { "/delete-comment" })

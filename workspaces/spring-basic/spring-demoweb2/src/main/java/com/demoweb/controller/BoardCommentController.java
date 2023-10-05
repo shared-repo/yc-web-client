@@ -61,6 +61,14 @@ public class BoardCommentController {
 		
 		return String.format("redirect:detail?boardNo=%d&pageNo=%d", boardNo, pageNo);
 	}
+	@GetMapping(path = { "/ajax-delete-comment" })
+	@ResponseBody
+	public String ajaxDeleteComment(int commentNo) {
+		
+		boardCommentService.deleteComment(commentNo);
+		
+		return "success";
+	}
 	
 	@PostMapping(path = { "/edit-comment" })
 	public String editComment(BoardCommentDto boardComment, @RequestParam(defaultValue = "-1") int pageNo) {
@@ -68,6 +76,14 @@ public class BoardCommentController {
 		boardCommentService.editComment(boardComment);
 		
 		return String.format("redirect:detail?boardNo=%d&pageNo=%d", boardComment.getBoardNo(), pageNo);
+	}
+	@PostMapping(path = { "/ajax-edit-comment" })
+	@ResponseBody
+	public String ajaxEditComment(BoardCommentDto boardComment) {
+		
+		boardCommentService.editComment(boardComment);
+		
+		return "success";
 	}
 
 }

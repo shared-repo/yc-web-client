@@ -125,8 +125,6 @@
 						<br /><br />
 						<form action="edit-comment" method="post">
 						<input type="hidden" name="commentNo" value="${ comment.commentNo }" />
-						<input type="hidden" name="boardNo" value="${ board.boardNo }" />
-						<input type="hidden" name="pageNo" value="${ pageNo }" />
 						<textarea name="content" style="width: 99%; resize: none" rows="3" maxlength="200">${ comment.content }</textarea>
 						</form>
 						<br />
@@ -188,13 +186,22 @@
 		});
 		
 		// 댓글 삭제 이벤트 처리
-		$(".delete-comment").on('click', function(event) {
+		// $(".delete-comment").on('click', function(event) {
+		$("#comment-list").on('click', ".delete-comment", function(event) {
 			const commentNo = $(this).attr("data-comment-no");			
 			const yn = confirm(commentNo + "번 댓글을 삭제할까요?");
 			if (yn) {
-				location.href = 'delete-comment?commentNo=' + commentNo + 
-											  '&boardNo=' + ${ board.boardNo } + 
-											  '&pageNo=' + ${ pageNo };
+				$.ajax({
+					"url": "ajax-delete-comment",
+					"method": "get",
+					"data": "commentNo=" + commentNo,
+					"success": function(data, status, xhr) {
+						$('#comment-list').load('comment-list?boardNo=${board.boardNo}');
+					},
+					"error": function(xhr, status, err) {
+						alert("댓글 삭제 실패");
+					}
+				});
 			}
 		});
 
@@ -202,7 +209,8 @@
 		let currentEditCommentNo = null;
 		
 		// 편집 링크 클릭 이벤트 처리
-		$(".edit-comment").on('click', function(event) {
+		// $(".edit-comment").on('click', function(event) {
+		$("#comment-list").on('click', ".edit-comment", function(event) {
 			const commentNo = $(this).attr("data-comment-no");
 			
 			$('#comment-edit-area-' + commentNo).css('display', '');
@@ -218,7 +226,8 @@
 
 		
 		// 편집 취소 링크 클릭 이벤트 처리
-		$(".cancel-edit-comment").on('click', function(event) {
+		// $(".cancel-edit-comment").on('click', function(event) {
+		$('#comment-list').on('click', ".cancel-edit-comment", function(event) {
 			const commentNo = $(this).attr("data-comment-no");
 			
 			$('#comment-edit-area-' + commentNo).css('display', 'none');
@@ -229,11 +238,24 @@
 		}); // end of addEventListener
 		
 		// 댓글 수정 이벤트 처리
-		$(".update-comment").click(function(event) {
-
+		// $(".update-comment").click(function(event) {
+		$("#comment-list").on("click", ".update-comment", function(event) {
 			// const commentNo = $(this).attr("data-comment-no");
 			const commentNo = $(this).data('comment-no'); // data-속성이름="값" 으로 표현된 속성의 값 읽기
-			$('#comment-edit-area-' + commentNo + ' form').submit();
+			
+			// $('#comment-edit-area-' + commentNo + ' form').submit();
+			const formData = $('#comment-edit-area-' + commentNo + ' form').serialize();
+			$.ajax({
+				"url": "ajax-edit-comment",
+				"method": "post",
+				"data": formData,
+				"success": function(data, status, xhr) {
+					$('#comment-list').load('comment-list?boardNo=${board.boardNo}');
+				},
+				"error": function(xhr, status, err) {
+					alert('댓글 수정 실패')
+				}
+			});
 			
 		});
 		

@@ -1,7 +1,10 @@
 package com.demoweb.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,15 @@ public class BoardCommentController {
 	
 	@Setter(onMethod_ = { @Autowired }) //자동으로 만든 Setter 메서드에 @Autowired 지정 
 	private BoardCommentService boardCommentService;
+	
+	@GetMapping(path = { "/comment-list" })
+	public String showCommentList(int boardNo, Model model) {
+		
+		List<BoardCommentDto> comments = boardCommentService.getCommentListByBoardNo(boardNo);
+		model.addAttribute("comments", comments);
+		
+		return "board/comment-list";
+	}
 	
 	@PostMapping(path = { "/write-comment" })
 	public String writeComment(BoardCommentDto boardComment, @RequestParam(defaultValue = "-1") int pageNo) {

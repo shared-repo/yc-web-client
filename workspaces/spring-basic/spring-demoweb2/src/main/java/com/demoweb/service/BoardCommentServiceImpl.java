@@ -1,5 +1,7 @@
 package com.demoweb.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.demoweb.dto.BoardCommentDto;
@@ -11,6 +13,12 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 	
 	@Setter(onMethod_ = { @Autowired } )
 	private BoardCommentMapper boardCommentMapper;
+	
+	@Override
+	public List<BoardCommentDto> getCommentListByBoardNo(int boardNo) {
+		List<BoardCommentDto> comments = boardCommentMapper.selectBoardCommentByBoardNo(boardNo);
+		return comments;
+	}
 	
 	@Override
 	public void writeComment(BoardCommentDto boardComment) {
@@ -29,6 +37,8 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 	public void editComment(BoardCommentDto boardComment) {
 		boardCommentMapper.updateComment(boardComment);
 	}
+
+
 
 }
 

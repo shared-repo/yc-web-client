@@ -162,6 +162,10 @@
 			}
 		});
 		
+		/////////////////////////////////////////////////////////////////////////
+		
+		
+		
 		// 댓글 쓰기 이벤트 처리
 		$("#write-comment-lnk").on("click", function(event) {
 			// $('#commentform').submit(); // <input type="submit"을 클릭한 것과 같은 효과 --> form을 submit
@@ -173,7 +177,9 @@
 				"method": "post",
 				"data": formData,
 				"success": function(data, status, xhr) {
-					alert(data);
+					// alert(data);
+					// 댓글 목록 영역 업데이트 ( 부분 화면 갱신 )
+					$('#comment-list').load('comment-list?boardNo=${board.boardNo}'); // load : ajax 방식으로 서버에 요청을 보내고 수신한 html을 사용해서 화면의 일부를 갱신하는 함수
 				},
 				"error": function(xhr, status, err) {
 					alert("fail");

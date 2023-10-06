@@ -18,7 +18,7 @@
 					    <br /><br />
 					    <span>${ fn:replace(comment.content, enter, "<br>") }</span>
 						<br /><br />
-						<div style='display:${ (not empty loginuser and loginuser.memberId == comment.writer) ? "block" : "none" }'>
+						<div style='float:left; display:${ (not empty loginuser and loginuser.memberId == comment.writer) ? "block" : "none" }'>
 					    	<a class="edit-comment" data-comment-no="${ comment.commentNo }" href="javascript:">편집</a>
 							&nbsp;
 							<a class="delete-comment" data-comment-no="${ comment.commentNo }" href="javascript:">삭제</a>

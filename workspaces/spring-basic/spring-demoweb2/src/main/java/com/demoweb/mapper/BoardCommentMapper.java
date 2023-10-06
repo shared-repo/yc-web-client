@@ -47,7 +47,7 @@ public interface BoardCommentMapper {
 
 	@Update(  "update boardcomment "
 			+ "set step = step + 1 "
-			+ "where groupno = #{ gropuNo } and step >= #{ step }")
+			+ "where groupno = #{ groupNo } and step >= #{ step }")
 	void updateStep(BoardCommentDto boardComment);
 
 	@Insert(  "insert into boardcomment (boardno, writer, content, groupno, step, depth) "

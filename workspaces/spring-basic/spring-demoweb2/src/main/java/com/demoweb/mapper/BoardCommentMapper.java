@@ -44,6 +44,16 @@ public interface BoardCommentMapper {
 			+ "from boardcomment "
 			+ "where commentno = #{ commentNo } and deleted = false")
 	BoardCommentDto selectBoardCommentByCommentNo(@Param("commentNo") int commentNo);
+
+	@Update(  "update boardcomment "
+			+ "set step = step + 1 "
+			+ "where groupno = #{ gropuNo } and step >= #{ step }")
+	void updateStep(BoardCommentDto boardComment);
+
+	@Insert(  "insert into boardcomment (boardno, writer, content, groupno, step, depth) "
+			+ "values (#{ boardNo }, #{ writer }, #{ content }, #{ groupNo }, #{ step }, #{ depth })")
+	@Options(useGeneratedKeys = true, keyProperty = "commentNo", keyColumn = "commentNo")
+	void insertRecomment(BoardCommentDto boardComment);
 	
 }
 

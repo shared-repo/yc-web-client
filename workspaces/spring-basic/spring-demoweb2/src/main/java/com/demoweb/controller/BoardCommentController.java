@@ -99,7 +99,7 @@ public class BoardCommentController {
 		boardComment.setDepth(parentBoardComment.getDepth() + 1);
 		
 		// 새로 등록할 댓글보다 step이 큰 댓글의 step을 1씩 증가
-		boardCommentService.updateDepth(boardComment);
+		boardCommentService.updateStep(boardComment);
 		// 댓글 쓰기
 		boardCommentService.writeRecomment(boardComment);
 		

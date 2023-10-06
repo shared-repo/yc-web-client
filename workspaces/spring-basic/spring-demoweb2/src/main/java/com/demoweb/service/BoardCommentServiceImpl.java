@@ -45,6 +45,16 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 		
 	}
 
+	@Override
+	public void updateStep(BoardCommentDto boardComment) {
+		boardCommentMapper.updateStep(boardComment);
+	}
+
+	@Override
+	public void writeRecomment(BoardCommentDto boardComment) {
+		boardCommentMapper.insertRecomment(boardComment);
+	}
+
 
 
 }

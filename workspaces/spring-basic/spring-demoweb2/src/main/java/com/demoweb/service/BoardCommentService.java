@@ -16,4 +16,8 @@ public interface BoardCommentService {
 
 	BoardCommentDto findBoardCommentByCommentNo(int commentNo);
 
+	void updateStep(BoardCommentDto boardComment);
+
+	void writeRecomment(BoardCommentDto boardComment);
+
 }

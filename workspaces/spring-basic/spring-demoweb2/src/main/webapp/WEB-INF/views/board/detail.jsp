@@ -308,9 +308,26 @@
 		$('#write-recomment-btn').on('click', function(event) {
 			
 			const formData = $('#recommentform').serialize(); // <form>에 포함된 입력요소의 값을 뽑아서 전송가능한 문자열로 반환
-			alert(formData);
+			// alert(formData);
 			
-			$('#recomment-modal').modal("hide"); // bootstrap modal을 숨기는 함수
+			$.ajax({
+				"url": "write-recomment",
+				"method": "post",
+				"data": formData,
+				"success": function(data, status, xhr) {
+					alert('댓글 쓰기 성공');
+					$('#recomment-modal').modal("hide"); // bootstrap modal을 숨기는 함수
+					$('#comment-list').load('comment-list?boardNo=${board.boardNo}');					
+				},
+				"error": function(xhr, status, err) {
+					alert("댓글 쓰기 실패");
+				}
+			});
+			
+			
+			
+			
+			
 			
 		});
 		

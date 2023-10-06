@@ -24,7 +24,7 @@ public interface BoardCommentMapper {
 			+ "where commentno = #{ commentNo }")
 	void updateGroupNo(@Param("groupNo") int groupNo, @Param("commentNo") int commentNo);
 	
-	@Select(  "select commentNo, boardNo, writer, content, regDate, deleted "
+	@Select(  "select commentNo, boardNo, writer, content, regDate, deleted, groupNo, step, depth "
 			+ "from boardcomment "
 			+ "where boardno = #{ boardNo } "
 			+ "order by groupno desc, step asc")
@@ -39,6 +39,11 @@ public interface BoardCommentMapper {
 			+ "set content = #{ content } "
 			+ "where commentno = #{ commentNo }")
 	void updateComment(BoardCommentDto boardComment);
+
+	@Select(  "select commentNo, boardNo, writer, content, regDate, deleted, groupNoo, step, depth "
+			+ "from boardcomment "
+			+ "where commentno = #{ commentNo } and deleted = false")
+	BoardCommentDto selectBoardCommentByCommentNo(@Param("commentNo") int commentNo);
 	
 }
 

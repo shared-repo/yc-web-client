@@ -10,6 +10,9 @@
 <head>
 	<meta charset="utf-8" />
 	<title>게시판글쓰기</title>
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	
 	<link rel="Stylesheet" href="/spring-demoweb/resources/styles/default.css" />
 	<link rel="Stylesheet" href="/spring-demoweb/resources/styles/input2.css" />
 </head>
@@ -162,12 +165,12 @@
 				<input type="hidden" name="commentNo" value="" />
 				<input type="hidden" name="writer" value="${ loginuser.memberId }" />
 				
-				<textarea id="recomment_content" name="content" class="form-control" style="resize: none;" rows="3"></textarea>
+				<textarea id="recomment-content" name="content" class="form-control" style="resize: none;" rows="3"></textarea>
 			</form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-	        <button type="button" class="btn btn-primary">댓글 쓰기</button>
+	        <button type="button" class="btn btn-primary" id="write-recomment-btn">댓글 쓰기</button>
 	      </div>
 	    </div>
 	  </div>
@@ -178,6 +181,8 @@
 	
 	<!-- CDN 서버에서 jquery js 파일 배포 -->
 	<!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> -->
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 	
 	<script>
 	$(function(event) {
@@ -292,8 +297,23 @@
 		
 		$("#comment-list").on("click", ".write-recomment", function(event) {
 			const commentNo = $(this).data('comment-no');
+
+			$('#recommentform #recomment-content').val("");
+			$('#recommentform input[name=commentNo]').val(commentNo);
+			
+			$('#recomment-modal').modal("show"); // bootstrap modal을 화면에 표시하는 함수
 			
 		});
+		
+		$('#write-recomment-btn').on('click', function(event) {
+			
+			const formData = $('#recommentform').serialize(); // <form>에 포함된 입력요소의 값을 뽑아서 전송가능한 문자열로 반환
+			alert(formData);
+			
+			$('#recomment-modal').modal("hide"); // bootstrap modal을 숨기는 함수
+			
+		});
+		
 		
 	})
 	</script>

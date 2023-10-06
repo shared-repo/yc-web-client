@@ -38,6 +38,13 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 		boardCommentMapper.updateComment(boardComment);
 	}
 
+	@Override
+	public BoardCommentDto findBoardCommentByCommentNo(int commentNo) {
+		BoardCommentDto boardComment = boardCommentMapper.selectBoardCommentByCommentNo(commentNo);
+		return boardComment;
+		
+	}
+
 
 
 }

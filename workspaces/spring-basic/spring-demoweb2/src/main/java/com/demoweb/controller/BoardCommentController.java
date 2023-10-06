@@ -85,6 +85,26 @@ public class BoardCommentController {
 		
 		return "success";
 	}
+	
+	@PostMapping(path = { "/write-recomment" })
+	@ResponseBody
+	public String writeRecomment(BoardCommentDto boardComment) {
+		
+		// 부모 댓글 조회
+		BoardCommentDto parentBoardComment = boardCommentService.findBoardCommentByCommentNo(boardComment.getCommentNo());
+		
+		boardComment.setBoardNo(parentBoardComment.getBoardNo());
+		boardComment.setGroupNo(parentBoardComment.getGroupNo());
+		boardComment.setStep(parentBoardComment.getStep() + 1);
+		boardComment.setDepth(parentBoardComment.getDepth() + 1);
+		
+		// 새로 등록할 댓글보다 step이 큰 댓글의 step을 1씩 증가
+		boardCommentService.updateDepth(boardComment);
+		// 댓글 쓰기
+		boardCommentService.writeRecomment(boardComment);
+		
+		return "success";
+	}
 
 }
 

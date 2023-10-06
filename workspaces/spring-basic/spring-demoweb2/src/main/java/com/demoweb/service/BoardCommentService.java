@@ -14,4 +14,6 @@ public interface BoardCommentService {
 
 	List<BoardCommentDto> getCommentListByBoardNo(int boardNo);
 
+	BoardCommentDto findBoardCommentByCommentNo(int commentNo);
+
 }

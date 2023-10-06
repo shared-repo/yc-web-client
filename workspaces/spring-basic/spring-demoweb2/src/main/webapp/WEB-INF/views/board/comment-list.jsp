@@ -22,7 +22,12 @@
 					    	<a class="edit-comment" data-comment-no="${ comment.commentNo }" href="javascript:">편집</a>
 							&nbsp;
 							<a class="delete-comment" data-comment-no="${ comment.commentNo }" href="javascript:">삭제</a>
+							&nbsp;&nbsp;
 						</div>
+						<div style='float:left; display:${ not empty loginuser ? "block" : "none" }'>
+							<a class="write-recomment" data-comment-no="${ comment.commentNo }" href="javascript:">댓글쓰기</a>
+						</div>
+						<span style="clear:both"></span>
 					</c:otherwise>
 					</c:choose>
 					</div>	                

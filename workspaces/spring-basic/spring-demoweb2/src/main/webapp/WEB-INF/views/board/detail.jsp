@@ -112,11 +112,16 @@
 					    <br /><br />
 					    <span>${ fn:replace(comment.content, enter, "<br>") }</span>
 						<br /><br />
-						<div style='display:${ (not empty loginuser and loginuser.memberId == comment.writer) ? "block" : "none" }'>
+						<div style='float:left; display:${ (not empty loginuser and loginuser.memberId == comment.writer) ? "block" : "none" }'>
 					    	<a class="edit-comment" data-comment-no="${ comment.commentNo }" href="javascript:">편집</a>
 							&nbsp;
 							<a class="delete-comment" data-comment-no="${ comment.commentNo }" href="javascript:">삭제</a>
+							&nbsp;&nbsp;
 						</div>
+						<div style='float:left; display:${ not empty loginuser ? "block" : "none" }'>
+							<a class="write-recomment" data-comment-no="${ comment.commentNo }" href="javascript:">댓글쓰기</a>
+						</div>
+						<span style="clear:both"></span>
 					</c:otherwise>
 					</c:choose>
 					</div>	                
@@ -142,6 +147,30 @@
 		<!-- end of comment list area -->
 	
 	</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="recomment-modal" tabindex="-1" aria-labelledby="recomment-modal-label" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="recomment-modal-label">댓글 쓰기</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        <form id="recommentform" action="write-recomment" method="post">
+				<input type="hidden" name="commentNo" value="" />
+				<input type="hidden" name="writer" value="${ loginuser.memberId }" />
+				
+				<textarea id="recomment_content" name="content" class="form-control" style="resize: none;" rows="3"></textarea>
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+	        <button type="button" class="btn btn-primary">댓글 쓰기</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 	
 	<!-- 자사 웹서버에서 jquery js 파일 배포 -->
@@ -261,6 +290,10 @@
 			
 		});
 		
+		$("#comment-list").on("click", ".write-recomment", function(event) {
+			const commentNo = $(this).data('comment-no');
+			
+		});
 		
 	})
 	</script>

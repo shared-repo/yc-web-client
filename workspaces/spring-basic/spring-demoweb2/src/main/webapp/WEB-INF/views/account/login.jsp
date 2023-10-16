@@ -23,7 +23,7 @@
 		        <div class="inputsubtitle">로그인정보</div>
 		        
 		        <form action="login" method="post">
-		       
+		        <input type="hidden" name="returnUrl" value="${ returnUrl }">
 		        <table>
 		            <tr>
 		                <th>아이디(ID)</th>

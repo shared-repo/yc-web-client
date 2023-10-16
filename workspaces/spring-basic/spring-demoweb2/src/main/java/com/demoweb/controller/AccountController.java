@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.demoweb.dao.JdbcAccountDao;
@@ -52,23 +53,25 @@ public class AccountController {
 	}
 	
 	@GetMapping(path = { "/login" })
-	public String loginForm() {
+	public String loginForm(@RequestParam(defaultValue = "/home") String returnUrl, Model model) {
 		
+		model.addAttribute("returnUrl", returnUrl);
 		return "account/login"; // "/WEB-INF/views/" + account/login + ".jsp"
 	}
 	
 	@PostMapping(path = { "/login" })
 	// public String login(String memberId, String passwd) {
-	public String login(MemberDto member, HttpSession session, Model model) {
+	public String login(MemberDto member, String returnUrl, HttpSession session, Model model) {
 		
 		// AccountService accountService = new AccountServiceImpl();
 		MemberDto loginMember = accountService.findLoginMember(member);
 		
 		if (loginMember != null) { // 로그인 가능 : 사용자가 입력한 id와 passwd에 해당하는 사용자가 존재
 			session.setAttribute("loginuser", loginMember);
-			return "redirect:/home";
+			return "redirect:" + returnUrl;
 		} else {
 			model.addAttribute("loginfail", true); // Model 타입 전달인자에 데이터를 저장하면 View에서 읽을 수 있습니다.
+			model.addAttribute("returnUrl", returnUrl);
 			return "account/login";
 		}
 		

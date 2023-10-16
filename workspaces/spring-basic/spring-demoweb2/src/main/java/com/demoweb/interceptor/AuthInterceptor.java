@@ -21,7 +21,10 @@ public class AuthInterceptor implements HandlerInterceptor {
 		MemberDto member = (MemberDto)session.getAttribute("loginuser");
 		// 컨트롤러 호출 여부 결정 가능 ( 반환 값이 true : 호출, 반환 값이 false이면 호출 생략 )
 		if (member == null) { // 로그인 하지 않은 경우
-			response.sendRedirect("/spring-demoweb/account/login");
+			String currentUrl = request.getRequestURI(); // 현재 요청된 경로를 문자열로 반환
+			currentUrl = currentUrl.replace("/spring-demoweb", "");
+			response.sendRedirect("/spring-demoweb/account/login?returnUrl=" + currentUrl);
+			
 			return false;
 		} else {
 			return true;	

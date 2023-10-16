@@ -132,7 +132,7 @@ public class BoardController {
 			boardService.increaseMemberReadCount(boardNo, member.getMemberId());
 		} else {
 			ServletContext application = session.getServletContext();
-			String url = req.getRemoteAddr();
+			String url = req.getRemoteAddr(); // 현재 요청을 보낸 클라이언트 컴퓨터의 IP 반환
 			List<String[]> userReadBoard = (List<String[]>)application.getAttribute("userreadboard");
 			boolean isExist = false;
 			for (String[] row : userReadBoard) {

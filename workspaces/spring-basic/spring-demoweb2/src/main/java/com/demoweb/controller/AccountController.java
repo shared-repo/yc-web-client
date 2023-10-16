@@ -55,7 +55,7 @@ public class AccountController {
 	@GetMapping(path = { "/login" })
 	public String loginForm(@RequestParam(defaultValue = "/home") String returnUrl, Model model) {
 		
-		model.addAttribute("returnUrl", returnUrl);
+		model.addAttribute("returnUrl", returnUrl.replace("!", "&"));
 		return "account/login"; // "/WEB-INF/views/" + account/login + ".jsp"
 	}
 	

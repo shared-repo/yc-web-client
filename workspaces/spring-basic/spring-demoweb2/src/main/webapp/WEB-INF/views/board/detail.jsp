@@ -225,7 +225,13 @@
 				"method": "post",
 				"data": formData,
 				"success": function(data, status, xhr) {
-					// alert(data);
+					if (data == 'unauthorized') {
+						const yn = confirm('로그인한 사용자만 댓글을 작성할 수 있습니다. 로그인 할까요?');
+						if (yn) {
+							const returnUrl = '/board/detail?boardNo=${ board.boardNo }!pageNo=${ pageNo }';
+							location.href = '/spring-demoweb/account/login?returnUrl=' + returnUrl;
+						}
+					}
 					// 댓글 목록 영역 업데이트 ( 부분 화면 갱신 )
 					$('#comment-list').load('comment-list?boardNo=${board.boardNo}'); // load : ajax 방식으로 서버에 요청을 보내고 수신한 html을 사용해서 화면의 일부를 갱신하는 함수
 				},

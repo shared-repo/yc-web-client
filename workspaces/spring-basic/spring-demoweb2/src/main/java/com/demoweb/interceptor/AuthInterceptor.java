@@ -1,5 +1,7 @@
 package com.demoweb.interceptor;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,10 +23,16 @@ public class AuthInterceptor implements HandlerInterceptor {
 		MemberDto member = (MemberDto)session.getAttribute("loginuser");
 		// 컨트롤러 호출 여부 결정 가능 ( 반환 값이 true : 호출, 반환 값이 false이면 호출 생략 )
 		if (member == null) { // 로그인 하지 않은 경우
-			String currentUrl = request.getRequestURI(); // 현재 요청된 경로를 문자열로 반환
-			currentUrl = currentUrl.replace("/spring-demoweb", "");
-			response.sendRedirect("/spring-demoweb/account/login?returnUrl=" + currentUrl);
 			
+			String currentUrl = request.getRequestURI(); // 현재 요청된 경로를 문자열로 반환
+			if (currentUrl.contains("ajax-write-comment")) {
+				response.setContentType("text/plain;charset=utf-8");
+				PrintWriter out = response.getWriter();
+				out.print("unauthorized");
+			} else {
+				currentUrl = currentUrl.replace("/spring-demoweb", "");
+				response.sendRedirect("/spring-demoweb/account/login?returnUrl=" + currentUrl);
+			}
 			return false;
 		} else {
 			return true;	

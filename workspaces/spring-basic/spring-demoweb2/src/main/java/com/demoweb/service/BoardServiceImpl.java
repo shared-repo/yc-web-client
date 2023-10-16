@@ -88,8 +88,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void increaseMemberReadCount(int boardNo, String memberId) {
-		boardMapper.updateBoardReadCount(boardNo, memberId);
-		boardMapper.insertMemberReadBoard(boardNo, memberId);
+		if (memberId == null) {
+			boardMapper.updateBoardReadCount2(boardNo);
+		} else {
+			boardMapper.updateBoardReadCount(boardNo, memberId);
+			boardMapper.insertMemberReadBoard(boardNo, memberId);
+		}
 	}
 
 

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -118,7 +119,7 @@ public class BoardController {
 	@GetMapping(path = { "/detail" })
 	public String detail(@RequestParam(defaultValue = "-1") int boardNo, 
 						 @RequestParam(defaultValue="-1") int pageNo, 
-						 HttpSession session,
+						 HttpSession session, HttpServletRequest req,
 						 Model model) {
 		
 		if (boardNo == -1 || pageNo == -1) { // 글 번호가 요청에 포함되지 않은 경우
@@ -129,6 +130,21 @@ public class BoardController {
 		MemberDto member = (MemberDto)session.getAttribute("loginuser");
 		if (member != null) {
 			boardService.increaseMemberReadCount(boardNo, member.getMemberId());
+		} else {
+			ServletContext application = session.getServletContext();
+			String url = req.getRemoteAddr();
+			List<String[]> userReadBoard = (List<String[]>)application.getAttribute("userreadboard");
+			boolean isExist = false;
+			for (String[] row : userReadBoard) {
+				if (row[0].equals(url) && row[1].equals(String.valueOf(boardNo))) {
+					isExist = true;
+					break;
+				}
+			}
+			if (!isExist) {
+				boardService.increaseMemberReadCount(boardNo, null);
+				userReadBoard.add(new String[] { url, String.valueOf(boardNo) });
+			}
 		}
 		// 글 조회
 		BoardDto board = boardService.findBoardByBoardNo(boardNo);

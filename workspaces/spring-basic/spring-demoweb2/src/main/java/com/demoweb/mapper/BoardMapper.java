@@ -74,6 +74,11 @@ public interface BoardMapper {
 			+ "							    and memberId = #{ memberId } )")
 	void updateBoardReadCount(@Param("boardNo")int boardNo, @Param("memberId")String memberId);
 
+	@Update(  "update board "
+			+ "set readcount = readcount + 1 "
+			+ "where boardNo = #{ boardNo } " )
+	void updateBoardReadCount2(int boardNo);
+
 	
 
 }

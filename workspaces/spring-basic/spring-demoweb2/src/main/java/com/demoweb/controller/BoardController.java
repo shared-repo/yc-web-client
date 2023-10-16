@@ -86,7 +86,7 @@ public class BoardController {
 		board.setBoardAttachList(attachList);
 		
 		// 2. 요청 처리 ( 서비스 객체 호출 )
-		boardService.writeBoard(board);
+		boardService.writeBoard(board); // 글쓰기
 		
 		// 3. JSP에서 읽을 수 있도록 데이터 저장 (선택적 - 여기서는 없음)
 		
@@ -118,13 +118,21 @@ public class BoardController {
 	@GetMapping(path = { "/detail" })
 	public String detail(@RequestParam(defaultValue = "-1") int boardNo, 
 						 @RequestParam(defaultValue="-1") int pageNo, 
+						 HttpSession session,
 						 Model model) {
 		
 		if (boardNo == -1 || pageNo == -1) { // 글 번호가 요청에 포함되지 않은 경우
 			return "redirect:list";
 		}
 		
+		// (회원 기준) 조회수 증가
+		MemberDto member = (MemberDto)session.getAttribute("loginuser");
+		if (member != null) {
+			boardService.increaseMemberReadCount(boardNo, member.getMemberId());
+		}
+		// 글 조회
 		BoardDto board = boardService.findBoardByBoardNo(boardNo);
+		
 		
 		if (board == null) { // 조회된 글이 없는 경우
 			return "redirect:list";

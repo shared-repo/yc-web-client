@@ -61,6 +61,19 @@ public interface BoardMapper {
 			+ "where boardno = #{ boardNo }")
 	void updateBoard(BoardDto board);
 
+	@Insert(  "insert into member_read_board ( memberId, boardNo ) "
+			+ "values ( #{ memberId }, #{ boardNo } )")
+	void insertMemberReadBoard(@Param("boardNo")int boardNo, @Param("memberId")String memberId);
+
+	@Update(  "update board "
+			+ "set readcount = readcount + 1 "
+			+ "where boardNo = #{ boardNo } "
+			+ "		 and not exists ( select * "
+			+ "						  from member_read_board "
+			+ "						  where boardno = #{ boardNo } "
+			+ "							    and memberId = #{ memberId } )")
+	void updateBoardReadCount(@Param("boardNo")int boardNo, @Param("memberId")String memberId);
+
 	
 
 }

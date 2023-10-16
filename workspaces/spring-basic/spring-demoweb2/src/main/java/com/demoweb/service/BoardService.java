@@ -21,4 +21,6 @@ public interface BoardService {
 
 	void editBoard(BoardDto board);
 
+	void increaseMemberReadCount(int boardNo, String memberId);
+
 }

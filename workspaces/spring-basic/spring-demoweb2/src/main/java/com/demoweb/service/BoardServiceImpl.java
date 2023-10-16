@@ -86,6 +86,12 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 
+	@Override
+	public void increaseMemberReadCount(int boardNo, String memberId) {
+		boardMapper.updateBoardReadCount(boardNo, memberId);
+		boardMapper.insertMemberReadBoard(boardNo, memberId);
+	}
+
 
 
 

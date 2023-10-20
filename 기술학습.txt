@@ -1,0 +1,24 @@
+1. Javascript, SQL 심화
+
+2. Spring Boot + JPA ( 스프링 부트와 AWS로 혼자 구현하는 웹 서비스 )
+
+3. Spring Security
+
+4. Open API 활용
+
+5. React, Vue
+
+------------------------------------------------------------
+
+1. Git 활용 심화 ( 도서 : 팀 개발을 위한 Git, GitHub 시작하기 )
+
+2. CI/CD (Jenkins) -> 우선 개념만
+
+3. Docker 기본 사용 방법
+
+4. AWS 기본 사용 방법
+
+5. IntelliJ 사용 방법
+
+6. 리눅스 사용 방법
+
